@@ -958,11 +958,24 @@ function doneLessons(){return Object.values(getP().lessons).filter(Boolean).leng
 // ═══════════════════════════════════════════════════════
 // AUDIO
 // ═══════════════════════════════════════════════════════
-function initAudio(){}
+let _jv=null;
+function initAudio(){
+  if(!window.speechSynthesis)return;
+  const load=()=>{const v=speechSynthesis.getVoices();if(v.length)_jv=v.find(x=>x.lang.startsWith('ja'))||null;};
+  load();speechSynthesis.onvoiceschanged=load;
+  let n=0,t=setInterval(()=>{load();if(_jv||++n>30)clearInterval(t);},150);
+}
 function speak(txt){
   if(!txt)return;
-  const url='https://translate.google.com/translate_tts?ie=UTF-8&tl=ja&client=tw-ob&q='+encodeURIComponent(txt);
-  const a=new Audio(url);a.volume=1;a.play().catch(()=>{});
+  if(window.speechSynthesis&&_jv){
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(txt);
+    u.lang='ja-JP';u.rate=.75;u.voice=_jv;
+    setTimeout(()=>speechSynthesis.speak(u),50);
+  } else {
+    const url='https://translate.google.com/translate_tts?ie=UTF-8&tl=ja&client=tw-ob&q='+encodeURIComponent(txt);
+    const a=new Audio(url);a.volume=1;a.play().catch(()=>{});
+  }
 }
 
 // ═══════════════════════════════════════════════════════

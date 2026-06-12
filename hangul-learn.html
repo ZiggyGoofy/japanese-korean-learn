@@ -757,12 +757,25 @@ function doneLessons(){return Object.values(getP().lessons).filter(Boolean).leng
 // ═══════════════════════════════════════════════════════════
 // AUDIO
 // ═══════════════════════════════════════════════════════════
-function initAudio(){}
+let _kv=null;
+function initAudio(){
+  if(!window.speechSynthesis)return;
+  const load=()=>{const v=speechSynthesis.getVoices();if(v.length)_kv=v.find(x=>x.lang.startsWith('ko'))||null;};
+  load();speechSynthesis.onvoiceschanged=load;
+  let n=0,t=setInterval(()=>{load();if(_kv||++n>30)clearInterval(t);},150);
+}
 function speak(txt){
   if(!txt)return;
   const clean=typeof SPEAK==='function'?SPEAK(txt):txt;
-  const url='https://translate.google.com/translate_tts?ie=UTF-8&tl=ko&client=tw-ob&q='+encodeURIComponent(clean);
-  const a=new Audio(url);a.volume=1;a.play().catch(()=>{});
+  if(window.speechSynthesis&&_kv){
+    speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(clean);
+    u.lang='ko-KR';u.rate=.75;u.voice=_kv;
+    setTimeout(()=>speechSynthesis.speak(u),50);
+  } else {
+    const url='https://translate.google.com/translate_tts?ie=UTF-8&tl=ko&client=tw-ob&q='+encodeURIComponent(clean);
+    const a=new Audio(url);a.volume=1;a.play().catch(()=>{});
+  }
 }
 
 // ═══════════════════════════════════════════════════════════
