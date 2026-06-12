@@ -1,0 +1,1962 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>한국어 — Hangul Learn</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blu:#003478;--blu-bg:rgba(0,52,120,.08);--blu-bg2:rgba(0,52,120,.2);
+  --red:#CD2E3A;--red-bg:rgba(205,46,58,.1);
+  --ink:#1A1A1A;--ink2:#4A4A4A;--ink3:#999;
+  --paper:#F7F9FC;--warm:#EEF1F8;--card:#fff;
+  --border:rgba(0,0,0,.09);--border2:rgba(0,0,0,.18);
+  --green:#2D6A4F;--green-bg:rgba(45,106,79,.1);--green2:#52B788;
+  --yellow:#D4900A;--yellow-bg:rgba(212,144,10,.12);
+  --kr:'Noto Serif KR',serif;--ui:'DM Sans',sans-serif;
+  --r:8px;--r2:14px;--sh:0 2px 14px rgba(0,0,0,.07);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--ui);background:var(--paper);color:var(--ink);min-height:100vh;}
+button{font-family:var(--ui);cursor:pointer;}
+body.dark{--ink:#ECECEC;--ink2:#B0B0B0;--ink3:#707070;--paper:#141414;--warm:#0E1420;--card:#1F1F1F;--border:rgba(255,255,255,.09);--border2:rgba(255,255,255,.18);--green-bg:rgba(45,106,79,.25);--yellow-bg:rgba(212,144,10,.18);--blu-bg:rgba(0,52,120,.22);--red-bg:rgba(205,46,58,.18);}
+body.dark nav,body.dark .ov-bar{background:#1F1F1F;border-color:rgba(255,255,255,.09);}
+body.dark .learn-card,body.dark .xp-box,body.dark .mast-box,body.dark .pcfg,body.dark .scard,body.dark .lcard,body.dark .dact,body.dark .fc,body.dark .cours-toc,body.dark .cours-example,body.dark .cours-card,body.dark .res-card,body.dark .end-wrap,body.dark .db-char-card{background:#1F1F1F;border-color:rgba(255,255,255,.09);}
+body.dark .lbanner,body.dark .db-mnemo,body.dark .cours-note{background:var(--warm)!important;}
+body.dark input{background:#252525;color:var(--ink);border-color:rgba(255,255,255,.18);}
+body.dark .tile,body.dark .lbchar,body.dark .qo,.body.dark .lo,.body.dark .spopt,.body.dark .wro,.body.dark .db-qo{background:#252525;}
+body.dark .cs-table th{background:#252525;}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:200;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1rem;height:52px;gap:6px;}
+.home-link{padding:5px 11px;border:1px solid var(--border2);border-radius:18px;font-size:12px;color:var(--ink3);text-decoration:none;white-space:nowrap;flex-shrink:0;}
+.home-link:hover{border-color:var(--blu);color:var(--blu);}
+.logo{font-family:var(--kr);font-size:20px;color:var(--blu);margin-right:auto;cursor:pointer;display:flex;align-items:baseline;gap:7px;}
+.logo em{font-family:var(--ui);font-style:normal;font-size:11px;color:var(--ink3);font-weight:300;}
+.ntabs{display:flex;gap:2px;overflow-x:auto;}
+.ntb{padding:5px 12px;border-radius:18px;border:none;font-size:12px;background:none;color:var(--ink2);transition:all .15s;white-space:nowrap;}
+.ntb:hover{background:var(--paper);}
+.ntb.on{background:var(--blu);color:#fff;}
+.dark-toggle{width:34px;height:34px;border:1px solid var(--border2);border-radius:50%;background:none;font-size:15px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;flex-shrink:0;}
+.dark-toggle:hover{background:var(--paper);transform:rotate(20deg);}
+
+/* ── LAYOUT ── */
+main{max-width:960px;margin:0 auto;padding:1.8rem 1.2rem 4rem;}
+.page{display:none;}.page.on{display:block;}
+.ph h1{font-family:var(--kr);font-size:24px;display:flex;align-items:baseline;gap:10px;margin-bottom:.4rem;}
+.ph h1 em{font-family:var(--ui);font-style:normal;font-size:13px;color:var(--ink3);font-weight:300;}
+.rl{width:32px;height:3px;background:var(--blu);border-radius:2px;margin-bottom:1.4rem;}
+.stabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.4rem;}
+.stb{padding:5px 15px;border:1px solid var(--border2);border-radius:18px;font-size:13px;background:none;color:var(--ink2);transition:all .15s;}
+.stb:hover{border-color:var(--blu);color:var(--blu);}
+.stb.on{background:var(--blu-bg);border-color:var(--blu);color:var(--blu);font-weight:500;}
+.sp{display:none;}.sp.on{display:block;}
+
+/* ── DASHBOARD ── */
+.dash-top{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1.4rem;}
+.scard{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1rem;text-align:center;}
+.scard-ico{font-size:28px;margin-bottom:6px;}
+.scard-val{font-family:var(--kr);font-size:26px;}
+.scard-lbl{font-size:11px;color:var(--ink3);margin-top:3px;}
+.xp-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem;margin-bottom:1.4rem;}
+.xp-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:13px;}
+.xp-head b{font-weight:500;}
+.xp-track{height:10px;background:var(--paper);border-radius:5px;overflow:hidden;border:1px solid var(--border);}
+.xp-fill{height:100%;background:linear-gradient(90deg,var(--blu),#0052A4);border-radius:5px;transition:width .5s;}
+.dash-acts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.4rem;}
+.dact{padding:1.1rem;border:1px solid var(--border);border-radius:var(--r2);background:var(--card);text-align:left;transition:all .15s;}
+.dact:hover{border-color:var(--blu);transform:translateY(-2px);box-shadow:var(--sh);}
+.dact.prime{border-color:var(--blu);background:var(--blu-bg);}
+.dact-ico{font-size:22px;margin-bottom:5px;}
+.dact-title{font-size:14px;font-weight:500;margin-bottom:2px;}
+.dact-desc{font-size:12px;color:var(--ink2);}
+.mast-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem;}
+.mast-head{font-size:13px;font-weight:500;margin-bottom:10px;}
+.mb-row{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
+.mb-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.mb-lbl{font-size:12px;color:var(--ink2);width:120px;flex-shrink:0;}
+.mb-track{flex:1;height:8px;background:var(--paper);border-radius:4px;overflow:hidden;border:1px solid var(--border);}
+.mb-fill{height:100%;border-radius:4px;transition:width .4s;}
+.mb-num{font-size:11px;color:var(--ink3);width:35px;text-align:right;}
+
+/* ── SRS / DAILY ── */
+.srs-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1rem 1.2rem;}
+.srs-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem;}
+.srs-title{font-size:13px;font-weight:500;}
+.srs-count{font-size:12px;font-weight:500;padding:3px 10px;border-radius:12px;}
+.srs-count.hot{background:var(--blu-bg);color:var(--blu);}
+.srs-count.ok{background:var(--green-bg);color:var(--green);}
+.srs-chars{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.8rem;}
+.srs-char{font-family:var(--kr);font-size:22px;background:var(--paper);border:1px solid var(--border);border-radius:var(--r);padding:4px 8px;cursor:pointer;}
+.srs-char:hover{border-color:var(--blu);}
+.srs-btn{padding:8px 18px;background:var(--blu);color:#fff;border:none;border-radius:var(--r);font-size:13px;font-weight:500;cursor:pointer;}
+.daily-box{background:linear-gradient(135deg,var(--blu),#0052A4);border-radius:var(--r2);padding:1rem 1.2rem;color:#fff;}
+.daily-head{font-size:12px;opacity:.85;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px;}
+.daily-title{font-size:16px;font-weight:500;margin-bottom:.8rem;}
+.daily-btn{padding:8px 18px;background:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.4);border-radius:var(--r);font-size:13px;font-weight:500;color:#fff;cursor:pointer;}
+.daily-btn:hover{background:rgba(255,255,255,.35);}
+.daily-done{font-size:13px;opacity:.9;}
+
+/* ── LESSONS ── */
+.ltabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:1.6rem;}
+.ltab{padding:0;border:2px solid var(--border);border-radius:var(--r2);background:var(--card);cursor:pointer;transition:all .15s;text-align:left;overflow:hidden;min-width:150px;flex:1;}
+.ltab:hover{transform:translateY(-2px);box-shadow:var(--sh);}
+.ltab-top{padding:.7rem 1rem .5rem;display:flex;align-items:center;gap:8px;}
+.ltab-kr{font-family:var(--kr);font-size:18px;line-height:1;}
+.ltab-body{padding:0 1rem .7rem;}
+.ltab-title{font-size:12px;font-weight:500;}
+.ltab-sub{font-size:11px;color:var(--ink3);margin-top:1px;}
+.ltab-bar{height:3px;width:100%;}
+.lg{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px;}
+.lcard{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1rem;text-align:center;transition:all .15s;}
+.lcard:not(.locked):hover{border-color:var(--blu);transform:translateY(-2px);box-shadow:var(--sh);}
+.lcard.done{border-color:var(--green2);background:var(--green-bg);}
+.lcard.locked{opacity:.4;cursor:not-allowed;pointer-events:none;}
+.lc-chars{font-family:var(--kr);font-size:24px;margin-bottom:5px;line-height:1.3;}
+.lc-name{font-size:11px;color:var(--ink3);margin-bottom:6px;}
+.lbadge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:8px;}
+.lb-done{background:var(--green-bg);color:var(--green);}
+.lb-new{background:var(--blu-bg);color:var(--blu);}
+.lb-lock{background:var(--paper);color:var(--ink3);}
+.lc-stars{font-size:13px;letter-spacing:1px;margin-top:4px;}
+
+/* ── OVERLAY ── */
+#overlay{position:fixed;inset:0;z-index:500;background:var(--paper);overflow-y:auto;display:none;}
+#overlay.on{display:block;}
+.ov-bar{display:flex;align-items:center;gap:12px;padding:13px 1.4rem;background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;}
+.ov-back{width:34px;height:34px;border:1px solid var(--border2);border-radius:50%;background:none;font-size:16px;display:flex;align-items:center;justify-content:center;}
+.ov-back:hover{background:var(--paper);}
+.ov-title{font-family:var(--kr);font-size:17px;flex:1;}
+.ov-pn{font-size:12px;color:var(--ink3);}
+.ov-prog{height:4px;background:var(--border);}
+.ov-pf{height:100%;background:var(--blu);transition:width .3s;}
+.ov-body{max-width:600px;margin:0 auto;padding:1.8rem 1.2rem;}
+.lbanner{background:var(--warm);border:1px solid rgba(0,0,0,.1);border-radius:var(--r2);padding:.7rem 1rem;margin-bottom:1.2rem;display:flex;flex-wrap:wrap;gap:8px 14px;}
+.lbanner-title{font-size:10px;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;width:100%;margin-bottom:2px;}
+.lbchar{display:inline-flex;flex-direction:column;align-items:center;gap:1px;cursor:pointer;background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:5px 8px;transition:all .15s;}
+.lbchar:hover{border-color:var(--blu);background:var(--blu-bg);}
+.lbchar-kr{font-family:var(--kr);font-size:22px;line-height:1;}
+.lbchar-rm{font-size:9px;color:var(--blu);font-style:italic;margin-top:1px;}
+.learn-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.5rem;text-align:center;box-shadow:var(--sh);margin-bottom:1rem;}
+.lk-big{font-family:var(--kr);font-size:88px;line-height:1;cursor:pointer;transition:transform .1s;}
+.lk-big:hover{transform:scale(1.05);}
+.lk-rm{font-size:26px;color:var(--blu);font-weight:500;margin-top:12px;}
+.lk-ex{font-family:var(--kr);font-size:18px;color:var(--ink3);margin-top:5px;}
+.lk-hint{font-size:13px;color:var(--ink3);margin-top:5px;}
+.learn-nav{display:flex;justify-content:center;align-items:center;gap:10px;}
+.ln-btn{padding:10px 22px;border:1px solid var(--border2);border-radius:var(--r);background:#fff;font-size:14px;transition:all .15s;}
+.ln-btn:hover{background:var(--paper);}
+.ln-prime{background:var(--blu);color:#fff;border-color:var(--blu);}
+.ln-prime:hover{opacity:.9;}
+.ldots{display:flex;gap:6px;}
+.ldot{width:8px;height:8px;border-radius:50%;background:var(--border2);}
+.ldot.on{background:var(--blu);}
+.mode-pick{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:1.2rem;}
+.mpick{padding:1rem 1.5rem;border:1.5px solid var(--border2);border-radius:var(--r2);background:#fff;display:flex;flex-direction:column;align-items:center;gap:4px;transition:all .15s;min-width:130px;}
+.mpick:hover{border-color:var(--blu);}
+.mpick.sel{border-color:var(--blu);background:var(--blu-bg);}
+.mpick-ico{font-size:26px;}
+.mpick-title{font-size:14px;font-weight:500;}
+.mpick-sub{font-size:11px;color:var(--ink3);}
+.qwrap{text-align:center;}
+.q-big{font-family:var(--kr);font-size:76px;line-height:1;margin:1.5rem 0;cursor:pointer;}
+.q-tip{font-size:12px;color:var(--ink3);margin-bottom:1.4rem;}
+.q-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:380px;margin:0 auto;}
+.qo{padding:14px;border:1.5px solid var(--border2);border-radius:var(--r);font-size:16px;background:var(--card);transition:all .15s;}
+.qo:hover:not(:disabled){border-color:var(--blu);background:var(--blu-bg);}
+.qo.ok{background:var(--green-bg);border-color:var(--green);color:var(--green);font-weight:500;}
+.qo.ko{background:var(--red-bg);border-color:var(--red);}
+.qo:disabled{cursor:default;}
+.ty-wrap{text-align:center;}
+.ty-big{font-family:var(--kr);font-size:80px;line-height:1;margin-bottom:1.2rem;cursor:pointer;}
+.ty-row{display:flex;gap:8px;max-width:320px;margin:0 auto;}
+.ty-in{flex:1;padding:12px 16px;border:2px solid var(--border2);border-radius:var(--r);font-size:18px;text-align:center;outline:none;}
+.ty-in:focus{border-color:var(--blu);}
+.ty-in.ok{border-color:var(--green);background:var(--green-bg);}
+.ty-in.ko{border-color:var(--red);background:var(--red-bg);}
+.ty-go{padding:12px 20px;background:var(--blu);color:#fff;border:none;border-radius:var(--r);font-size:14px;}
+.ty-fb{font-size:18px;font-weight:500;margin-top:10px;min-height:26px;}
+.ty-nxt{padding:9px 22px;border:1px solid var(--border2);border-radius:var(--r);background:#fff;font-size:13px;margin-top:8px;}
+.li-wrap{text-align:center;}
+.li-btn{width:110px;height:110px;border-radius:50%;background:var(--blu);border:none;font-size:38px;margin:1rem auto 1.5rem;display:flex;align-items:center;justify-content:center;transition:transform .1s;box-shadow:0 4px 18px rgba(0,52,120,.3);}
+.li-btn:hover{transform:scale(1.05);}
+.li-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:380px;margin:0 auto;}
+.lo{padding:16px 8px;border:1.5px solid var(--border2);border-radius:var(--r);font-family:var(--kr);font-size:28px;background:var(--card);transition:all .15s;}
+.lo:hover:not(:disabled){border-color:var(--blu);background:var(--blu-bg);}
+.lo.ok{background:var(--green-bg);border-color:var(--green);}
+.lo.ko{background:var(--red-bg);border-color:var(--red);}
+.lo:disabled{cursor:default;}
+.end-wrap{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.5rem 1.5rem;text-align:center;}
+.end-kr{font-family:var(--kr);font-size:52px;color:var(--blu);margin-bottom:.8rem;}
+.end-sc{font-size:28px;font-weight:500;margin-bottom:4px;}
+.end-xp{font-size:14px;color:var(--green);font-weight:500;margin-bottom:6px;}
+.end-msg{font-size:14px;color:var(--ink2);margin-bottom:1.5rem;line-height:1.6;}
+.end-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.ebtn{padding:10px 24px;border-radius:var(--r);font-size:14px;border:1px solid var(--border2);background:#fff;}
+.ebtn.p{background:var(--blu);color:#fff;border-color:var(--blu);}
+.ebtn:hover{opacity:.9;}
+
+/* ── PRACTICE ── */
+.pcfg{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.3rem;margin-bottom:1.4rem;}
+.pcfg h2{font-size:14px;font-weight:500;margin-bottom:1rem;}
+.cfg-lbl{font-size:10px;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;}
+.cfg-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px;}
+.co{padding:5px 14px;border:1px solid var(--border2);border-radius:18px;font-size:12.5px;background:none;color:var(--ink2);transition:all .15s;}
+.co:hover:not(:disabled){border-color:var(--blu);color:var(--blu);}
+.co.on{background:var(--blu-bg);border-color:var(--blu);color:var(--blu);font-weight:500;}
+.co:disabled{opacity:.4;cursor:not-allowed;border-style:dashed;}
+.co .lk{font-size:9px;color:var(--ink3);display:block;margin-top:1px;}
+.pstart{width:100%;padding:11px;background:var(--blu);color:#fff;border:none;border-radius:var(--r);font-size:14px;font-weight:500;margin-top:4px;}
+.pstart:hover{opacity:.9;}
+.ex-pb{height:5px;background:var(--border);border-radius:3px;margin-bottom:1.2rem;overflow:hidden;}
+.ex-pf{height:100%;background:var(--green);border-radius:3px;transition:width .25s;}
+.ex-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--ink3);margin-bottom:1.2rem;}
+.fc-out{display:flex;flex-direction:column;align-items:center;gap:1rem;}
+.fc{width:260px;height:210px;background:var(--card);border:1px solid var(--border);border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:var(--sh);user-select:none;transition:transform .15s;gap:6px;}
+.fc:hover{transform:scale(1.02);}
+.fc-big{font-family:var(--kr);font-size:72px;line-height:1;}
+.fc-rev{font-size:20px;color:var(--blu);font-weight:500;min-height:26px;}
+.fc-ex{font-family:var(--kr);font-size:16px;color:var(--ink3);}
+.fc-sub{font-size:12px;color:var(--ink3);}
+.fc-acts{display:flex;gap:10px;}
+.fca{padding:9px 20px;border:1px solid var(--border2);border-radius:var(--r);font-size:13px;background:var(--card);transition:all .15s;}
+.fca:hover{background:var(--paper);}
+.fca.bad{border-color:var(--red);color:var(--red);}
+.fca.good{border-color:var(--green);color:var(--green);}
+.wr-wrap{text-align:center;}
+.wr-word{font-family:var(--kr);font-size:60px;line-height:1;margin:1.2rem 0 .3rem;cursor:pointer;}
+.wr-reading{font-size:12px;color:var(--ink3);letter-spacing:2px;margin-bottom:1.2rem;}
+.wr-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:380px;margin:0 auto;}
+.wro{padding:13px;border:1.5px solid var(--border2);border-radius:var(--r);font-size:14px;background:var(--card);cursor:pointer;transition:all .15s;font-weight:500;}
+.wro:hover:not(:disabled){border-color:var(--blu);background:var(--blu-bg);}
+.wro.ok{background:var(--green-bg);border-color:var(--green);color:var(--green);}
+.wro.ko{background:var(--red-bg);border-color:var(--red);}
+.wro:disabled{cursor:default;}
+
+/* ── GAMES ── */
+.game-cfg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.2rem;align-items:center;}
+.gmeta{display:flex;gap:1.5rem;margin-bottom:1rem;}
+.gmeta-st{font-size:13px;color:var(--ink2);}
+.gmeta-st b{font-size:18px;color:var(--ink);}
+.mg{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
+.tile{height:72px;background:var(--card);border:2px solid var(--border);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .2s;user-select:none;}
+.tile.kr{font-family:var(--kr);font-size:28px;}
+.tile:not(.matched):not(.wrong):hover{border-color:var(--blu);background:var(--blu-bg);transform:scale(1.04);}
+.tile.sel{border-color:var(--blu);background:var(--blu-bg);transform:scale(1.04);}
+.tile.matched{background:var(--green-bg);border-color:var(--green2);cursor:default;transform:scale(.97);}
+.tile.wrong{border-color:var(--red);background:var(--red-bg);animation:shk .35s;}
+@keyframes shk{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.sphud{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+.spt{font-size:26px;font-weight:500;color:var(--blu);width:50px;flex-shrink:0;}
+.sptb{flex:1;height:10px;background:var(--border);border-radius:5px;overflow:hidden;}
+.sptf{height:100%;background:var(--blu);border-radius:5px;transition:width 1s linear;}
+.spsc{font-size:20px;font-weight:500;width:60px;text-align:right;flex-shrink:0;}
+.spstr{font-size:13px;color:var(--yellow);margin-bottom:12px;height:18px;}
+.spch{font-family:var(--kr);font-size:80px;text-align:center;margin:12px 0;line-height:1;cursor:pointer;}
+.spopts{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:380px;margin:0 auto;}
+.spopt{padding:14px;border:1.5px solid var(--border2);border-radius:var(--r);font-size:15px;background:var(--card);transition:all .1s;}
+.spopt.ok{background:var(--green-bg);border-color:var(--green);}
+.spopt.ko{background:var(--red-bg);border-color:var(--red);}
+.spopt:disabled{cursor:default;}
+.sp-intro{text-align:center;padding:2rem;}
+.sp-kr{font-family:var(--kr);font-size:48px;color:var(--blu);margin-bottom:8px;}
+.sp-rec{font-size:13px;color:var(--yellow);font-weight:500;}
+
+/* ── CHEAT SHEET ── */
+.cs-cols{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.cs-section{margin-bottom:2rem;}
+.cs-title{font-family:var(--kr);font-size:17px;margin-bottom:.7rem;display:flex;align-items:baseline;gap:8px;}
+.cs-title em{font-family:var(--ui);font-style:normal;font-size:11px;color:var(--ink3);}
+.cs-table{border-collapse:collapse;width:100%;}
+.cs-table th,.cs-table td{border:1px solid var(--border);text-align:center;padding:0;}
+.cs-table th{background:var(--warm);font-size:11px;font-weight:500;padding:6px 4px;color:var(--ink2);}
+.kc{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 4px;cursor:pointer;min-width:52px;min-height:52px;transition:background .15s;}
+.kc:hover{background:var(--blu-bg);}
+.kc-kr{font-family:var(--kr);font-size:20px;line-height:1;}
+.kc-rm{font-size:9px;color:var(--blu);font-style:italic;margin-top:2px;}
+.kc.empty{background:var(--paper);cursor:default;}
+.cs-print-row{display:flex;gap:10px;margin-bottom:1.2rem;}
+.cs-print{padding:6px 16px;background:none;border:1px solid var(--border2);border-radius:var(--r);font-size:12px;color:var(--ink2);cursor:pointer;}
+.cs-print:hover{border-color:var(--blu);color:var(--blu);}
+
+/* ── DÉBUTANT ── */
+.db-wrap{max-width:680px;margin:0 auto;}
+.db-welcome{text-align:center;padding:3rem 1rem;}
+.db-welcome-kr{font-family:var(--kr);font-size:72px;color:var(--blu);animation:dbFloat 3s ease-in-out infinite;}
+@keyframes dbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.db-welcome-title{font-size:24px;font-weight:500;margin:.8rem 0 .4rem;}
+.db-welcome-sub{font-size:14px;color:var(--ink2);line-height:1.7;max-width:420px;margin:0 auto 2rem;}
+.db-start{padding:14px 36px;background:var(--blu);color:#fff;border:none;border-radius:30px;font-size:16px;font-weight:500;cursor:pointer;box-shadow:0 6px 24px rgba(0,52,120,.35);transition:all .2s;}
+.db-start:hover{transform:translateY(-2px);}
+.db-chs{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:10px;margin-bottom:1.2rem;}
+.db-ch{background:var(--card);border:2px solid var(--border);border-radius:var(--r2);padding:.9rem;text-align:center;cursor:pointer;transition:all .15s;}
+.db-ch:not(.db-ch-lock):hover{border-color:var(--blu);transform:translateY(-2px);box-shadow:var(--sh);}
+.db-ch.db-ch-done{border-color:var(--green2);background:var(--green-bg);}
+.db-ch.db-ch-lock{opacity:.4;cursor:not-allowed;}
+.db-ch-num{font-size:10px;color:var(--ink3);margin-bottom:4px;}
+.db-ch-kr{font-family:var(--kr);font-size:28px;line-height:1;margin-bottom:4px;}
+.db-ch-name{font-size:12px;font-weight:500;}
+.db-ch-badge{font-size:10px;margin-top:4px;}
+.db-ch-prog{height:3px;background:var(--border);border-radius:2px;margin-top:6px;overflow:hidden;}
+.db-ch-progf{height:100%;background:var(--blu);border-radius:2px;}
+.db-lesson{animation:dbIn .35s cubic-bezier(.4,0,.2,1);}
+@keyframes dbIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+.db-top{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem;}
+.db-back{width:36px;height:36px;border:1px solid var(--border2);border-radius:50%;background:none;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.db-back:hover{background:var(--paper);}
+.db-top-title{font-family:var(--kr);font-size:17px;flex:1;}
+.db-top-prog{font-size:12px;color:var(--ink3);}
+.db-pbar{height:6px;background:var(--border);border-radius:3px;margin-bottom:1.8rem;overflow:hidden;}
+.db-pfill{height:100%;border-radius:3px;transition:width .4s cubic-bezier(.4,0,.2,1);}
+.db-step{animation:dbPop .4s cubic-bezier(.34,1.56,.64,1);}
+@keyframes dbPop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+.db-card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:2rem 1.5rem;text-align:center;box-shadow:var(--sh);margin-bottom:1.2rem;}
+.db-big{font-family:var(--kr);font-size:100px;line-height:1;cursor:pointer;display:inline-block;transition:transform .15s;}
+.db-big:hover{transform:scale(1.08);}
+.db-big.playing{animation:dbPulse .4s ease;}
+@keyframes dbPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+.db-rm{font-size:28px;font-weight:500;margin-top:8px;}
+.db-ex{font-family:var(--kr);font-size:18px;color:var(--ink3);margin-top:4px;}
+.db-hint{font-size:13px;color:var(--ink3);margin-top:4px;}
+.db-sound{width:56px;height:56px;border-radius:50%;background:var(--blu);border:none;color:#fff;font-size:22px;cursor:pointer;margin:12px auto 0;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,52,120,.3);transition:all .15s;}
+.db-sound:hover{transform:scale(1.08);}
+.db-mnemo{background:var(--warm);border:1px solid rgba(0,0,0,.08);border-radius:var(--r2);padding:1rem 1.2rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:14px;}
+.db-mnemo-img{width:72px;height:72px;flex-shrink:0;border-radius:12px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:32px;}
+.db-mnemo-text{font-size:13px;color:var(--ink2);line-height:1.65;}
+.db-mnemo-text b{color:var(--ink);}
+.db-nav{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;}
+.db-btn{padding:11px 26px;border-radius:30px;font-size:14px;cursor:pointer;font-weight:500;border:none;transition:all .15s;}
+.db-btn-blu{background:var(--blu);color:#fff;box-shadow:0 4px 16px rgba(0,52,120,.3);}
+.db-btn-blu:hover{transform:translateY(-2px);}
+.db-btn-out{background:none;border:1.5px solid var(--border2);color:var(--ink2);}
+.db-btn-out:hover{border-color:var(--blu);color:var(--blu);}
+.db-btn-grn{background:var(--green);color:#fff;box-shadow:0 4px 14px rgba(45,106,79,.3);}
+.db-btn-grn:hover{transform:translateY(-2px);}
+.db-quiz{animation:dbIn .35s ease;}
+.db-q{font-family:var(--kr);font-size:84px;text-align:center;margin:1rem 0;cursor:pointer;line-height:1;}
+.db-repeat{background:var(--blu-bg);border:1px solid rgba(0,52,120,.2);border-radius:var(--r);padding:.7rem 1rem;font-size:13px;color:var(--blu);margin-bottom:1rem;text-align:center;}
+.db-qopts{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:360px;margin:0 auto 1.2rem;}
+.db-qo{padding:15px;border:2px solid var(--border2);border-radius:var(--r);font-size:17px;background:var(--card);cursor:pointer;transition:all .15s;font-weight:500;}
+.db-qo:hover:not(:disabled){border-color:var(--blu);background:var(--blu-bg);}
+.db-qo.ok{background:var(--green-bg);border-color:var(--green);color:var(--green);animation:dbPop .3s;}
+.db-qo.ko{background:var(--red-bg);border-color:var(--red);animation:shk .4s;}
+.db-qo:disabled{cursor:default;}
+.db-result{text-align:center;padding:2rem 1rem;animation:dbPop .5s cubic-bezier(.34,1.56,.64,1);}
+.db-result-kr{font-family:var(--kr);font-size:64px;color:var(--blu);margin-bottom:.5rem;}
+.db-result-sc{font-size:28px;font-weight:500;margin-bottom:6px;}
+.db-stars{font-size:36px;letter-spacing:8px;margin-bottom:1rem;animation:dbPop .6s .2s cubic-bezier(.34,1.56,.64,1) both;}
+.confetti-wrap{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;}
+.conf-p{position:absolute;width:8px;height:8px;border-radius:2px;animation:confFall linear forwards;}
+@keyframes confFall{0%{transform:translateY(-20px) rotate(0);opacity:1;}100%{transform:translateY(100vh) rotate(720deg);opacity:0;}}
+
+/* ── COURS ── */
+.cours-wrap{max-width:720px;}
+.cours-sec{margin-bottom:2.8rem;}
+.cours-h2{font-family:var(--kr);font-size:20px;margin-bottom:.3rem;display:flex;align-items:baseline;gap:10px;}
+.cours-h2 span{font-family:var(--ui);font-size:12px;color:var(--blu);font-weight:400;text-transform:uppercase;letter-spacing:.5px;}
+.cours-div{width:40px;height:3px;background:var(--blu);border-radius:2px;margin-bottom:1rem;}
+.cours-p{font-size:14.5px;color:var(--ink2);line-height:1.85;margin-bottom:.9rem;}
+.cours-p b{color:var(--ink);font-weight:500;}
+.cours-p em{color:var(--blu);font-style:normal;font-weight:500;}
+.cours-note{background:var(--warm);border-left:3px solid var(--blu);padding:.8rem 1rem;border-radius:0 var(--r) var(--r) 0;font-size:13.5px;color:var(--ink2);line-height:1.7;margin-bottom:1rem;}
+.cours-note b{color:var(--ink);}
+.cours-ex{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1rem 1.2rem;margin-bottom:1rem;cursor:pointer;}
+.cours-ex:hover{border-color:var(--blu);}
+.cours-ex-kr{font-family:var(--kr);font-size:26px;margin-bottom:4px;}
+.cours-ex-rm{font-size:12px;color:var(--blu);font-style:italic;margin-bottom:2px;}
+.cours-ex-fr{font-size:13px;color:var(--ink3);}
+.cours-ex-note{font-size:11px;color:var(--ink3);margin-top:4px;border-top:1px solid var(--border);padding-top:4px;}
+.cours-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.cours-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1rem;}
+.cours-card-title{font-size:12px;font-weight:500;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem;}
+.cours-card-kr{font-family:var(--kr);font-size:22px;color:var(--ink);margin-bottom:4px;}
+.cours-card-body{font-size:13px;color:var(--ink2);line-height:1.6;}
+.cours-toc{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1rem 1.2rem;margin-bottom:2rem;}
+.cours-toc-title{font-size:12px;font-weight:500;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.6rem;}
+.cours-toc a{display:block;font-size:13px;color:var(--blu);text-decoration:none;padding:3px 0;border-bottom:1px solid var(--border);}
+.cours-toc a:last-child{border-bottom:none;}
+.cours-toc a:hover{opacity:.7;}
+.block-demo{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem;margin-bottom:1rem;}
+.block-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:.5rem;}
+.block-item{display:flex;flex-direction:column;align-items:center;gap:3px;}
+.block-kr{font-family:var(--kr);font-size:28px;background:var(--warm);border-radius:var(--r);padding:6px 10px;border:1px solid var(--border);}
+.block-label{font-size:10px;color:var(--ink3);}
+.block-plus{font-size:22px;color:var(--ink3);align-self:center;}
+.block-result{font-family:var(--kr);font-size:48px;color:var(--blu);}
+.res-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1rem;display:flex;gap:12px;align-items:flex-start;text-decoration:none;color:inherit;transition:all .15s;}
+.res-card:hover{border-color:var(--blu);transform:translateY(-2px);box-shadow:var(--sh);}
+.res-ico{font-size:28px;flex-shrink:0;margin-top:2px;}
+.res-name{font-size:14px;font-weight:500;margin-bottom:4px;}
+.res-desc{font-size:12px;color:var(--ink2);line-height:1.55;margin-bottom:5px;}
+.res-tag{font-size:10px;color:var(--blu);font-weight:500;}
+
+/* ── STATS ── */
+.st-legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:1rem;font-size:12px;}
+.stl{display:flex;align-items:center;gap:5px;color:var(--ink2);}
+.stl-dot{width:12px;height:12px;border-radius:3px;}
+.stgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(68px,1fr));gap:6px;}
+.stc{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r);padding:8px 4px;text-align:center;cursor:pointer;transition:all .15s;}
+.stc:hover{transform:scale(1.08);z-index:1;}
+.stc-kr{font-family:var(--kr);font-size:22px;line-height:1;margin-bottom:3px;}
+.stc-rm{font-size:9px;color:var(--ink3);}
+.stc[data-m="1"]{border-color:var(--yellow);background:var(--yellow-bg);}
+.stc[data-m="2"]{border-color:var(--green2);background:var(--green-bg);}
+.stc[data-m="3"]{border-color:var(--green);background:rgba(45,106,79,.18);}
+.cpop{position:fixed;background:var(--card);border:1px solid var(--border2);border-radius:var(--r2);padding:1.2rem;box-shadow:0 8px 32px rgba(0,0,0,.15);z-index:600;min-width:200px;display:none;}
+
+/* ── PRINT ── */
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  nav,.cs-print-row,.stabs,.ltabs{display:none!important;}
+  .page{display:none!important;}
+  #pg-cs{display:block!important;margin:0;padding:0;}
+  body{margin:0;}main{padding:6mm 8mm;max-width:100%;}
+  .ph h1{font-size:14px;margin-bottom:3mm;}.rl{display:none;}
+  .cs-cols{display:grid;grid-template-columns:1fr 1fr;gap:5mm;}
+  .cs-title{font-size:11px;margin-bottom:2mm;}
+  .cs-table th{font-size:8px;padding:3px;}
+  .kc{min-width:28px;min-height:28px;padding:3px 2px;}.kc-kr{font-size:14px;}.kc-rm{font-size:7px;}
+  body.print-p1 #cs-syl-sec{display:none!important;}
+  body.print-p2 .cs-cols{display:none!important;}
+  @page{size:A4 landscape;margin:10mm;}
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:580px){
+  .dash-top{grid-template-columns:1fr 1fr;}.scard:last-child{grid-column:1/-1;}
+  .dash-acts{grid-template-columns:1fr;}
+  .mg{grid-template-columns:repeat(3,1fr);}
+  .li-opts{grid-template-columns:1fr 1fr;}
+  .lg{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));}
+  .q-opts,.db-qopts,.wr-opts,.spopts{grid-template-columns:1fr 1fr;}
+  .cs-cols{grid-template-columns:1fr;}
+  .cours-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="home-link" href="index.html" title="Choisir une langue">🌏 Langues</a>
+  <div class="logo" onclick="goTab('home')">한국어 <em>hangul learn</em></div>
+  <div class="ntabs">
+    <button class="ntb on" data-tab="home"     onclick="goTab('home')">🏠 Accueil</button>
+    <button class="ntb"    data-tab="cours"    onclick="goTab('cours')">📖 Cours</button>
+    <button class="ntb"    data-tab="debut"    onclick="goTab('debut')">✨ Débutant</button>
+    <button class="ntb"    data-tab="lessons"  onclick="goTab('lessons')">📚 Leçons</button>
+    <button class="ntb"    data-tab="practice" onclick="goTab('practice')">🎯 Exercices</button>
+    <button class="ntb"    data-tab="games"    onclick="goTab('games')">🎮 Jeux</button>
+    <button class="ntb"    data-tab="cs"       onclick="goTab('cs')">📋 Tableaux</button>
+    <button class="ntb"    data-tab="stats"    onclick="goTab('stats')">📊 Progrès</button>
+  </div>
+  <button class="dark-toggle" id="dark-btn" onclick="toggleDark()">🌙</button>
+</nav>
+
+<div id="overlay">
+  <div class="ov-bar">
+    <button class="ov-back" onclick="closeOv()">←</button>
+    <div class="ov-title" id="ov-title"></div>
+    <div class="ov-pn"    id="ov-pn"></div>
+  </div>
+  <div class="ov-prog"><div class="ov-pf" id="ov-pf" style="width:0%"></div></div>
+  <div class="ov-body" id="ov-body"></div>
+</div>
+
+<div class="cpop" id="cpop" onclick="this.style.display='none'"></div>
+
+<main>
+
+<!-- HOME -->
+<div class="page on" id="pg-home">
+  <div class="ph"><h1>Tableau de bord <em>대시보드</em></h1><div class="rl"></div></div>
+  <div class="dash-top">
+    <div class="scard"><div class="scard-ico">⚡</div><div class="scard-val" id="d-xp">0</div><div class="scard-lbl">Points XP</div></div>
+    <div class="scard"><div class="scard-ico">🔥</div><div class="scard-val" id="d-str">0</div><div class="scard-lbl">Jours consécutifs</div></div>
+    <div class="scard"><div class="scard-ico">✅</div><div class="scard-val" id="d-mas">0</div><div class="scard-lbl">Maîtrisés</div></div>
+  </div>
+  <div class="xp-box">
+    <div class="xp-head"><b id="d-lvl">Niveau 1</b><span id="d-xpn" style="color:var(--ink3)">0 / 50 XP</span></div>
+    <div class="xp-track"><div class="xp-fill" id="d-xpf" style="width:0%"></div></div>
+  </div>
+  <div class="dash-acts">
+    <div class="dact prime" onclick="goNextLesson()">
+      <div class="dact-ico">📖</div>
+      <div class="dact-title">Continuer la leçon</div>
+      <div class="dact-desc" id="d-nextl">Prochain groupe</div>
+    </div>
+    <div class="dact" onclick="startQuickPractice()">
+      <div class="dact-ico">⚡</div>
+      <div class="dact-title">Pratique rapide</div>
+      <div class="dact-desc">10 questions sur tes points faibles</div>
+    </div>
+    <div class="dact" onclick="goTab('games');showGameTab('speed')">
+      <div class="dact-ico">⏱️</div>
+      <div class="dact-title">Speed Round</div>
+      <div class="dact-desc">60 secondes · maximum de réponses</div>
+    </div>
+    <div class="dact" onclick="goTab('games');showGameTab('match')">
+      <div class="dact-ico">🃏</div>
+      <div class="dact-title">Jeu de paires</div>
+      <div class="dact-desc">Associe jamo et romanisation</div>
+    </div>
+  </div>
+  <div class="mast-box">
+    <div class="mast-head">Maîtrise par catégorie</div>
+    <div id="d-mbars"></div>
+  </div>
+  <div id="d-srs"   style="margin-top:1.2rem;"></div>
+  <div id="d-daily" style="margin-top:1rem;"></div>
+</div>
+
+<!-- LEÇONS -->
+<div class="page" id="pg-lessons">
+  <div class="ph"><h1>Leçons <em>레슨</em></h1><div class="rl"></div></div>
+  <div class="ltabs" id="ltabs-el">
+    <button class="ltab on" id="ltab-v" onclick="showLTab('v')">
+      <div class="ltab-bar" style="background:#003478;"></div>
+      <div class="ltab-top"><span class="ltab-kr">모음</span></div>
+      <div class="ltab-body"><div class="ltab-title">Voyelles</div><div class="ltab-sub">ㅏ ㅑ ㅓ ㅕ ㅗ ㅛ ㅜ ㅠ ㅡ ㅣ</div></div>
+    </button>
+    <button class="ltab" id="ltab-c" onclick="showLTab('c')">
+      <div class="ltab-bar" style="background:#CD2E3A;"></div>
+      <div class="ltab-top"><span class="ltab-kr" style="color:#CD2E3A;">자음</span></div>
+      <div class="ltab-body"><div class="ltab-title">Consonnes</div><div class="ltab-sub">ㄱ–ㅎ + tendues ㄲ ㄸ ㅃ</div></div>
+    </button>
+    <button class="ltab" id="ltab-s" onclick="showLTab('s')">
+      <div class="ltab-bar" style="background:#2D6A4F;"></div>
+      <div class="ltab-top"><span class="ltab-kr" style="color:#2D6A4F;">음절</span></div>
+      <div class="ltab-body"><div class="ltab-title">Syllabes</div><div class="ltab-sub">가나다라 — lire des blocs</div></div>
+    </button>
+    <button class="ltab" id="ltab-kv" onclick="showLTab('kv')">
+      <div class="ltab-bar" style="background:#D4900A;"></div>
+      <div class="ltab-top"><span class="ltab-kr" style="color:#D4900A;">어휘</span></div>
+      <div class="ltab-body"><div class="ltab-title">Vocabulaire</div><div class="ltab-sub">Chiffres, nourriture, verbes…</div></div>
+    </button>
+  </div>
+  <div class="sp on" id="lt-v"><div class="lg" id="lt-v-inner"></div></div>
+  <div class="sp"    id="lt-c"><div class="lg" id="lt-c-inner"></div></div>
+  <div class="sp"    id="lt-s"><div class="lg" id="lt-s-inner"></div></div>
+  <div class="sp"    id="lt-kv"><div class="lg" id="lt-kv-inner"></div></div>
+</div>
+
+<!-- EXERCICES -->
+<div class="page" id="pg-practice">
+  <div class="ph"><h1>Exercices <em>연습</em></h1><div class="rl"></div></div>
+  <div class="pcfg">
+    <h2>Configuration</h2>
+    <div><div class="cfg-lbl">Contenu</div>
+    <div class="cfg-row" id="cfg-set">
+      <button class="co on" data-v="vowels"   onclick="selSet(this)">Voyelles</button>
+      <button class="co"    data-v="cons1"    onclick="selSet(this)">Consonnes 1</button>
+      <button class="co"    data-v="cons-all" onclick="selSet(this)">Toutes consonnes</button>
+      <button class="co"    data-v="all-jamo" onclick="selSet(this)">Tout Hangul</button>
+      <button class="co"    data-v="vocab"    onclick="selSet(this)">Vocabulaire</button>
+      <button class="co"    data-v="words-kr" onclick="selSet(this)">📖 Lire des mots</button>
+      <button class="co"    data-v="weak"     onclick="selSet(this)">⚡ Points faibles</button>
+    </div></div>
+    <div><div class="cfg-lbl">Mode — <span id="unlock-hint" style="color:var(--blu);font-size:10px;"></span></div>
+    <div class="cfg-row" id="cfg-mode"></div></div>
+    <button class="pstart" onclick="startPractice()">▶ Commencer (20 questions)</button>
+  </div>
+  <div id="ex-area"></div>
+</div>
+
+<!-- JEUX -->
+<div class="page" id="pg-games">
+  <div class="ph"><h1>Jeux <em>게임</em></h1><div class="rl"></div></div>
+  <div class="stabs">
+    <button class="stb on" onclick="showGameTab('match')">🃏 Jeu de paires</button>
+    <button class="stb"    onclick="showGameTab('speed')">⚡ Speed Round</button>
+  </div>
+  <div class="sp on" id="gt-match">
+    <div class="game-cfg">
+      <span style="font-size:13px;font-weight:500;color:var(--ink2);">Contenu :</span>
+      <button class="co on" data-v="vowels" onclick="selMatch(this)">Voyelles</button>
+      <button class="co"    data-v="cons1"  onclick="selMatch(this)">Consonnes 1</button>
+      <button class="co"    data-v="cons2"  onclick="selMatch(this)">Consonnes 2</button>
+      <button class="co"    data-v="mix"    onclick="selMatch(this)">Mixte</button>
+    </div>
+    <div id="match-area"></div>
+  </div>
+  <div class="sp" id="gt-speed">
+    <div class="game-cfg">
+      <span style="font-size:13px;font-weight:500;color:var(--ink2);">Contenu :</span>
+      <button class="co on" data-v="vowels"   onclick="selSpeed(this)">Voyelles</button>
+      <button class="co"    data-v="cons1"    onclick="selSpeed(this)">Consonnes 1</button>
+      <button class="co"    data-v="cons-all" onclick="selSpeed(this)">Toutes consonnes</button>
+      <button class="co"    data-v="all-jamo" onclick="selSpeed(this)">Tout Hangul</button>
+    </div>
+    <div id="speed-area"></div>
+  </div>
+</div>
+
+<!-- TABLEAUX -->
+<div class="page" id="pg-cs">
+  <div class="ph"><h1>Tableaux <em>자모표</em></h1><div class="rl"></div></div>
+  <div class="cs-print-row">
+    <button class="cs-print" onclick="doPrint('p1')">🖨️ Page 1 — Voyelles + Consonnes</button>
+    <button class="cs-print" onclick="doPrint('p2')">🖨️ Page 2 — Table des syllabes</button>
+  </div>
+  <div class="cs-cols">
+    <div>
+      <div class="cs-section"><div class="cs-title">모음 <em>Voyelles (21)</em></div><div id="cs-v"></div></div>
+    </div>
+    <div>
+      <div class="cs-section"><div class="cs-title">자음 <em>Consonnes (19)</em></div><div id="cs-c"></div></div>
+    </div>
+  </div>
+  <div id="cs-syl-sec" class="cs-section">
+    <div class="cs-title">가나다표 <em>Table des syllabes (consonne + ㅏ/ㅣ/ㅗ/ㅜ/ㅡ)</em></div>
+    <div id="cs-syl"></div>
+  </div>
+</div>
+
+<!-- DÉBUTANT -->
+<div class="page" id="pg-debut"><div id="debut-root"></div></div>
+
+<!-- COURS -->
+<div class="page" id="pg-cours"><div id="cours-body"></div></div>
+
+<!-- STATS -->
+<div class="page" id="pg-stats">
+  <div class="ph"><h1>Progrès <em>진도</em></h1><div class="rl"></div></div>
+  <div class="st-legend">
+    <div class="stl"><div class="stl-dot" style="background:var(--border2)"></div>Non vu</div>
+    <div class="stl"><div class="stl-dot" style="background:var(--yellow)"></div>En cours</div>
+    <div class="stl"><div class="stl-dot" style="background:var(--green2)"></div>Bien ≥70%</div>
+    <div class="stl"><div class="stl-dot" style="background:var(--green)"></div>Maîtrisé ≥90%</div>
+  </div>
+  <div class="stabs">
+    <button class="stb on" onclick="showStTab('v')">모음 Voyelles</button>
+    <button class="stb"    onclick="showStTab('c')">자음 Consonnes</button>
+  </div>
+  <div class="sp on" id="st-v"><div class="stgrid" id="sg-v"></div></div>
+  <div class="sp"    id="st-c"><div class="stgrid" id="sg-c"></div></div>
+  <div style="margin-top:1.5rem;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem;">
+    <div style="font-size:13px;font-weight:500;margin-bottom:10px;">Statistiques</div>
+    <div id="st-global" style="font-size:13px;color:var(--ink2);line-height:2;"></div>
+  </div>
+  <button onclick="if(confirm('Effacer toute la progression ?')){localStorage.removeItem('hgl3');location.reload();}"
+    style="margin-top:1rem;padding:7px 16px;border:1px solid var(--border2);border-radius:var(--r);background:none;font-size:12px;color:var(--ink3);cursor:pointer;">
+    Réinitialiser la progression
+  </button>
+</div>
+
+</main>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// DATA — HANGUL
+// ═══════════════════════════════════════════════════════════
+
+// To pronounce isolated jamo, we wrap in a full syllable
+const SPEAK = t => {
+  const map={'ㅏ':'아','ㅑ':'야','ㅓ':'어','ㅕ':'여','ㅗ':'오','ㅛ':'요','ㅜ':'우','ㅠ':'유','ㅡ':'으','ㅣ':'이',
+    'ㅐ':'애','ㅔ':'에','ㅒ':'얘','ㅖ':'예','ㅘ':'봐','ㅚ':'외','ㅝ':'봐','ㅟ':'위','ㅢ':'의',
+    'ㄱ':'가','ㄴ':'나','ㄷ':'다','ㄹ':'라','ㅁ':'마','ㅂ':'바','ㅅ':'사','ㅇ':'아','ㅈ':'자',
+    'ㅊ':'차','ㅋ':'카','ㅌ':'타','ㅍ':'파','ㅎ':'하',
+    'ㄲ':'까','ㄸ':'따','ㅃ':'빠','ㅆ':'싸','ㅉ':'짜'};
+  return map[t]||t;
+};
+
+const EX = {
+  'ㅏ':'아 — 아이 (enfant)','ㅑ':'야 — 야구 (baseball)','ㅓ':'어 — 어머니 (mère)','ㅕ':'여 — 여자 (femme)',
+  'ㅗ':'오 — 오리 (canard)','ㅛ':'요 — 요리 (cuisine)','ㅜ':'우 — 우유 (lait)','ㅠ':'유 — 유리 (verre)',
+  'ㅡ':'으 — 으아 (groan)','ㅣ':'이 — 이름 (nom)',
+  'ㄱ':'가 나 기 — 가다 (aller)','ㄴ':'나 너 노 — 나라 (pays)','ㄷ':'다 도 두 — 도서관 (bibliothèque)',
+  'ㄹ':'라 러 로 — 라디오','ㅁ':'마 머 모 — 마음 (cœur)','ㅂ':'바 버 보 — 바다 (mer)',
+  'ㅅ':'사 서 소 — 사람 (personne)','ㅇ':'아 어 오 — silent au début',
+  'ㅈ':'자 저 조 — 자다 (dormir)','ㅊ':'차 처 초 — 차 (thé/voiture)',
+  'ㅋ':'카 커 코 — 카페 (café)','ㅌ':'타 터 토 — 타다 (monter)',
+  'ㅍ':'파 퍼 포 — 파도 (vague)','ㅎ':'하 허 호 — 하늘 (ciel)',
+  'ㄲ':'까 꺼 꼬 — 까다 (éplucher)','ㄸ':'따 떠 또 — 따뜻하다 (chaud)',
+  'ㅃ':'빠 뻐 뽀 — 빠르다 (rapide)','ㅆ':'싸 써 쏘 — 싸다 (pas cher)',
+  'ㅉ':'짜 쩌 쪼 — 짜다 (salé)',
+};
+
+const KG = [
+  {id:'v1',name:'Voyelles basiques',   tag:'기본 모음', ch:[['ㅏ','a'],['ㅑ','ya'],['ㅓ','eo'],['ㅕ','yeo'],['ㅗ','o'],['ㅛ','yo'],['ㅜ','u'],['ㅠ','yu'],['ㅡ','eu'],['ㅣ','i']]},
+  {id:'v2',name:'Voyelles composées',  tag:'이중 모음', ch:[['ㅐ','ae'],['ㅔ','e'],['ㅒ','yae'],['ㅖ','ye'],['ㅢ','ui'],['ㅘ','wa'],['ㅚ','oe'],['ㅝ','wo'],['ㅟ','wi']]},
+  {id:'c1',name:'Consonnes 1',         tag:'자음 1 (ㄱ–ㅁ)', ch:[['ㄱ','g/k'],['ㄴ','n'],['ㄷ','d/t'],['ㄹ','r/l'],['ㅁ','m']]},
+  {id:'c2',name:'Consonnes 2',         tag:'자음 2 (ㅂ–ㅊ)', ch:[['ㅂ','b/p'],['ㅅ','s'],['ㅇ','∅/ng'],['ㅈ','j'],['ㅊ','ch']]},
+  {id:'c3',name:'Consonnes 3',         tag:'자음 3 (ㅋ–ㅎ)', ch:[['ㅋ','k'],['ㅌ','t'],['ㅍ','p'],['ㅎ','h']]},
+  {id:'ct',name:'Consonnes tendues',   tag:'경음 (ㄲ–ㅉ)', ch:[['ㄲ','kk'],['ㄸ','tt'],['ㅃ','pp'],['ㅆ','ss'],['ㅉ','jj']]},
+];
+
+const KS = [
+  {id:'sa',name:'Syllabes ㅏ (a)',  tag:'가 나 다…', ch:[['가','ga'],['나','na'],['다','da'],['라','ra'],['마','ma'],['바','ba'],['사','sa'],['아','a'],['자','ja'],['차','cha'],['카','ka'],['타','ta'],['파','pa'],['하','ha']]},
+  {id:'si',name:'Syllabes ㅣ (i)',  tag:'기 니 디…', ch:[['기','gi'],['니','ni'],['디','di'],['리','ri'],['미','mi'],['비','bi'],['시','si'],['이','i'],['지','ji'],['치','chi'],['키','ki'],['티','ti'],['피','pi'],['히','hi']]},
+  {id:'so',name:'Syllabes ㅗ/ㅜ',   tag:'고 두 모…', ch:[['고','go'],['노','no'],['도','do'],['로','ro'],['모','mo'],['구','gu'],['누','nu'],['두','du'],['루','ru'],['무','mu'],['수','su'],['주','ju'],['쿠','ku'],['투','tu']]},
+];
+
+const KV = [
+  {id:'kv1',name:'Salutations',     tag:'인사말', ch:[['안녕','hello/bye (inform.)'],['안녕하세요','bonjour (poli)'],['감사합니다','merci (poli)'],['죄송합니다','pardon (poli)'],['네','oui'],['아니요','non'],['괜찮아요','ça va / ok']]},
+  {id:'kv2',name:'Chiffres sino',   tag:'숫자 (한자어)', ch:[['일','1 (il)'],['이','2 (i)'],['삼','3 (sam)'],['사','4 (sa)'],['오','5 (o)'],['육','6 (yuk)'],['칠','7 (chil)'],['팔','8 (pal)'],['구','9 (gu)'],['십','10 (sip)']]},
+  {id:'kv3',name:'Nourriture',      tag:'음식', ch:[['비빔밥','bibimbap'],['삼겹살','samgyeopsal'],['김치','kimchi'],['라면','ramyeon'],['치킨','chikin (poulet)'],['떡볶이','tteokbokki'],['불고기','bulgogi']]},
+  {id:'kv4',name:'Lieux & transport',tag:'장소', ch:[['지하철','métro'],['버스','bus'],['택시','taxi'],['역','gare'],['공항','aéroport'],['편의점','épicerie 24h'],['식당','restaurant']]},
+  {id:'kv5',name:'Verbes courants', tag:'동사', ch:[['먹다','manger'],['마시다','boire'],['가다','aller'],['오다','venir'],['보다','voir'],['사다','acheter'],['좋아하다','aimer'],['알다','savoir']]},
+  {id:'kv6',name:'Adjectifs',       tag:'형용사', ch:[['맛있다','délicieux'],['비싸다','cher'],['싸다','pas cher'],['크다','grand'],['작다','petit'],['좋다','bien'],['예쁘다','joli/belle'],['빠르다','rapide']]},
+];
+
+const WORDS_KR = [
+  {jp:'사랑',rm:'sa-rang',fr:'Amour ❤️'},{jp:'한국',rm:'han-guk',fr:'Corée 🇰🇷'},
+  {jp:'서울',rm:'seo-ul',fr:'Séoul 🏙️'},{jp:'김치',rm:'gim-chi',fr:'Kimchi'},
+  {jp:'이름',rm:'i-reum',fr:'Prénom'},{jp:'학교',rm:'hak-gyo',fr:'École'},
+  {jp:'친구',rm:'chin-gu',fr:'Ami(e)'},{jp:'음악',rm:'eu-mak',fr:'Musique 🎵'},
+  {jp:'영화',rm:'yeong-hwa',fr:'Film 🎬'},{jp:'커피',rm:'keo-pi',fr:'Café ☕'},
+  {jp:'물',rm:'mul',fr:'Eau 💧'},{jp:'밥',rm:'bap',fr:'Riz / Repas'},
+  {jp:'집',rm:'jip',fr:'Maison'},{jp:'책',rm:'chaek',fr:'Livre 📚'},
+  {jp:'돈',rm:'don',fr:'Argent 💵'},{jp:'오늘',rm:'o-neul',fr:'Aujourd\'hui'},
+  {jp:'내일',rm:'nae-il',fr:'Demain'},{jp:'어제',rm:'eo-je',fr:'Hier'},
+  {jp:'지하철',rm:'ji-ha-cheol',fr:'Métro 🚇'},{jp:'맛있다',rm:'ma-sit-da',fr:'Délicieux 😋'},
+  {jp:'좋아요',rm:'jo-a-yo',fr:'J\'aime / C\'est bien'},{jp:'괜찮아요',rm:'gwaen-chan-a-yo',fr:'Ça va / Ok'},
+  {jp:'사람',rm:'sa-ram',fr:'Personne'},{jp:'하늘',rm:'ha-neul',fr:'Ciel'},
+];
+
+const ROMALT={'g/k':['g','k','g/k'],'d/t':['d','t','d/t'],'r/l':['r','l','r/l'],'b/p':['b','p','b/p'],'∅/ng':['','ng','∅/ng','∅']};
+
+function allJamo(){return KG.flatMap(g=>g.ch.map(([c,r])=>({ch:c,rm:r})));}
+
+function getDeck(k){
+  const p=getP();
+  if(k==='vowels')  return KG[0].ch.map(([c,r])=>({ch:c,rm:r}));
+  if(k==='cv')      return KG[1].ch.map(([c,r])=>({ch:c,rm:r}));
+  if(k==='cons1')   return KG[2].ch.map(([c,r])=>({ch:c,rm:r}));
+  if(k==='cons2')   return KG[3].ch.map(([c,r])=>({ch:c,rm:r}));
+  if(k==='cons3')   return KG[4].ch.map(([c,r])=>({ch:c,rm:r}));
+  if(k==='tense')   return KG[5].ch.map(([c,r])=>({ch:c,rm:r}));
+  if(k==='cons-all')return KG.slice(2).flatMap(g=>g.ch.map(([c,r])=>({ch:c,rm:r})));
+  if(k==='all-jamo')return allJamo();
+  if(k==='vocab')   return KV.flatMap(g=>g.ch.map(([c,r])=>({ch:c,rm:r})));
+  if(k==='mix')     return [...getDeck('vowels').slice(0,6),...getDeck('cons1')];
+  if(k==='words-kr')return shuffle(WORDS_KR).map(w=>({ch:w.jp,rm:w.fr,reading:w.rm,isWord:true}));
+  if(k==='weak'){
+    const all=allJamo();
+    return all.map(it=>{const s=p.chars[it.ch]||{ok:0,seen:0};return{...it,rate:s.seen?s.ok/s.seen:0};})
+              .sort((a,b)=>a.rate-b.rate).slice(0,30);
+  }
+  return getDeck('vowels');
+}
+
+// ═══════════════════════════════════════════════════════════
+// PROGRESS
+// ═══════════════════════════════════════════════════════════
+const SK='hgl3';
+const LVS=[0,50,150,300,500,800,1200,1800,2600,3600,5000];
+function loadP(){try{return JSON.parse(localStorage.getItem(SK)||'{}');}catch{return{};}}
+function saveP(d){try{localStorage.setItem(SK,JSON.stringify(d));}catch{}}
+function getP(){const d=loadP();return{xp:d.xp||0,str:d.str||0,lastDay:d.lastDay||'',lessons:d.lessons||{},chars:d.chars||{},rec:d.rec||0};}
+function addXP(n){const p=getP();p.xp+=n;saveP(p);}
+function recChar(ch,ok){const p=getP();if(!p.chars[ch])p.chars[ch]={ok:0,seen:0,last:0};p.chars[ch].seen++;if(ok)p.chars[ch].ok++;p.chars[ch].last=Date.now();saveP(p);}
+function mastery(ch){const p=getP();const s=p.chars[ch];if(!s||!s.seen)return 0;const r=s.ok/s.seen;if(s.seen<4)return 1;if(r>=.92&&s.seen>=20)return 3;if(r>=.75&&s.seen>=10)return 2;return 1;}
+function updStreak(){const p=getP();const t=new Date().toISOString().slice(0,10);const y=new Date(Date.now()-86400000).toISOString().slice(0,10);if(p.lastDay===t)return;p.str=p.lastDay===y?p.str+1:1;p.lastDay=t;saveP(p);}
+function lvlInfo(xp){let l=1;for(let i=1;i<LVS.length;i++)if(xp>=LVS[i])l=i+1;const nx=LVS[l]||LVS[LVS.length-1];const pr=LVS[l-1]||0;return{l,pct:Math.min(100,Math.round((xp-pr)/(nx-pr)*100)),nx,pr};}
+function doneLessons(){return Object.values(getP().lessons).filter(Boolean).length;}
+
+// ═══════════════════════════════════════════════════════════
+// AUDIO
+// ═══════════════════════════════════════════════════════════
+function initAudio(){}
+function speak(txt){
+  if(!txt)return;
+  const clean=typeof SPEAK==='function'?SPEAK(txt):txt;
+  const url='https://translate.google.com/translate_tts?ie=UTF-8&tl=ko&client=tw-ob&q='+encodeURIComponent(clean);
+  const a=new Audio(url);a.volume=1;a.play().catch(()=>{});
+}
+
+// ═══════════════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════════════
+function goTab(t){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.ntb').forEach(b=>b.classList.remove('on'));
+  document.getElementById('pg-'+t).classList.add('on');
+  document.querySelector(`.ntb[data-tab="${t}"]`).classList.add('on');
+  if(t==='home')    updDash();
+  if(t==='lessons') renderAllLessons();
+  if(t==='practice')updModes();
+  if(t==='stats')   updStats();
+  if(t==='cs')      renderCS();
+  if(t==='cours')   renderCours();
+  if(t==='debut')   initDebut();
+}
+
+function showLTab(t){
+  document.querySelectorAll('#pg-lessons .sp').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.ltab').forEach(b=>{b.classList.remove('on');b.style.borderColor='var(--border)';b.style.background='var(--card)';});
+  document.getElementById('lt-'+t).classList.add('on');
+  const btn=document.getElementById('ltab-'+t);
+  btn.classList.add('on');
+  const cols={v:'#003478',c:'#CD2E3A',s:'#2D6A4F',kv:'#D4900A'};
+  const col=cols[t]||'#003478';
+  btn.style.borderColor=col;
+  btn.style.background=`${col}0D`;
+}
+
+function showGameTab(t){
+  document.querySelectorAll('#pg-games .sp').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('#pg-games .stb').forEach(b=>b.classList.remove('on'));
+  document.getElementById('gt-'+t).classList.add('on');
+  document.querySelectorAll('#pg-games .stb')[['match','speed'].indexOf(t)].classList.add('on');
+  if(t==='match')initMatch();
+  if(t==='speed')renderSpeedIntro();
+}
+
+function showStTab(t){
+  document.querySelectorAll('#pg-stats .sp').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('#pg-stats .stb').forEach(b=>b.classList.remove('on'));
+  document.getElementById('st-'+t).classList.add('on');
+  document.querySelectorAll('#pg-stats .stb')[['v','c'].indexOf(t)].classList.add('on');
+}
+
+// ═══════════════════════════════════════════════════════════
+// DASHBOARD
+// ═══════════════════════════════════════════════════════════
+function updDash(){
+  const p=getP();const li=lvlInfo(p.xp);
+  document.getElementById('d-xp').textContent=p.xp;
+  document.getElementById('d-str').textContent=p.str;
+  const aj=allJamo();
+  document.getElementById('d-mas').textContent=aj.filter(({ch:c})=>mastery(c)===3).length;
+  document.getElementById('d-lvl').textContent='Niveau '+li.l;
+  document.getElementById('d-xpn').textContent=(p.xp-li.pr)+' / '+(li.nx-li.pr)+' XP';
+  document.getElementById('d-xpf').style.width=li.pct+'%';
+  const nxt=KG.find(g=>!p.lessons[g.id]);
+  document.getElementById('d-nextl').textContent=nxt?nxt.ch.slice(0,4).map(([c])=>c).join(' ')+' — '+nxt.name:'🎉 Toutes les leçons terminées !';
+  const cats=[
+    {lbl:'Voyelles basiques', ch:KG[0].ch, col:'#003478'},
+    {lbl:'Voyelles composées',ch:KG[1].ch, col:'#0052A4'},
+    {lbl:'Consonnes (4 gp.)', ch:KG.slice(2).flatMap(g=>g.ch), col:'#CD2E3A'},
+  ];
+  document.getElementById('d-mbars').innerHTML=cats.map(c=>{
+    const tot=c.ch.length,done=c.ch.filter(([x])=>mastery(x)>=2).length,pct=Math.round(done/tot*100);
+    return `<div class="mb-row"><div class="mb-dot" style="background:${c.col}"></div><div class="mb-lbl">${c.lbl}</div><div class="mb-track"><div class="mb-fill" style="width:${pct}%;background:${c.col}"></div></div><div class="mb-num">${done}/${tot}</div></div>`;
+  }).join('');
+  renderSRSWidget();
+  renderDailyWidget();
+}
+
+// ═══════════════════════════════════════════════════════════
+// LESSONS
+// ═══════════════════════════════════════════════════════════
+function makeCard(g,done,locked){
+  const sf=done?Math.round(g.ch.reduce((s,[c])=>s+mastery(c),0)/g.ch.length):0;
+  return `<div class="lcard${done?' done':locked?' locked':''}" onclick="${locked?'':  `openLesson('${g.id}')`}">
+    <div class="lc-chars">${g.ch.slice(0,4).map(([c])=>c).join(' ')}</div>
+    <div class="lc-name">${g.name}</div>
+    <div class="lbadge ${done?'lb-done':locked?'lb-lock':'lb-new'}">${done?'✓ Terminé':locked?'🔒':'◎ Nouveau'}</div>
+    ${done?`<div class="lc-stars">${'★'.repeat(sf)+'☆'.repeat(3-sf)}</div>`:''}
+  </div>`;
+}
+
+function renderAllLessons(){
+  const p=getP();
+  // Vowels
+  let prevOk=true;
+  document.getElementById('lt-v-inner').innerHTML=KG.slice(0,2).map(g=>{
+    const done=!!p.lessons[g.id],locked=!prevOk;if(!locked)prevOk=done;return makeCard(g,done,locked);
+  }).join('');
+  // Consonants
+  prevOk=KG.slice(0,2).every(g=>!!p.lessons[g.id]);
+  document.getElementById('lt-c-inner').innerHTML=KG.slice(2).map(g=>{
+    const done=!!p.lessons[g.id],locked=!prevOk;if(!locked)prevOk=done;return makeCard(g,done,locked);
+  }).join('');
+  // Syllables
+  document.getElementById('lt-s-inner').innerHTML=KS.map(g=>{
+    const done=!!p.lessons[g.id];return makeCard(g,done,false);
+  }).join('');
+  // Vocab
+  document.getElementById('lt-kv-inner').innerHTML=KV.map(g=>{
+    const done=!!p.lessons[g.id];
+    return `<div class="lcard${done?' done':''}" onclick="openLesson('${g.id}')">
+      <div class="lc-chars" style="font-size:17px;">${g.ch.slice(0,2).map(([c])=>c.split(' ')[0]).join('  ')}</div>
+      <div class="lc-name">${g.name}</div>
+      <div class="lbadge ${done?'lb-done':'lb-new'}">${done?'✓ Terminé':'◎ Commencer'}</div>
+    </div>`;
+  }).join('');
+}
+
+// ─── OVERLAY ───
+let ovL=null,ovIdx=0,ovQDeck=[],ovQIdx=0,ovQOk=0,ovQMode='qcm';
+
+function getAllGrps(){return[...KG,...KS,...KV];}
+
+function openLesson(id){
+  ovL=getAllGrps().find(g=>g.id===id);if(!ovL)return;
+  ovIdx=0;document.getElementById('ov-title').textContent=ovL.name;
+  document.getElementById('overlay').classList.add('on');renderLearn();
+}
+function closeOv(){
+  document.getElementById('overlay').classList.remove('on');
+  renderAllLessons();updDash();
+}
+function setProg(pct,txt){document.getElementById('ov-pf').style.width=pct+'%';document.getElementById('ov-pn').textContent=txt;}
+
+function banner(){
+  return `<div class="lbanner">
+    <span class="lbanner-title">Caractères de cette leçon — clique pour écouter</span>
+    ${ovL.ch.map(([c,r])=>`<span class="lbchar" onclick="speak('${esc(c)}')">
+      <span class="lbchar-kr">${c}</span>
+      <span class="lbchar-rm">${r.length>10?r.slice(0,10)+'…':r}</span>
+    </span>`).join('')}
+  </div>`;
+}
+function esc(s){return s.replace(/\\/g,'\\\\').replace(/'/g,"\\'");}
+
+function renderLearn(){
+  ovIdx=Math.max(0,Math.min(ovIdx,ovL.ch.length-1));
+  const [c,r]=ovL.ch[ovIdx];const pct=Math.round((ovIdx+1)/ovL.ch.length*100);
+  setProg(pct,`${ovIdx+1} / ${ovL.ch.length}`);
+  speak(c);const ex=EX[c]||'';
+  document.getElementById('ov-body').innerHTML=`
+    <div style="text-align:center;margin-bottom:.8rem;font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;">Phase 1 — Apprendre</div>
+    ${banner()}
+    <div class="learn-card">
+      <div class="lk-big" onclick="speak('${esc(c)}')">${c}</div>
+      <div class="lk-rm">${r}</div>
+      ${ex?`<div class="lk-ex">${ex}</div>`:''}
+      <div class="lk-hint">🔊 Clique pour écouter</div>
+    </div>
+    <div class="learn-nav">
+      ${ovIdx>0?`<button class="ln-btn" onclick="ovIdx--;renderLearn()">← Préc</button>`:'<span></span>'}
+      <div class="ldots">${ovL.ch.map((_,i)=>`<div class="ldot${i===ovIdx?' on':''}"></div>`).join('')}</div>
+      ${ovIdx<ovL.ch.length-1
+        ?`<button class="ln-btn ln-prime" onclick="ovIdx++;renderLearn()">Suivant →</button>`
+        :`<button class="ln-btn ln-prime" onclick="showQuizPicker()">Quiz ▶</button>`}
+    </div>`;
+}
+
+function showQuizPicker(){
+  document.getElementById('ov-body').innerHTML=`
+    ${banner()}
+    <div class="end-wrap" style="padding:1.8rem;">
+      <div style="font-family:var(--kr);font-size:32px;margin-bottom:.4rem;">테스트</div>
+      <div style="font-size:14px;color:var(--ink2);margin-bottom:1.5rem;">Choisis le mode du quiz</div>
+      <div class="mode-pick">
+        <button class="mpick sel" onclick="startLQ('qcm')"><span class="mpick-ico">🔤</span><span class="mpick-title">QCM</span><span class="mpick-sub">4 choix proposés</span></button>
+        <button class="mpick" onclick="startLQ('write')"><span class="mpick-ico">✍️</span><span class="mpick-title">Écrire</span><span class="mpick-sub">Tape la romanisation</span></button>
+      </div>
+    </div>`;
+}
+
+function buildDeck(chars,size=10){
+  const base=chars.map(([c,r])=>({ch:c,rm:r}));
+  let deck=shuffle([...base,...base,...base]).slice(0,size);
+  for(let i=1;i<deck.length;i++){if(deck[i].ch===deck[i-1].ch){const j=deck.findIndex((d,k)=>k>i&&d.ch!==deck[i].ch);if(j>0)[deck[i],deck[j]]=[deck[j],deck[i]];}}
+  return deck;
+}
+
+function startLQ(mode){
+  ovQMode=mode;ovQDeck=buildDeck(ovL.ch,10);ovQIdx=0;ovQOk=0;renderLQ();
+}
+
+function getDistractors(correct){
+  const pool=ovL.ch.map(([,r])=>r).filter(r=>r!==correct);
+  if(pool.length>=3)return shuffle(pool).slice(0,3);
+  const extra=allJamo().map(c=>c.rm).filter(r=>r!==correct&&!pool.includes(r));
+  return shuffle([...pool,...extra]).slice(0,3);
+}
+
+function renderLQ(){
+  if(ovQIdx>=ovQDeck.length){endLQ();return;}
+  const card=ovQDeck[ovQIdx];
+  setProg(Math.round(ovQIdx/ovQDeck.length*100),`Quiz ${ovQIdx+1}/${ovQDeck.length} · ${ovQOk} ✓`);
+  if(ovQMode==='write'){renderLQWrite(card);return;}
+  const opts=shuffle([card.rm,...getDistractors(card.rm)]);
+  document.getElementById('ov-body').innerHTML=`
+    <div style="text-align:center;margin-bottom:8px;font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;">🔤 QCM — Quelle romanisation ?</div>
+    <div class="qwrap">
+      <div class="q-big" onclick="speak('${esc(card.ch)}')">${card.ch}</div>
+      <div class="q-tip">🔊 Clique sur le caractère pour écouter</div>
+      <div class="q-opts">${opts.map(o=>`<button class="qo" onclick="ansLQ(this,'${esc(o)}','${esc(card.rm)}')">${o}</button>`).join('')}</div>
+    </div>`;
+}
+function ansLQ(btn,chosen,correct){
+  document.querySelectorAll('.qo').forEach(b=>{b.disabled=true;if(b.textContent===correct)b.classList.add('ok');});
+  const ok=chosen===correct;if(!ok)btn.classList.add('ko');else ovQOk++;
+  recChar(ovQDeck[ovQIdx].ch,ok);speak(ovQDeck[ovQIdx].ch);
+  setTimeout(()=>{ovQIdx++;renderLQ();},900);
+}
+function renderLQWrite(card){
+  document.getElementById('ov-body').innerHTML=`
+    <div style="text-align:center;margin-bottom:8px;font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;">✍️ Écriture — Tape la romanisation</div>
+    <div class="ty-wrap">
+      <div class="ty-big" onclick="speak('${esc(card.ch)}')">${card.ch}</div>
+      <div class="ty-row">
+        <input class="ty-in" id="lqin" placeholder="Romanisation..." autocomplete="off" autocorrect="off" spellcheck="false">
+        <button class="ty-go" onclick="checkLQWrite()">→</button>
+      </div>
+      <div class="ty-fb" id="lqfb"></div>
+      <div id="lqnxt"></div>
+    </div>`;
+  const inp=document.getElementById('lqin');inp.focus();inp.onkeydown=e=>{if(e.key==='Enter')checkLQWrite();};
+}
+function checkLQWrite(){
+  const inp=document.getElementById('lqin');if(!inp||inp.disabled)return;
+  const val=inp.value.trim().toLowerCase(),card=ovQDeck[ovQIdx];
+  const alts=ROMALT[card.rm]||[card.rm];
+  const ok=alts.includes(val)||val===card.rm.toLowerCase();
+  inp.className='ty-in '+(ok?'ok':'ko');inp.disabled=true;
+  const fb=document.getElementById('lqfb');
+  fb.style.color=ok?'var(--green)':'var(--red)';
+  fb.textContent=ok?'✓ Correct !':'✗ C\'était : '+card.rm;
+  if(ok)ovQOk++;recChar(card.ch,ok);speak(card.ch);
+  document.getElementById('lqnxt').innerHTML=`<button class="ty-nxt" onclick="ovQIdx++;renderLQ()">Suivant →</button>`;
+}
+function endLQ(){
+  const pct=Math.round(ovQOk/ovQDeck.length*100),pass=pct>=70;
+  const xp=pass?20+ovQOk*5:5;addXP(xp);updStreak();
+  if(pass){const p=getP();p.lessons=p.lessons||{};p.lessons[ovL.id]=true;saveP(p);}
+  setProg(100,'');
+  document.getElementById('ov-body').innerHTML=`
+    <div class="end-wrap">
+      <div class="end-kr">${pass?'합격!':'다시!'}</div>
+      <div class="end-sc">${ovQOk} / ${ovQDeck.length} — ${pct}%</div>
+      <div class="end-xp">+${xp} XP</div>
+      <div class="end-msg">${pass?'✅ Leçon validée ! 잘했어요!':'❌ Pas encore — révise et réessaie.'}</div>
+      <div class="end-row">
+        <button class="ebtn" onclick="closeOv()">← Retour</button>
+        ${!pass?`<button class="ebtn p" onclick="ovIdx=0;renderLearn()">Réviser</button>`:''}
+        ${pass?`<button class="ebtn p" onclick="closeOv()">Continuer ✓</button>`:''}
+      </div>
+    </div>`;
+}
+function goNextLesson(){
+  const nxt=KG.find(g=>!getP().lessons[g.id]);
+  if(nxt){goTab('lessons');openLesson(nxt.id);}
+}
+
+// ═══════════════════════════════════════════════════════════
+// PRACTICE
+// ═══════════════════════════════════════════════════════════
+let pSet='vowels',pMode='flash',exDeck=[],exIdx=0,exOk=0,exRev=false;
+const MODES=[
+  {v:'flash',  label:'Flashcards',         req:0,ico:'🃏'},
+  {v:'qcm-kr', label:'Hangul → Romaji QCM',req:0,ico:'🔤'},
+  {v:'qcm-rk', label:'Romaji → Hangul QCM',req:2,ico:'🔁'},
+  {v:'type',   label:'Écrire la romaji',   req:4,ico:'✍️'},
+  {v:'listen', label:'Écouter & identifier',req:6,ico:'🔊'},
+];
+
+function selSet(btn){document.querySelectorAll('#cfg-set .co').forEach(b=>b.classList.remove('on'));btn.classList.add('on');pSet=btn.dataset.v;}
+function updModes(){
+  const done=doneLessons();
+  const hint=MODES.filter(m=>m.req>done).sort((a,b)=>a.req-b.req)[0];
+  document.getElementById('unlock-hint').textContent=hint?`Prochain : ${hint.label} (${hint.req} leçons)`:'';
+  document.getElementById('cfg-mode').innerHTML=MODES.map(m=>{
+    const locked=done<m.req,active=pMode===m.v&&!locked;
+    return `<button class="co${active?' on':''}" data-v="${m.v}" ${locked?'disabled':''} onclick="selMode(this)">
+      ${m.ico} ${m.label}${locked?`<span class="lk">🔒 ${m.req}</span>`:''}
+    </button>`;
+  }).join('');
+}
+function selMode(btn){if(btn.disabled)return;document.querySelectorAll('#cfg-mode .co').forEach(b=>b.classList.remove('on'));btn.classList.add('on');pMode=btn.dataset.v;}
+
+function startPractice(){
+  const raw=getDeck(pSet);if(!raw.length){document.getElementById('ex-area').innerHTML='<p style="color:var(--ink3);font-size:13px;padding:1rem;">Aucun résultat.</p>';return;}
+  exDeck=shuffle(raw).slice(0,20);exIdx=0;exOk=0;exRev=false;renderEx();
+}
+function startQuickPractice(){
+  goTab('practice');pSet='weak';pMode='qcm-kr';updModes();
+  document.querySelectorAll('#cfg-set .co').forEach(b=>b.classList.toggle('on',b.dataset.v==='weak'));
+  startPractice();
+}
+function exBar(){return `<div class="ex-pb"><div class="ex-pf" style="width:${Math.round(exIdx/exDeck.length*100)}%"></div></div><div class="ex-meta"><span>${exIdx+1} / ${exDeck.length}</span><span>✓ ${exOk}</span></div>`;}
+
+function renderEx(){
+  if(exIdx>=exDeck.length){renderExEnd();return;}
+  const card=exDeck[exIdx];
+  if(card.isWord)       renderWordReading(card);
+  else if(pMode==='flash')   renderFlash(card);
+  else if(pMode==='qcm-kr')  renderQCM(card,'kr');
+  else if(pMode==='qcm-rk')  renderQCM(card,'rk');
+  else if(pMode==='type')    renderTyping(card);
+  else if(pMode==='listen')  renderListen(card);
+}
+
+function renderFlash(card){
+  exRev=false;const ex=EX[card.ch]||'';
+  document.getElementById('ex-area').innerHTML=`${exBar()}
+    <div class="fc-out">
+      <div class="fc" id="exfc" onclick="revFlash()">
+        <span class="fc-big">${card.ch}</span>
+        <span class="fc-rev" id="fc-rv"></span>
+        ${ex?`<span class="fc-ex" id="fc-ex" style="display:none">${ex}</span>`:''}
+        <span class="fc-sub" id="fc-sb">← cliquer pour révéler</span>
+      </div>
+      <div id="fc-acts"><button class="fca" onclick="speak('${esc(card.ch)}')">🔊 Écouter</button></div>
+    </div>`;
+}
+function revFlash(){
+  if(exRev)return;exRev=true;const card=exDeck[exIdx];
+  document.getElementById('fc-rv').textContent=card.rm;
+  document.getElementById('fc-sb').textContent='';
+  const ex=document.getElementById('fc-ex');if(ex)ex.style.display='block';
+  speak(card.ch);
+  document.getElementById('fc-acts').innerHTML=`
+    <button class="fca bad" onclick="doFlash(false)">✗ Raté</button>
+    <button class="fca" onclick="speak('${esc(card.ch)}')">🔊</button>
+    <button class="fca good" onclick="doFlash(true)">✓ Correct</button>`;
+}
+function doFlash(ok){recChar(exDeck[exIdx].ch,ok);if(ok)exOk++;exIdx++;renderEx();}
+
+function renderQCM(card,dir){
+  const pool=[...new Set(allJamo().map(c=>c.rm))].filter(r=>r!==card.rm);
+  const opts=shuffle([card.rm,...shuffle(pool).slice(0,3)]);
+  let qH,oH;
+  if(dir==='kr'){
+    qH=`<div class="q-big" onclick="speak('${esc(card.ch)}')">${card.ch}</div>`;
+    oH=opts.map(o=>`<button class="qo" onclick="doQCM(this,'${esc(o)}','${esc(card.rm)}')">${o}</button>`).join('');
+  } else {
+    qH=`<div style="font-size:28px;font-weight:500;text-align:center;color:var(--blu);margin:1.5rem 0;">${card.rm}</div>`;
+    oH=opts.map(o=>`<button class="qo" style="font-family:var(--kr);font-size:24px;" onclick="doQCM(this,'${esc(o)}','${esc(card.rm)}')">${allJamo().find(c=>c.rm===o)?.ch||o}</button>`).join('');
+  }
+  document.getElementById('ex-area').innerHTML=`${exBar()}<div class="qwrap">${qH}<div class="q-tip">🔊 Clique pour écouter</div><div class="q-opts">${oH}</div></div>`;
+}
+function doQCM(btn,chosen,correct){
+  const all=allJamo();
+  document.querySelectorAll('.qo').forEach(b=>{b.disabled=true;if(b.textContent===correct||(all.find(c=>c.rm===correct)?.ch===b.textContent))b.classList.add('ok');});
+  const ok=chosen===correct;if(!ok)btn.classList.add('ko');else exOk++;
+  recChar(exDeck[exIdx].ch,ok);speak(exDeck[exIdx].ch);setTimeout(()=>{exIdx++;renderEx();},900);
+}
+
+function renderTyping(card){
+  document.getElementById('ex-area').innerHTML=`${exBar()}
+    <div class="ty-wrap">
+      <div class="ty-big" onclick="speak('${esc(card.ch)}')">${card.ch}</div>
+      <div class="ty-row">
+        <input class="ty-in" id="tyin" placeholder="Romanisation..." autocomplete="off" autocorrect="off" spellcheck="false">
+        <button class="ty-go" onclick="checkTyping()">→</button>
+      </div>
+      <div class="ty-fb" id="tyfb"></div><div id="tynxt"></div>
+    </div>`;
+  const inp=document.getElementById('tyin');inp.focus();inp.onkeydown=e=>{if(e.key==='Enter')checkTyping();};
+}
+function checkTyping(){
+  const inp=document.getElementById('tyin');if(!inp||inp.disabled)return;
+  const val=inp.value.trim().toLowerCase(),card=exDeck[exIdx];
+  const alts=ROMALT[card.rm]||[card.rm];
+  const ok=alts.includes(val)||val===card.rm.toLowerCase();
+  inp.className='ty-in '+(ok?'ok':'ko');inp.disabled=true;
+  const fb=document.getElementById('tyfb');
+  fb.style.color=ok?'var(--green)':'var(--red)';
+  fb.textContent=ok?'✓ Correct !':'✗ C\'était : '+card.rm;
+  recChar(card.ch,ok);speak(card.ch);if(ok)exOk++;
+  document.getElementById('tynxt').innerHTML=`<button class="ty-nxt" onclick="exIdx++;renderEx()">Suivant →</button>`;
+}
+
+function renderListen(card){
+  const pool=allJamo().filter(c=>c.ch!==card.ch);
+  const opts=shuffle([card.ch,...shuffle(pool).slice(0,3).map(c=>c.ch)]);
+  speak(card.ch);
+  document.getElementById('ex-area').innerHTML=`${exBar()}
+    <div class="li-wrap">
+      <div style="font-size:13px;color:var(--ink3);text-align:center;margin-bottom:.5rem;">Écoute et identifie le caractère</div>
+      <button class="li-btn" onclick="speak('${esc(card.ch)}')">🔊</button>
+      <div class="li-opts">${opts.map(o=>`<button class="lo" onclick="doListen(this,'${esc(o)}','${esc(card.ch)}')">${o}</button>`).join('')}</div>
+    </div>`;
+}
+function doListen(btn,chosen,correct){
+  document.querySelectorAll('.lo').forEach(b=>{b.disabled=true;if(b.textContent===correct)b.classList.add('ok');});
+  const ok=chosen===correct;if(!ok)btn.classList.add('ko');else exOk++;
+  recChar(exDeck[exIdx].ch,ok);setTimeout(()=>{exIdx++;renderEx();},900);
+}
+
+function renderWordReading(card){
+  speak(card.ch);
+  const pool=WORDS_KR.map(w=>w.fr).filter(f=>f!==card.rm);
+  const opts=shuffle([card.rm,...shuffle(pool).slice(0,3)]);
+  document.getElementById('ex-area').innerHTML=`${exBar()}
+    <div class="wr-wrap">
+      <div style="font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;margin-bottom:.5rem;">Quel est ce mot ?</div>
+      <div class="wr-word" onclick="speak('${esc(card.ch)}')">${card.ch}</div>
+      <div class="wr-reading">🔊 ${card.reading}</div>
+      <div class="wr-opts">${opts.map((o,i)=>`<button class="wro" onclick="doWord(this,${i})">${o}</button>`).join('')}</div>
+    </div>`;
+  window._wOpts=opts;window._wCorrect=card.rm;
+}
+function doWord(btn,i){
+  const opts=window._wOpts,correct=window._wCorrect;
+  document.querySelectorAll('.wro').forEach((b,j)=>{b.disabled=true;if(opts[j]===correct)b.classList.add('ok');});
+  const ok=opts[i]===correct;if(!ok)btn.classList.add('ko');else exOk++;
+  speak(exDeck[exIdx].ch);setTimeout(()=>{exIdx++;renderEx();},900);
+}
+
+function renderExEnd(){
+  const pct=Math.round(exOk/exDeck.length*100),xp=10+exOk*3;
+  addXP(xp);updStreak();
+  document.getElementById('ex-area').innerHTML=`
+    <div class="end-wrap">
+      <div class="end-kr">완료</div>
+      <div class="end-sc">${exOk} / ${exDeck.length} — ${pct}%</div>
+      <div class="end-xp">+${xp} XP</div>
+      <div class="end-msg">${pct>=90?'🏆 Parfait ! 잘했어요!':pct>=70?'👍 Bien joué !':'💪 Continue !'}</div>
+      <div class="end-row">
+        <button class="ebtn" onclick="document.getElementById('ex-area').innerHTML=''">Retour</button>
+        <button class="ebtn p" onclick="startPractice()">Rejouer</button>
+      </div>
+    </div>`;
+  updDash();
+}
+
+// ═══════════════════════════════════════════════════════════
+// MATCHING GAME
+// ═══════════════════════════════════════════════════════════
+let mSet='vowels',mSel=null,mPairs=0,mAtt=0,mStart=0,mTID=null,mTiles=[];
+function selMatch(btn){document.querySelectorAll('#gt-match .co').forEach(b=>b.classList.remove('on'));btn.classList.add('on');mSet=btn.dataset.v;initMatch();}
+function initMatch(){startMatch(mSet);}
+function startMatch(k){
+  mSet=k;clearInterval(mTID);
+  const pool=shuffle(getDeck(k)).slice(0,6);
+  mTiles=[];
+  pool.forEach((it,i)=>{
+    mTiles.push({id:'k'+i,type:'kr',ch:it.ch,rm:it.rm,matched:false});
+    mTiles.push({id:'r'+i,type:'rom',ch:it.ch,rm:it.rm,matched:false});
+  });
+  const sh=shuffle([...mTiles]);
+  mSel=null;mPairs=0;mAtt=0;mStart=Date.now();
+  document.getElementById('match-area').innerHTML=`
+    <div class="gmeta"><div class="gmeta-st">Paires : <b id="mp">0</b>/6</div><div class="gmeta-st">Essais : <b id="ma">0</b></div><div class="gmeta-st">Temps : <b id="mt">0s</b></div></div>
+    <div class="mg" id="mgrid">${sh.map(t=>`<div class="tile${t.type==='kr'?' kr':''}" id="t-${t.id}" data-id="${t.id}" onclick="clickTile(this)">${t.type==='kr'?t.ch:t.rm}</div>`).join('')}</div>`;
+  mTID=setInterval(()=>{const el=document.getElementById('mt');if(el)el.textContent=Math.round((Date.now()-mStart)/1000)+'s';else clearInterval(mTID);},1000);
+}
+function clickTile(el){
+  if(el.classList.contains('matched')||el.classList.contains('wrong'))return;
+  const tile=mTiles.find(t=>t.id===el.dataset.id);if(!tile||tile.matched)return;
+  if(!mSel){mSel=tile;el.classList.add('sel');if(tile.type==='kr')speak(tile.ch);return;}
+  if(mSel.id===tile.id){el.classList.remove('sel');mSel=null;return;}
+  mAtt++;document.getElementById('ma').textContent=mAtt;
+  document.getElementById('t-'+mSel.id).classList.remove('sel');
+  if(mSel.ch===tile.ch&&mSel.type!==tile.type){
+    tile.matched=true;mSel.matched=true;
+    el.classList.add('matched');document.getElementById('t-'+mSel.id).classList.add('matched');
+    speak(tile.ch);mPairs++;document.getElementById('mp').textContent=mPairs;mSel=null;
+    if(mPairs===6)matchWin();
+  } else {
+    const ps=mSel;mSel=null;
+    el.classList.add('wrong');document.getElementById('t-'+ps.id).classList.add('wrong');
+    setTimeout(()=>{el.classList.remove('wrong');document.getElementById('t-'+ps.id).classList.remove('wrong');},400);
+  }
+}
+function matchWin(){
+  clearInterval(mTID);const secs=Math.round((Date.now()-mStart)/1000);
+  const xp=Math.max(10,30-mAtt+Math.max(0,60-secs));addXP(xp);updStreak();
+  setTimeout(()=>{const g=document.getElementById('mgrid');if(g)g.insertAdjacentHTML('afterend',`
+    <div class="end-wrap" style="margin-top:1rem;">
+      <div class="end-kr">완성</div><div class="end-sc">⏱ ${secs}s — ${mAtt} essais</div>
+      <div class="end-xp">+${xp} XP</div>
+      <div class="end-msg">${mAtt<=7?'✨ Parfait !':mAtt<=12?'👍 Bien joué !':'Continue !'}</div>
+      <div class="end-row"><button class="ebtn p" onclick="startMatch('${mSet}')">Rejouer</button></div>
+    </div>`);},300);
+}
+
+// ═══════════════════════════════════════════════════════════
+// SPEED ROUND
+// ═══════════════════════════════════════════════════════════
+let ssSet='vowels',ssTID=null,ssTL=60,ssSc=0,ssStr=0,ssTot=0,ssDeck=[],ssI=0;
+function selSpeed(btn){document.querySelectorAll('#gt-speed .co').forEach(b=>b.classList.remove('on'));btn.classList.add('on');ssSet=btn.dataset.v;renderSpeedIntro();}
+function renderSpeedIntro(){
+  clearInterval(ssTID);const p=getP();
+  document.getElementById('speed-area').innerHTML=`
+    <div class="sp-intro">
+      <div class="sp-kr">준비!</div>
+      <div style="font-size:14px;color:var(--ink2);margin-bottom:8px;">60 secondes · Réponds le plus vite possible</div>
+      ${p.rec?`<div class="sp-rec">🏆 Record : ${p.rec} pts</div>`:''}
+      <div style="margin-top:1.2rem;"><button class="ebtn p" style="font-size:15px;padding:12px 32px;" onclick="launchSpeed()">▶ Commencer</button></div>
+    </div>`;
+}
+function launchSpeed(){
+  clearInterval(ssTID);ssTL=60;ssSc=0;ssStr=0;ssTot=0;ssI=0;
+  ssDeck=shuffle(getDeck(ssSet));renderSpeedCard();
+  ssTID=setInterval(()=>{ssTL--;const tf=document.getElementById('sptf'),tn=document.getElementById('sptn');if(tf)tf.style.width=(ssTL/60*100)+'%';if(tn)tn.textContent=ssTL;if(ssTL<=0)endSpeed();},1000);
+}
+function renderSpeedCard(){
+  if(ssI>=ssDeck.length)ssDeck=shuffle(getDeck(ssSet));
+  const card=ssDeck[ssI%ssDeck.length];
+  const pool=[...new Set(getDeck(ssSet).map(c=>c.rm))].filter(r=>r!==card.rm);
+  const opts=shuffle([card.rm,...shuffle(pool).slice(0,3)]);
+  document.getElementById('speed-area').innerHTML=`
+    <div class="sphud"><div class="spt" id="sptn">${ssTL}</div><div class="sptb"><div class="sptf" id="sptf" style="width:${ssTL/60*100}%"></div></div><div class="spsc" id="spsc">${ssSc}</div></div>
+    <div class="spstr">${ssStr>=3?'🔥 Série ×'+(Math.floor(ssStr/3)+1):''}</div>
+    <div class="spch" onclick="speak('${esc(card.ch)}')">${card.ch}</div>
+    <div class="spopts">${opts.map(o=>`<button class="spopt" onclick="doSpeed(this,'${esc(o)}','${esc(card.rm)}','${esc(card.ch)}')">${o}</button>`).join('')}</div>`;
+  speak(card.ch);
+}
+function doSpeed(btn,chosen,correct,ch){
+  document.querySelectorAll('.spopt').forEach(b=>b.disabled=true);
+  const ok=chosen===correct;btn.classList.add(ok?'ok':'ko');
+  if(!ok)document.querySelectorAll('.spopt').forEach(b=>{if(b.textContent===correct)b.classList.add('ok');});
+  if(ok){ssStr++;ssSc+=Math.floor(ssStr/3)+1;}else ssStr=0;
+  ssTot++;recChar(ch,ok);document.getElementById('spsc').textContent=ssSc;ssI++;setTimeout(renderSpeedCard,400);
+}
+function endSpeed(){
+  clearInterval(ssTID);const p=getP();const isRec=ssSc>(p.rec||0);
+  if(isRec)p.rec=ssSc;addXP(ssSc);updStreak();saveP(p);
+  document.getElementById('speed-area').innerHTML=`
+    <div class="sp-intro">
+      <div class="sp-kr">${ssSc}</div>
+      <div style="font-size:20px;font-weight:500;margin-bottom:4px;">points</div>
+      ${isRec?`<div class="sp-rec">🏆 Nouveau record !</div>`:p.rec?`<div class="sp-rec">Record : ${p.rec} pts</div>`:''}
+      <div style="font-size:13px;color:var(--ink2);margin:8px 0 1.2rem;">${ssTot} réponses</div>
+      <div class="end-row"><button class="ebtn p" onclick="launchSpeed()">Rejouer</button></div>
+    </div>`;
+  updDash();
+}
+
+// ═══════════════════════════════════════════════════════════
+// CHEAT SHEET
+// ═══════════════════════════════════════════════════════════
+const CS_V=[
+  {kr:'ㅏ',rm:'a'},{kr:'ㅑ',rm:'ya'},{kr:'ㅓ',rm:'eo'},{kr:'ㅕ',rm:'yeo'},
+  {kr:'ㅗ',rm:'o'},{kr:'ㅛ',rm:'yo'},{kr:'ㅜ',rm:'u'},{kr:'ㅠ',rm:'yu'},
+  {kr:'ㅡ',rm:'eu'},{kr:'ㅣ',rm:'i'},{kr:'ㅐ',rm:'ae'},{kr:'ㅔ',rm:'e'},
+  {kr:'ㅒ',rm:'yae'},{kr:'ㅖ',rm:'ye'},{kr:'ㅘ',rm:'wa'},{kr:'ㅙ',rm:'wae'},
+  {kr:'ㅚ',rm:'oe'},{kr:'ㅝ',rm:'wo'},{kr:'ㅞ',rm:'we'},{kr:'ㅟ',rm:'wi'},{kr:'ㅢ',rm:'ui'},
+];
+const CS_C=[
+  {kr:'ㄱ',rm:'g/k'},{kr:'ㄴ',rm:'n'},{kr:'ㄷ',rm:'d/t'},{kr:'ㄹ',rm:'r/l'},
+  {kr:'ㅁ',rm:'m'},{kr:'ㅂ',rm:'b/p'},{kr:'ㅅ',rm:'s'},{kr:'ㅇ',rm:'∅/ng'},
+  {kr:'ㅈ',rm:'j'},{kr:'ㅊ',rm:'ch'},{kr:'ㅋ',rm:'k'},{kr:'ㅌ',rm:'t'},
+  {kr:'ㅍ',rm:'p'},{kr:'ㅎ',rm:'h'},{kr:'ㄲ',rm:'kk'},{kr:'ㄸ',rm:'tt'},
+  {kr:'ㅃ',rm:'pp'},{kr:'ㅆ',rm:'ss'},{kr:'ㅉ',rm:'jj'},
+];
+const SYL_C=['ㄱ','ㄴ','ㄷ','ㄹ','ㅁ','ㅂ','ㅅ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+const SYL_V=['ㅏ','ㅣ','ㅗ','ㅜ','ㅡ'];
+const RM_C={'ㄱ':'g','ㄴ':'n','ㄷ':'d','ㄹ':'r','ㅁ':'m','ㅂ':'b','ㅅ':'s','ㅇ':'','ㅈ':'j','ㅊ':'ch','ㅋ':'k','ㅌ':'t','ㅍ':'p','ㅎ':'h'};
+const RM_V={'ㅏ':'a','ㅣ':'i','ㅗ':'o','ㅜ':'u','ㅡ':'eu'};
+const ALL_V_IDX=['ㅏ','ㅐ','ㅑ','ㅒ','ㅓ','ㅔ','ㅕ','ㅖ','ㅗ','ㅘ','ㅙ','ㅚ','ㅛ','ㅜ','ㅝ','ㅞ','ㅟ','ㅠ','ㅡ','ㅢ','ㅣ'];
+
+function makeSyl(ci,vi){
+  const cIdx=SYL_C.indexOf(ci),vIdx=ALL_V_IDX.indexOf(vi);
+  if(cIdx<0||vIdx<0)return ci+vi;
+  return String.fromCharCode(0xAC00+cIdx*21*28+vIdx*28);
+}
+
+let csRendered=false;
+function renderCS(){
+  if(csRendered)return;csRendered=true;
+  document.getElementById('cs-v').innerHTML=`<table class="cs-table">
+    <thead><tr><th>Jamo</th><th>Son</th><th>Syllabe</th></tr></thead>
+    <tbody>${CS_V.map(v=>{const s=makeSyl('ㅇ',v.kr);return`<tr>
+      <td><div class="kc" onclick="speak('${v.kr}')"><div class="kc-kr">${v.kr}</div></div></td>
+      <td style="font-size:12px;color:var(--blu);font-style:italic;padding:4px;">${v.rm}</td>
+      <td><div class="kc" onclick="speak('${s||v.kr}')"><div class="kc-kr" style="color:var(--ink3);font-size:16px;">${s||'—'}</div><div class="kc-rm">${v.rm}</div></div></td>
+    </tr>`}).join('')}</tbody>
+  </table>`;
+  document.getElementById('cs-c').innerHTML=`<table class="cs-table">
+    <thead><tr><th>Jamo</th><th>Son</th><th>Ex. + ㅏ</th></tr></thead>
+    <tbody>${CS_C.map(c=>{const s=makeSyl(c.kr,'ㅏ');return`<tr>
+      <td><div class="kc" onclick="speak('${c.kr}')"><div class="kc-kr">${c.kr}</div></div></td>
+      <td style="font-size:12px;color:var(--blu);font-style:italic;padding:4px;">${c.rm}</td>
+      <td><div class="kc" onclick="speak('${s||c.kr}')"><div class="kc-kr" style="font-size:16px;color:var(--ink3);">${s||'—'}</div><div class="kc-rm">${(RM_C[c.kr]||'')}a</div></div></td>
+    </tr>`}).join('')}</tbody>
+  </table>`;
+  document.getElementById('cs-syl').innerHTML=`<div style="overflow-x:auto;"><table class="cs-table">
+    <thead><tr><th>↓자음 / 모음→</th>${SYL_V.map(v=>`<th>${v}<br><span style="font-size:9px;color:var(--ink3)">${RM_V[v]}</span></th>`).join('')}</tr></thead>
+    <tbody>${SYL_C.map(c=>`<tr>
+      <th>${c}<br><span style="font-size:9px;color:var(--ink3)">${RM_C[c]||'∅'}</span></th>
+      ${SYL_V.map(v=>{const s=makeSyl(c,v);const r=(RM_C[c]||'')+RM_V[v];return`<td><div class="kc" onclick="speak('${s}')"><div class="kc-kr">${s}</div><div class="kc-rm">${r}</div></div></td>`;}).join('')}
+    </tr>`).join('')}</tbody>
+  </table></div>`;
+}
+
+function doPrint(page){
+  document.body.classList.remove('print-p1','print-p2');
+  document.body.classList.add('print-'+page);
+  window.print();
+  setTimeout(()=>document.body.classList.remove('print-p1','print-p2'),1000);
+}
+
+// ═══════════════════════════════════════════════════════════
+// SRS
+// ═══════════════════════════════════════════════════════════
+function getSRSDue(){
+  const p=getP(),now=Date.now(),intervals=[0,86400000,259200000,604800000];
+  return allJamo().filter(({ch:c})=>{const s=p.chars[c];if(!s||!s.seen)return false;return(now-(s.last||0))>=intervals[mastery(c)];});
+}
+function renderSRSWidget(){
+  const due=getSRSDue();const el=document.getElementById('d-srs');if(!el)return;
+  if(!due.length){el.innerHTML=`<div class="srs-box"><div class="srs-head"><span class="srs-title">🔄 Révision du jour</span><span class="srs-count ok">✓ Tout à jour</span></div><div style="font-size:12px;color:var(--ink3);">Aucun caractère à revoir. Reviens demain !</div></div>`;return;}
+  el.innerHTML=`<div class="srs-box"><div class="srs-head"><span class="srs-title">🔄 Révision du jour</span><span class="srs-count hot">${due.length} à revoir</span></div>
+    <div class="srs-chars">${due.slice(0,12).map(c=>`<span class="srs-char" onclick="speak('${esc(c.ch)}')" title="${c.rm}">${c.ch}</span>`).join('')}${due.length>12?`<span style="font-size:12px;color:var(--ink3);align-self:center;">+${due.length-12}</span>`:''}</div>
+    <button class="srs-btn" onclick="startSRSSession()">▶ Commencer la révision</button>
+  </div>`;
+}
+function startSRSSession(){
+  const due=getSRSDue();if(!due.length)return;
+  goTab('practice');exDeck=shuffle(due).slice(0,20);exIdx=0;exOk=0;exRev=false;pMode='qcm-kr';
+  document.querySelectorAll('#cfg-mode .co').forEach(b=>b.classList.toggle('on',b.dataset.v==='qcm-kr'));
+  renderEx();
+}
+
+// ═══════════════════════════════════════════════════════════
+// DAILY CHALLENGE
+// ═══════════════════════════════════════════════════════════
+const DSK='hgl-daily';
+function todayKey(){return new Date().toISOString().slice(0,10);}
+function isDailyDone(){try{const d=JSON.parse(localStorage.getItem(DSK)||'{}');return d.date===todayKey()&&d.done;}catch{return false;}}
+function markDailyDone(score){try{localStorage.setItem(DSK,JSON.stringify({date:todayKey(),done:true,score}));}catch{}}
+
+function renderDailyWidget(){
+  const el=document.getElementById('d-daily');if(!el)return;
+  const today=new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});
+  if(isDailyDone()){
+    const score=JSON.parse(localStorage.getItem(DSK)||'{}').score||'?';
+    el.innerHTML=`<div class="daily-box"><div class="daily-head">⚡ Défi du jour — ${today}</div><div class="daily-title">Déjà complété ! ${score}/5 ✓</div><div class="daily-done">Reviens demain pour un nouveau défi 🔥</div></div>`;
+  } else {
+    el.innerHTML=`<div class="daily-box"><div class="daily-head">⚡ Défi du jour — ${today}</div><div class="daily-title">5 questions · Maintiens ton streak 🔥</div><button class="daily-btn" onclick="startDaily()">▶ Relever le défi</button></div>`;
+  }
+}
+let dQ=[],dIdx=0,dOk=0;
+function startDaily(){
+  const seed=todayKey().split('-').reduce((a,b)=>a+parseInt(b),0);
+  const ss=arr=>{const a=[...arr];let s=seed;for(let i=a.length-1;i>0;i--){s=(s*1664525+1013904223)&0xFFFFFFFF;const j=Math.abs(s)%(i+1);[a[i],a[j]]=[a[j],a[i]];}return a;};
+  const pool=[...KG[0].ch,...KG[2].ch].map(([c,r])=>({ch:c,rm:r}));
+  dQ=ss(pool).slice(0,5);dIdx=0;dOk=0;renderDailyQ();
+}
+function renderDailyQ(){
+  if(dIdx>=dQ.length){endDaily();return;}
+  const card=dQ[dIdx];
+  const pool=[...KG[0].ch,...KG[2].ch].map(([,r])=>r).filter(r=>r!==card.rm);
+  const opts=shuffle([card.rm,...shuffle(pool).slice(0,3)]);
+  speak(card.ch);
+  document.getElementById('d-daily').innerHTML=`<div class="daily-box" style="background:var(--card);color:var(--ink);border:1px solid var(--border);">
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink3);margin-bottom:.8rem;"><span>⚡ Défi du jour</span><span>${dIdx+1}/5 · ✓${dOk}</span></div>
+    <div class="q-big" onclick="speak('${esc(card.ch)}')" style="margin:.8rem 0;">${card.ch}</div>
+    <div class="q-opts">${opts.map(o=>`<button class="qo" onclick="ansDaily(this,'${esc(o)}','${esc(card.rm)}')">${o}</button>`).join('')}</div>
+  </div>`;
+}
+function ansDaily(btn,chosen,correct){
+  document.querySelectorAll('#d-daily .qo').forEach(b=>{b.disabled=true;if(b.textContent===correct)b.classList.add('ok');});
+  const ok=chosen===correct;if(!ok)btn.classList.add('ko');else dOk++;
+  recChar(dQ[dIdx].ch,ok);speak(dQ[dIdx].ch);setTimeout(()=>{dIdx++;renderDailyQ();},800);
+}
+function endDaily(){
+  markDailyDone(dOk);addXP(dOk*5+5);updStreak();
+  document.getElementById('d-daily').innerHTML=`<div class="daily-box">
+    <div class="daily-head">⚡ Défi complété !</div>
+    <div class="daily-title">${dOk}/5 · +${dOk*5+5} XP</div>
+    <div class="daily-done">${dOk===5?'🏆 Parfait !':dOk>=3?'👍 Bien joué !':'💪 Continue !'} Reviens demain !</div>
+  </div>`;
+  updDash();
+}
+
+// ═══════════════════════════════════════════════════════════
+// STATS
+// ═══════════════════════════════════════════════════════════
+function updStats(){
+  renderSGrid('sg-v',KG.slice(0,2).flatMap(g=>g.ch.map(([c,r])=>({ch:c,rm:r}))));
+  renderSGrid('sg-c',KG.slice(2).flatMap(g=>g.ch.map(([c,r])=>({ch:c,rm:r}))));
+  const p=getP();const all=allJamo();
+  const seen=all.filter(({ch:c})=>(p.chars[c]?.seen||0)>0).length;
+  const mas=all.filter(({ch:c})=>mastery(c)===3).length;
+  const tot=Object.values(p.chars).reduce((s,v)=>s+(v.seen||0),0);
+  const ok=Object.values(p.chars).reduce((s,v)=>s+(v.ok||0),0);
+  document.getElementById('st-global').innerHTML=`
+    XP total : <b>${p.xp}</b> · Niveau : <b>${lvlInfo(p.xp).l}</b><br>
+    Jamo vus : <b>${seen} / ${all.length}</b> · Maîtrisés : <b>${mas}</b><br>
+    Réponses : <b>${tot}</b> · Réussite : <b>${tot?Math.round(ok/tot*100):0}%</b><br>
+    Streak : <b>${p.str} jour${p.str!==1?'s':''}</b> 🔥 · Speed record : <b>${p.rec||0} pts</b>`;
+}
+function renderSGrid(id,items){
+  document.getElementById(id).innerHTML=items.map(it=>{
+    const m=mastery(it.ch);const s=loadP().chars[it.ch]||{};const r=s.seen?Math.round(s.ok/s.seen*100):0;
+    return `<div class="stc" data-m="${m}" onclick="showCpop(this,'${esc(it.ch)}','${esc(it.rm)}',${s.seen||0},${s.ok||0},${r})">
+      <div class="stc-kr">${it.ch}</div><div class="stc-rm">${it.rm}</div>
+    </div>`;
+  }).join('');
+}
+function showCpop(el,ch,rm,seen,ok,rate){
+  speak(ch);const r=el.getBoundingClientRect();const pop=document.getElementById('cpop');
+  pop.innerHTML=`
+    <div style="font-family:var(--kr);font-size:48px;color:var(--blu);text-align:center;cursor:pointer;margin-bottom:8px;" onclick="speak('${esc(ch)}')">${ch}</div>
+    <div style="text-align:center;font-size:16px;font-weight:500;margin-bottom:12px;">${rm}</div>
+    <div style="font-size:12px;color:var(--ink2);line-height:2;">Vus : <b>${seen}</b> · Corrects : <b>${ok}</b><br>Réussite : <b>${rate}%</b><br>Niveau : <b>${['—','Débutant','Bien','Maîtrisé'][mastery(ch)]}</b></div>
+    <div style="font-size:11px;color:var(--ink3);margin-top:8px;text-align:center;">Cliquer pour fermer</div>`;
+  pop.style.display='block';pop.style.left=Math.min(r.left,window.innerWidth-220)+'px';pop.style.top=(r.bottom+8+window.scrollY)+'px';
+}
+document.addEventListener('click',e=>{if(!e.target.closest('.stc')&&!e.target.closest('.cpop'))document.getElementById('cpop').style.display='none';});
+
+// ═══════════════════════════════════════════════════════════
+// DÉBUTANT
+// ═══════════════════════════════════════════════════════════
+const MNEMO={
+  'ㅏ':'➡️|<b>ㅏ (a)</b> — Une barre verticale avec un bras qui pointe <b>à droite</b>. <em>"Ah, à droite !"</em>',
+  'ㅑ':'↔️|<b>ㅑ (ya)</b> — <b>Deux</b> bras qui pointent à droite. Le double de ㅏ. <em>"Ya, deux bras !"</em>',
+  'ㅓ':'⬅️|<b>ㅓ (eo)</b> — Comme ㅏ mais le bras pointe à <b>gauche</b>. <em>"Eooh, à gauche."</em>',
+  'ㅕ':'↔️|<b>ㅕ (yeo)</b> — Deux bras à gauche. Le double de ㅓ. <em>"Yeo! Deux bras à gauche."</em>',
+  'ㅗ':'⬆️|<b>ㅗ (o)</b> — Une barre horizontale avec un trait qui monte. Comme un <b>T renversé</b>. <em>"Oh, ça pointe en haut !"</em>',
+  'ㅛ':'⬆️|<b>ㅛ (yo)</b> — Le ㅗ avec deux traits qui montent. <em>"Yo! Deux antennes en l\'air !"</em>',
+  'ㅜ':'⬇️|<b>ㅜ (u)</b> — Comme un U. La barre et le trait pointent <b>en bas</b>. <em>"U comme une tasse."</em>',
+  'ㅠ':'⬇️|<b>ㅠ (yu)</b> — Le ㅜ avec deux traits qui descendent. <em>"Yu! Deux pieds."</em>',
+  'ㅡ':'➖|<b>ㅡ (eu)</b> — Juste une ligne horizontale. La bouche plate. <em>"Eu... rien à signaler."</em>',
+  'ㅣ':'|️|<b>ㅣ (i)</b> — Juste une ligne verticale. Le plus simple ! <em>"I comme un trait droit."</em>',
+  'ㄱ':'📐|<b>ㄱ (g/k)</b> — Une <b>équerre</b> de menuisier. <em>"L\'équerre du Garagiste."</em>',
+  'ㄴ':'🦶|<b>ㄴ (n)</b> — Un L couché. Comme un <b>N</b>id d\'oiseau retourné. <em>"N pour Nid."</em>',
+  'ㄷ':'🚪|<b>ㄷ (d/t)</b> — Un cadre de porte sans le toit. <em>"D de Door."</em>',
+  'ㄹ':'🎢|<b>ㄹ (r/l)</b> — Des montagnes russes miniatures. <em>"R de Roller coaster."</em>',
+  'ㅁ':'👄|<b>ㅁ (m)</b> — Un carré = une bouche fermée. <em>"M de Mouth."</em>',
+  'ㅂ':'🏮|<b>ㅂ (b/p)</b> — Un bol avec deux rebords. <em>"B de Bol."</em>',
+  'ㅅ':'🎩|<b>ㅅ (s)</b> — Un chapeau pointu. <em>"S de Sombrero."</em>',
+  'ㅇ':'⭕|<b>ㅇ (∅/ng)</b> — Un cercle parfait = <b>muet</b> au début, <em>ng</em> à la fin. <em>"Le zéro silencieux."</em>',
+  'ㅈ':'🕶️|<b>ㅈ (j)</b> — Un Z avec un chapeau. <em>"J de Jazz."</em>',
+  'ㅊ':'🎓|<b>ㅊ (ch)</b> — Comme ㅈ avec un tiret supplémentaire. <em>"CH monte d\'un cran."</em>',
+  'ㅋ':'🦵|<b>ㅋ (k)</b> — Le ㄱ avec un trait horizontal. <em>"K de Karaté."</em>',
+  'ㅌ':'🛤️|<b>ㅌ (t)</b> — Le ㄷ avec un rail à l\'intérieur. <em>"T de Train."</em>',
+  'ㅍ':'🍽️|<b>ㅍ (p)</b> — Deux colonnes avec une barre. Comme le symbole π. <em>"P comme Pi."</em>',
+  'ㅎ':'🧑‍🎓|<b>ㅎ (h)</b> — Un cercle avec un chapeau et des bras. <em>"H de Hat."</em>',
+  'ㄲ':'💥|<b>ㄲ (kk)</b> — ㄱ doublé. Version <b>explosive</b> de ㄱ. <em>"KKA !"</em>',
+  'ㄸ':'💥|<b>ㄸ (tt)</b> — ㄷ doublé. <em>"TTA !"</em>',
+  'ㅃ':'💥|<b>ㅃ (pp)</b> — ㅂ doublé. <em>"PPA !"</em>',
+  'ㅆ':'💥|<b>ㅆ (ss)</b> — ㅅ doublé. <em>"SSA !"</em>',
+  'ㅉ':'💥|<b>ㅉ (jj)</b> — ㅈ doublé. <em>"JJA !"</em>',
+};
+
+const DB_CHS=[
+  {id:'db1',name:'Voyelles 1', sub:'ㅏ ㅑ ㅓ ㅕ ㅗ',col:'#003478',ch:[['ㅏ','a'],['ㅑ','ya'],['ㅓ','eo'],['ㅕ','yeo'],['ㅗ','o']]},
+  {id:'db2',name:'Voyelles 2', sub:'ㅛ ㅜ ㅠ ㅡ ㅣ',col:'#0052A4',ch:[['ㅛ','yo'],['ㅜ','u'],['ㅠ','yu'],['ㅡ','eu'],['ㅣ','i']]},
+  {id:'db3',name:'Consonnes 1',sub:'ㄱ ㄴ ㄷ ㄹ ㅁ',col:'#CD2E3A',ch:[['ㄱ','g/k'],['ㄴ','n'],['ㄷ','d/t'],['ㄹ','r/l'],['ㅁ','m']]},
+  {id:'db4',name:'Consonnes 2',sub:'ㅂ ㅅ ㅇ ㅈ ㅊ',col:'#A01828',ch:[['ㅂ','b/p'],['ㅅ','s'],['ㅇ','∅/ng'],['ㅈ','j'],['ㅊ','ch']]},
+  {id:'db5',name:'Consonnes 3',sub:'ㅋ ㅌ ㅍ ㅎ',  col:'#CD2E3A',ch:[['ㅋ','k'],['ㅌ','t'],['ㅍ','p'],['ㅎ','h']]},
+  {id:'db6',name:'Tendues 경음',sub:'ㄲ ㄸ ㅃ ㅆ ㅉ',col:'#8B0000',ch:[['ㄲ','kk'],['ㄸ','tt'],['ㅃ','pp'],['ㅆ','ss'],['ㅉ','jj']]},
+  {id:'db7',name:'Syllabes 가나다',sub:'ㄱ+ㅏ=가 etc.',col:'#2D6A4F',ch:[['가','ga'],['나','na'],['다','da'],['라','ra'],['마','ma'],['바','ba'],['사','sa'],['아','a'],['자','ja'],['카','ka'],['타','ta'],['파','pa'],['하','ha']]},
+  {id:'db8',name:'Syllabes ㅣ ㅜ ㅗ',sub:'기 두 모…',col:'#1464C0',ch:[['기','gi'],['니','ni'],['두','du'],['루','ru'],['모','mo'],['부','bu'],['소','so'],['이','i'],['주','ju'],['코','ko'],['티','ti'],['포','po'],['히','hi']]},
+];
+
+let dbs={chapter:null,stepIdx:0,quizQ:[],quizIdx:0,quizOk:0};
+
+function initDebut(){renderDbHome();}
+
+function renderDbHome(){
+  const P=getP();const done=ch=>P.lessons&&P.lessons['db_'+ch.id];
+  const anyStarted=DB_CHS.some(c=>done(c));
+  const root=document.getElementById('debut-root');
+  let html=`<div class="db-wrap">`;
+  if(!anyStarted){
+    html+=`<div class="db-welcome">
+      <div class="db-welcome-kr">한글</div>
+      <div class="db-welcome-title">Apprends le Hangul pas à pas</div>
+      <div class="db-welcome-sub">Voyelles · Consonnes · Syllabes — avec animations, astuces mémoire et mini-quizzes. 한글 est l'alphabet le plus logique au monde 🇰🇷</div>
+      <button class="db-start" onclick="dbGo('db1')">▶ Commencer</button>
+    </div>`;
+  } else {
+    html+=`<div class="ph"><h1>Cours débutant <em>초급</em></h1><div class="rl"></div></div><div class="db-chs">`;
+    DB_CHS.forEach((ch,i)=>{
+      const isDone=!!done(ch),prev=DB_CHS[i-1],isLocked=i>0&&prev&&!done(prev),col=ch.col;
+      html+=`<div class="db-ch ${isDone?'db-ch-done':isLocked?'db-ch-lock':''}" onclick="${isLocked?'':  `dbGo('${ch.id}')`}">
+        <div class="db-ch-num">Ch.${i+1}</div>
+        <div class="db-ch-kr" style="color:${isDone?'var(--green)':col}">${ch.ch[0][0]}</div>
+        <div class="db-ch-name">${ch.name}</div>
+        <div class="db-ch-badge">${isDone?'✅':isLocked?'🔒':'◎'} ${isDone?'OK':isLocked?'Verrouillé':'Commencer'}</div>
+        <div class="db-ch-prog"><div class="db-ch-progf" style="width:${isDone?100:0}%;background:${col};"></div></div>
+      </div>`;
+    });
+    html+=`</div>`;
+    const nxt=DB_CHS.find(c=>!done(c));
+    if(nxt)html+=`<div style="text-align:center;margin-top:.8rem;"><button class="db-btn db-btn-blu" onclick="dbGo('${nxt.id}')">▶ Continuer — ${nxt.name}</button></div>`;
+  }
+  html+=`</div>`;
+  root.innerHTML=html;
+}
+
+function dbGo(id){
+  const ch=DB_CHS.find(c=>c.id===id);if(!ch)return;
+  dbs.chapter=id;dbs.stepIdx=0;renderDbLearn();
+}
+
+function renderDbLearn(){
+  const ch=DB_CHS.find(c=>c.id===dbs.chapter);const idx=dbs.stepIdx;
+  const [c,r]=ch.ch[idx];const total=ch.ch.length;const col=ch.col;
+  const pct=Math.round(idx/total*100);
+  const[mIco,mTxt]=(MNEMO[c]||'').split('|');
+  const ex=EX[c]||'';
+  setTimeout(()=>speak(c),300);
+  document.getElementById('debut-root').innerHTML=`<div class="db-wrap">
+    <div class="db-lesson">
+      <div class="db-top">
+        <button class="db-back" onclick="renderDbHome()">←</button>
+        <div class="db-top-title">${ch.name}</div>
+        <div class="db-top-prog">${idx+1} / ${total}</div>
+      </div>
+      <div class="db-pbar"><div class="db-pfill" style="width:${pct}%;background:${col};"></div></div>
+      <div class="db-step">
+        <div class="db-card">
+          <div id="dbb" class="db-big" style="color:${col}" onclick="dbPlay('${esc(c)}')">${c}</div>
+          <div class="db-rm" style="color:${col}">${r}</div>
+          ${ex?`<div class="db-ex">${ex}</div>`:''}
+          <div class="db-hint">🔊 Clique pour écouter</div>
+          <button class="db-sound" style="background:${col}" onclick="dbPlay('${esc(c)}')">🔊</button>
+        </div>
+        ${mTxt?`<div class="db-mnemo"><div class="db-mnemo-img">${mIco||'🔤'}</div><div class="db-mnemo-text">${mTxt}</div></div>`:''}
+        <div class="db-nav">
+          ${idx>0?`<button class="db-btn db-btn-out" onclick="dbs.stepIdx--;renderDbLearn()">← Revoir</button>`:''}
+          ${idx<total-1
+            ?`<button class="db-btn db-btn-blu" style="background:${col}" onclick="dbs.stepIdx++;renderDbLearn()">Suivant →</button>`
+            :`<button class="db-btn db-btn-grn" onclick="dbStartQuiz()">✏️ Quiz →</button>`}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+function dbPlay(c){
+  speak(c);const el=document.getElementById('dbb');if(!el)return;
+  el.classList.remove('playing');void el.offsetWidth;el.classList.add('playing');setTimeout(()=>el.classList.remove('playing'),500);
+}
+
+function dbStartQuiz(){
+  const ch=DB_CHS.find(c=>c.id===dbs.chapter);
+  dbs.quizQ=buildDeck(ch.ch,Math.min(10,ch.ch.length*2));dbs.quizIdx=0;dbs.quizOk=0;renderDbQuiz();
+}
+function renderDbQuiz(){
+  if(dbs.quizIdx>=dbs.quizQ.length){dbEndQuiz();return;}
+  const ch=DB_CHS.find(c=>c.id===dbs.chapter);const card=dbs.quizQ[dbs.quizIdx];
+  const col=ch.col;const pct=Math.round(dbs.quizIdx/dbs.quizQ.length*100);
+  const pool=ch.ch.map(([,r])=>r).filter(r=>r!==card.rm);
+  const opts=shuffle([card.rm,...shuffle(pool).slice(0,3)]);
+  setTimeout(()=>speak(card.ch),200);
+  document.getElementById('debut-root').innerHTML=`<div class="db-wrap">
+    <div class="db-quiz">
+      <div class="db-top">
+        <button class="db-back" onclick="dbGo('${dbs.chapter}')">← Cours</button>
+        <div class="db-top-title">Quiz — ${ch.name}</div>
+        <div class="db-top-prog">${dbs.quizIdx+1}/${dbs.quizQ.length} · ✓${dbs.quizOk}</div>
+      </div>
+      <div class="db-pbar"><div class="db-pfill" style="width:${pct}%;background:${col};"></div></div>
+      <div class="db-repeat">🔊 Clique sur le caractère pour l'entendre</div>
+      <div class="db-q" onclick="dbPlay('${esc(card.ch)}')">${card.ch}</div>
+      <div class="db-qopts">${opts.map(o=>`<button class="db-qo" onclick="dbAns(this,'${esc(o)}','${esc(card.rm)}')">${o}</button>`).join('')}</div>
+    </div>
+  </div>`;
+}
+function dbAns(btn,chosen,correct){
+  document.querySelectorAll('.db-qo').forEach(b=>{b.disabled=true;if(b.textContent===correct)b.classList.add('ok');});
+  const ok=chosen===correct;if(!ok)btn.classList.add('ko');else dbs.quizOk++;
+  recChar(dbs.quizQ[dbs.quizIdx].ch,ok);speak(dbs.quizQ[dbs.quizIdx].ch);
+  setTimeout(()=>{dbs.quizIdx++;renderDbQuiz();},800);
+}
+function dbEndQuiz(){
+  const ch=DB_CHS.find(c=>c.id===dbs.chapter);
+  const all=DB_CHS,curIdx=all.findIndex(c=>c.id===dbs.chapter);
+  const total=dbs.quizQ.length,ok=dbs.quizOk,pct=Math.round(ok/total*100),pass=pct>=70;
+  const xp=pass?25+ok*4:8;
+  if(pass){const p=getP();p.lessons=p.lessons||{};p.lessons['db_'+ch.id]=true;saveP(p);addXP(xp);updStreak();dbConfetti();}else addXP(xp);
+  const stars=pct>=90?3:pct>=70?2:1;const nxt=pass&&curIdx<all.length-1?all[curIdx+1]:null;
+  document.getElementById('debut-root').innerHTML=`<div class="db-wrap"><div class="db-result">
+    <div class="db-result-kr">${pass?'합격!':'다시!'}</div>
+    <div class="db-stars">${'⭐'.repeat(stars)+'☆'.repeat(3-stars)}</div>
+    <div class="db-result-sc">${ok} / ${total} — ${pct}%</div>
+    <div style="font-size:14px;color:var(--green);font-weight:500;margin-bottom:6px;">+${xp} XP</div>
+    <div style="font-size:14px;color:var(--ink2);margin-bottom:1.5rem;">${pass?'✅ Leçon validée ! 잘했어요!':'💪 Révise et réessaie !'}</div>
+    <div class="db-nav">
+      <button class="db-btn db-btn-out" onclick="dbGo('${dbs.chapter}')">🔄 Revoir</button>
+      ${nxt?`<button class="db-btn db-btn-grn" onclick="dbGo('${nxt.id}')">Suivant →</button>`:''}
+      ${pass&&!nxt?`<button class="db-btn db-btn-blu" onclick="renderDbHome()">🏠 Terminé !</button>`:''}
+      ${!pass?`<button class="db-btn db-btn-blu" onclick="dbStartQuiz()">Réessayer</button>`:''}
+    </div>
+  </div></div>`;
+}
+function dbConfetti(){
+  const c=document.createElement('div');c.className='confetti-wrap';document.body.appendChild(c);
+  const cols=['#003478','#CD2E3A','#2D6A4F','#D4900A','#0052A4'];
+  for(let i=0;i<60;i++){const p=document.createElement('div');p.className='conf-p';p.style.left=Math.random()*100+'vw';p.style.background=cols[Math.floor(Math.random()*cols.length)];p.style.animationDuration=(1.5+Math.random()*2)+'s';p.style.animationDelay=Math.random()*.8+'s';c.appendChild(p);}
+  setTimeout(()=>c.remove(),4000);
+}
+
+// ═══════════════════════════════════════════════════════════
+// COURS
+// ═══════════════════════════════════════════════════════════
+let coursRendered=false;
+function renderCours(){
+  if(coursRendered)return;coursRendered=true;
+  const ex=(kr,rm,fr,note='')=>`<div class="cours-ex" onclick="speak('${esc(kr)}')">
+    <div class="cours-ex-kr">🔊 ${kr}</div>
+    <div class="cours-ex-rm">${rm}</div>
+    <div class="cours-ex-fr">${fr}</div>
+    ${note?`<div class="cours-ex-note">${note}</div>`:''}
+  </div>`;
+  const blk=(col,role,kr)=>`<div class="block-item">
+    <div class="block-kr" style="border-color:${col}40;background:${col}10;">${kr}</div>
+    <div class="block-label" style="color:${col};">${role}</div>
+  </div>`;
+
+  document.getElementById('cours-body').innerHTML=`<div class="cours-wrap">
+
+  <div class="cours-toc">
+    <div class="cours-toc-title">Table des matières</div>
+    <a href="#c1" onclick="document.getElementById('c1').scrollIntoView({behavior:'smooth'});return false;">1. Histoire du Hangul — le roi qui voulait alphabétiser son peuple</a>
+    <a href="#c2" onclick="document.getElementById('c2').scrollIntoView({behavior:'smooth'});return false;">2. La logique des blocs syllabiques</a>
+    <a href="#c3" onclick="document.getElementById('c3').scrollIntoView({behavior:'smooth'});return false;">3. Les voyelles — construites comme des pictogrammes</a>
+    <a href="#c4" onclick="document.getElementById('c4').scrollIntoView({behavior:'smooth'});return false;">4. Les consonnes — lenis, aspirées, tendues</a>
+    <a href="#c5" onclick="document.getElementById('c5').scrollIntoView({behavior:'smooth'});return false;">5. Construire une syllabe — la formule magique</a>
+    <a href="#c6" onclick="document.getElementById('c6').scrollIntoView({behavior:'smooth'});return false;">6. Structure d'une phrase coréenne</a>
+    <a href="#c7" onclick="document.getElementById('c7').scrollIntoView({behavior:'smooth'});return false;">7. Niveaux de politesse — 반말 vs 존댓말</a>
+    <a href="#c8" onclick="document.getElementById('c8').scrollIntoView({behavior:'smooth'});return false;">🎁 Ressources pour aller plus loin</a>
+  </div>
+
+  <div class="cours-sec" id="c1">
+    <div class="cours-h2">1. Histoire du Hangul <span>한글의 역사</span></div>
+    <div class="cours-div"></div>
+    <p class="cours-p">Le Hangul a été créé en <b>1443</b> par le roi <em>Sejong le Grand</em>, quatrième roi de la dynastie Joseon. C'est l'un des rares alphabets dans l'histoire dont on connaît l'inventeur, la date, et même les motivations officielles — consignées dans le <em>Hunminjeongeum</em>, le manuel d'accompagnement de l'alphabet.</p>
+    <p class="cours-p">Avant le Hangul, les Coréens utilisaient les <em>hanja</em> (caractères chinois), réservés aux nobles et aux lettrés. Le peuple ne savait pas lire. Sejong a créé un alphabet pour <b>tout le monde</b> — des paysans aux marchands — avec pour objectif déclaré : "un homme intelligent peut l'apprendre en une matinée, un homme moins doué en dix jours."</p>
+    <div class="cours-note">😄 <b>Anecdote historique :</b> Les nobles confucianistes ont farouchement résisté au Hangul, qu'ils appelaient <em>언문</em> — "écriture vulgaire". Leur crainte : si le peuple sait lire, le pouvoir des élites s'effondre. Ils avaient raison. Aujourd'hui la Corée affiche un taux d'alphabétisation de <b>99,9%</b>. Sejong : 1 — nobles : 0.</div>
+    <p class="cours-p">Fait remarquable : le Hangul a été <b>scientifiquement conçu</b>. Les formes des consonnes représentent la position des organes phonatoires quand on prononce les sons (langue, lèvres, gorge, dents). C'est l'unique alphabet au monde à intégrer de la phonétique dans ses formes géométriques.</p>
+  </div>
+
+  <div class="cours-sec" id="c2">
+    <div class="cours-h2">2. La logique des blocs syllabiques <span>음절 블록</span></div>
+    <div class="cours-div"></div>
+    <p class="cours-p">Le Hangul est un <b>syllabaire alphabétique</b> : les lettres (jamo) s'assemblent en <b>blocs carrés</b> représentant chacun une syllabe. Chaque bloc contient au minimum une consonne initiale (초성) + une voyelle (중성), et optionnellement une consonne finale (받침, batchim).</p>
+    <div class="block-demo">
+      <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:.8rem;">Structure CV (consonne + voyelle)</div>
+      <div class="block-row">
+        ${blk('#CD2E3A','초성 (initiale)','ㄱ')}
+        <div class="block-plus">+</div>
+        ${blk('#003478','중성 (voyelle)','ㅏ')}
+        <div class="block-plus">=</div>
+        <div class="block-item"><div class="block-result">가</div><div class="block-label">ga</div></div>
+      </div>
+    </div>
+    <div class="block-demo">
+      <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:.8rem;">Structure CVC (avec batchim)</div>
+      <div class="block-row">
+        ${blk('#CD2E3A','초성','ㄱ')}
+        <div class="block-plus">+</div>
+        ${blk('#003478','중성','ㅏ')}
+        <div class="block-plus">+</div>
+        ${blk('#2D6A4F','받침','ㅇ')}
+        <div class="block-plus">=</div>
+        <div class="block-item"><div class="block-result">강</div><div class="block-label">gang (rivière)</div></div>
+      </div>
+    </div>
+    <p class="cours-p">Les voyelles <b>verticales</b> (ㅏ ㅑ ㅓ ㅕ ㅣ…) se placent à droite de la consonne. Les voyelles <b>horizontales</b> (ㅗ ㅛ ㅜ ㅠ ㅡ…) se placent en dessous. C'est entièrement régulier — aucune exception.</p>
+    <div class="cours-note">🎯 <b>Bonne nouvelle :</b> Contrairement au japonais avec ses 3 systèmes, le coréen n'en a qu'un seul. Les hanja sont très rarement utilisés dans la vie quotidienne. Une fois les ~40 jamo de base appris, tu peux phonétiquement lire <b>tout le coréen</b>. Durée moyenne pour lire le Hangul : 1–2 jours.</div>
+  </div>
+
+  <div class="cours-sec" id="c3">
+    <div class="cours-h2">3. Les voyelles <span>모음</span></div>
+    <div class="cours-div"></div>
+    <p class="cours-p">Il y a <b>10 voyelles de base</b> et 11 voyelles composées. Elles sont construites à partir de trois éléments philosophiques : <em>●</em> (le ciel), <em>━</em> (la terre), <em>┃</em> (l'humain entre les deux). C'est la cosmologie coréenne dans l'écriture.</p>
+    <div class="cours-grid">
+      <div class="cours-card">
+        <div class="cours-card-title" style="color:var(--blu);">Voyelles verticales → à droite</div>
+        <div class="cours-card-kr">ㅏ ㅑ ㅓ ㅕ ㅣ</div>
+        <div class="cours-card-body">a · ya · eo · yeo · i<br>La barre se place <b>à droite</b> de la consonne.<br>ㄱ + ㅏ = <span style="font-family:var(--kr);font-size:18px;">가</span></div>
+      </div>
+      <div class="cours-card">
+        <div class="cours-card-title" style="color:var(--blu);">Voyelles horizontales → en dessous</div>
+        <div class="cours-card-kr">ㅗ ㅛ ㅜ ㅠ ㅡ</div>
+        <div class="cours-card-body">o · yo · u · yu · eu<br>La barre se place <b>en dessous</b> de la consonne.<br>ㄱ + ㅗ = <span style="font-family:var(--kr);font-size:18px;">고</span></div>
+      </div>
+    </div>
+    <p class="cours-p">ㅇ est une consonne "silencieuse" utilisée comme <b>placeholder</b> quand une syllabe commence directement par une voyelle. <em>아 = ∅ + ㅏ</em>. <em>이 = ∅ + ㅣ</em>. Sans ㅇ, le bloc n'est pas complet.</p>
+    ${ex('아이','a-i','enfant','ㅇ+ㅏ = 아 (a) · ㅇ+ㅣ = 이 (i) → a-i = enfant')}
+    ${ex('우유','u-yu','lait','ㅇ+ㅜ = 우 (u) · ㅇ+ㅠ = 유 (yu) → u-yu')}
+  </div>
+
+  <div class="cours-sec" id="c4">
+    <div class="cours-h2">4. Les consonnes <span>자음</span></div>
+    <div class="cours-div"></div>
+    <p class="cours-p">Le coréen a <b>14 consonnes de base</b> organisées en trois catégories selon l'intensité du souffle. C'est unique au monde — le coréen distingue systématiquement sons <em>lenis</em> (doux), <em>aspirés</em> (soufflés), et <em>tendus</em> (explosifs/fortis).</p>
+    <div class="cours-grid">
+      <div class="cours-card">
+        <div class="cours-card-title" style="color:var(--blu);">Lenis — sons doux</div>
+        <div class="cours-card-kr">ㄱ ㄷ ㅂ ㅅ ㅈ</div>
+        <div class="cours-card-body">g/k · d/t · b/p · s · j — Sons intermédiaires, ni vraiment voisés ni vraiment sourds selon la position dans le mot.</div>
+      </div>
+      <div class="cours-card">
+        <div class="cours-card-title" style="color:var(--red);">Aspirés — sons soufflés</div>
+        <div class="cours-card-kr">ㅊ ㅋ ㅌ ㅍ ㅎ</div>
+        <div class="cours-card-body">ch · k · t · p · h — Prononcés avec un fort souffle d'air. Mets ta main devant la bouche et dis ㅋ : tu sens le souffle !</div>
+      </div>
+      <div class="cours-card" style="grid-column:1/-1;">
+        <div class="cours-card-title" style="color:#8B0000;">Tendus (경음) — sons explosifs</div>
+        <div class="cours-card-kr">ㄲ ㄸ ㅃ ㅆ ㅉ</div>
+        <div class="cours-card-body">kk · tt · pp · ss · jj — Gorge serrée, tension musculaire, <b>aucun souffle</b>. Les plus difficiles pour les francophones. Ce sont les mêmes consonnes que les lenis, mais doublées et compressées.</div>
+      </div>
+    </div>
+    <div class="cours-note">🎤 <b>Exercice concret :</b> Tiens ta main devant ta bouche et prononce les trois séries. <em>ㅂ (ba)</em> = peu de souffle. <em>ㅍ (pa aspiré)</em> = beaucoup de souffle. <em>ㅃ (ppa tendu)</em> = aucun souffle, gorge serrée. C'est un exercice physique autant que linguistique.</div>
+    ${ex('불고기','bul-go-gi','bulgogi 🥩','ㅂ lenis + ㅜ = 부, puis ㄹ + ㅗ = 로, etc.')}
+    ${ex('까다','kka-da','éplucher — ㄲ tendu','"Éplucher" — écoute le ㄲ : gorge serrée, son explosif')}
+  </div>
+
+  <div class="cours-sec" id="c5">
+    <div class="cours-h2">5. Construire une syllabe <span>음절 만들기</span></div>
+    <div class="cours-div"></div>
+    <p class="cours-p">Formule : <b>초성 (consonne initiale) + 중성 (voyelle) [+ 받침 (consonne finale)]</b>. Les blocs s'assemblent visuellement comme des puzzles. La position des lettres dans le bloc change selon la voyelle utilisée.</p>
+    <div class="cours-grid">
+      <div class="cours-card">
+        <div class="cours-card-title">Sans batchim — structure CV</div>
+        <div class="cours-card-body" style="text-align:center;margin-top:.5rem;">
+          <span style="font-family:var(--kr);font-size:32px;">가</span><br>
+          <span style="font-size:12px;color:var(--ink3);">ㄱ + ㅏ = ga</span>
+        </div>
+      </div>
+      <div class="cours-card">
+        <div class="cours-card-title">Avec batchim — structure CVC</div>
+        <div class="cours-card-body" style="text-align:center;margin-top:.5rem;">
+          <span style="font-family:var(--kr);font-size:32px;">강</span><br>
+          <span style="font-size:12px;color:var(--ink3);">ㄱ + ㅏ + ㅇ = gang (rivière)</span>
+        </div>
+      </div>
+    </div>
+    ${ex('한국어','han-gu-geo','coréen 🇰🇷','han (ㅎ+ㅏ+ㄴ) · guk (ㄱ+ㅜ+ㄱ) · eo (ㅇ+ㅓ)')}
+    ${ex('서울','seo-ul','Séoul 🏙️','seo (ㅅ+ㅓ) · ul (ㅇ+ㅜ+ㄹ)')}
+  </div>
+
+  <div class="cours-sec" id="c6">
+    <div class="cours-h2">6. Structure d'une phrase coréenne <span>문장 구조</span></div>
+    <div class="cours-div"></div>
+    <p class="cours-p">Comme le japonais, le coréen utilise l'ordre <b>Sujet – Objet – Verbe</b> (SOV). Le verbe arrive toujours à la fin. Les particules grammaticales sont collées après chaque groupe nominal pour indiquer leur fonction.</p>
+    <div class="block-demo">
+      <div style="font-size:11px;color:var(--ink3);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px;">Français (SVO)</div>
+      <div class="block-row">
+        ${blk('#CD2E3A','Sujet','Je')}
+        <div class="block-plus">+</div>
+        ${blk('#003478','Verbe','mange')}
+        <div class="block-plus">+</div>
+        ${blk('#2D6A4F','Objet','du kimchi')}
+      </div>
+    </div>
+    <div class="block-demo" style="margin-top:10px;">
+      <div style="font-size:11px;color:var(--ink3);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px;">Coréen (SOV) — 저는 김치를 먹어요</div>
+      <div class="block-row">
+        ${blk('#CD2E3A','Sujet','저는')}
+        <div class="block-plus">+</div>
+        ${blk('#2D6A4F','Objet','김치를')}
+        <div class="block-plus">+</div>
+        ${blk('#003478','Verbe','먹어요')}
+      </div>
+      <div style="font-size:12px;color:var(--ink3);margin-top:6px;font-style:italic;">jeo-neun (moi+particule) · gimchi-reul (kimchi+particule) · meo-geo-yo (mange)</div>
+    </div>
+    <div class="cours-note">🎯 <b>Les particules clés :</b> <em>은/는</em> (thème du sujet) · <em>이/가</em> (sujet grammatical) · <em>을/를</em> (objet direct) · <em>에</em> (lieu/direction) · <em>의</em> (possession). Comme en japonais, elles sont collées après le nom et indiquent la fonction dans la phrase.</div>
+    ${ex('저는 학생이에요','jeo-neun hak-saeng-i-e-yo','Je suis étudiant(e)','저 (moi poli) + 는 (particule sujet) + 학생 (étudiant) + 이에요 (être, forme polie)')}
+  </div>
+
+  <div class="cours-sec" id="c7">
+    <div class="cours-h2">7. Niveaux de politesse <span>존댓말 vs 반말</span></div>
+    <div class="cours-div"></div>
+    <p class="cours-p">Le coréen distingue formellement plusieurs niveaux de politesse, ce qui affecte le vocabulaire, les terminaisons verbales et même certains mots de base. En simplifiant, il y a deux grandes catégories :</p>
+    <div class="cours-grid">
+      <div class="cours-card">
+        <div class="cours-card-title" style="color:var(--blu);">존댓말 — Langue formelle/polie</div>
+        <div class="cours-card-body" style="line-height:1.9;">Pour : personnes plus âgées, inconnus, contexte professionnel, service clients.<br><br><b>Terminaison :</b> -아요/어요 (neutre poli), -습니다 (très formel).<br><b>Moi :</b> 저 (jeo) — <b>Vous :</b> 당신 (dangsin)</div>
+      </div>
+      <div class="cours-card">
+        <div class="cours-card-title" style="color:var(--red);">반말 — Langue informelle</div>
+        <div class="cours-card-body" style="line-height:1.9;">Pour : amis proches, personnes plus jeunes, frères et sœurs.<br><br><b>Terminaison :</b> -아/어 (sans 요).<br><b>Moi :</b> 나 (na) — <b>Tu :</b> 너 (neo)<br><br><em>Ne pas utiliser avec des inconnus !</em></div>
+      </div>
+    </div>
+    ${ex('감사합니다','gam-sa-ham-ni-da','Merci (très formel)','Niveau le plus poli — pour les discours, les inconnus, les aînés')}
+    ${ex('고마워','go-ma-wo','Merci (informel)','Seulement avec des amis proches ou des personnes plus jeunes')}
+    <div class="cours-note">😄 <b>Règle de survie :</b> En voyage ou avec des inconnus, utilise <b>toujours</b> la forme polie (존댓말). Terminer ses phrases par <em>요</em> est une sécurité universelle — personne ne t'en voudra d'être trop poli(e). L'inverse n'est pas vrai.</div>
+  </div>
+
+  <div class="cours-sec" id="c8">
+    <div class="cours-h2">🎁 Ressources pour aller plus loin <span>추가 자료</span></div>
+    <div class="cours-div"></div>
+    <p class="cours-p">Le Hangul appris, voici ce que les apprenants sérieux utilisent pour continuer.</p>
+    <div style="font-size:13px;font-weight:500;margin-bottom:.7rem;">▶ Chaînes YouTube</div>
+    <div class="cours-grid">
+      <a class="res-card" href="https://www.youtube.com/@KoreanClass101" target="_blank" rel="noopener">
+        <div class="res-ico">🎌</div>
+        <div><div class="res-name">KoreanClass101</div>
+        <div class="res-desc">La référence absolue. Des milliers de vidéos du niveau débutant à avancé. Parfait pour accompagner les kana.</div>
+        <div class="res-tag">Débutant → Avancé · EN</div></div>
+      </a>
+      <a class="res-card" href="https://www.youtube.com/@howtostudykorean" target="_blank" rel="noopener">
+        <div class="res-ico">📚</div>
+        <div><div class="res-name">How to Study Korean</div>
+        <div class="res-desc">Cours complets et structurés en texte et vidéo. L'un des meilleurs sites de grammaire coréenne en anglais.</div>
+        <div class="res-tag">Tous niveaux · EN</div></div>
+      </a>
+      <a class="res-card" href="https://www.youtube.com/@SweetandtastyTV" target="_blank" rel="noopener">
+        <div class="res-ico">🍭</div>
+        <div><div class="res-name">Sweet and Tasty</div>
+        <div class="res-desc">Chaîne coréenne accessible, avec de l'humour et de la culture. Excellent pour l'oreille et apprendre en contexte.</div>
+        <div class="res-tag">Intermédiaire · EN/KR</div></div>
+      </a>
+      <a class="res-card" href="https://www.youtube.com/@koreanfromzero" target="_blank" rel="noopener">
+        <div class="res-ico">0️⃣</div>
+        <div><div class="res-name">Korean From Zero!</div>
+        <div class="res-desc">Cours progressif depuis zéro, très pédagogique. Basé sur le livre du même nom. Idéal pour les débutants absolus.</div>
+        <div class="res-tag">Débutant · EN</div></div>
+      </a>
+    </div>
+    <div style="font-size:13px;font-weight:500;margin-bottom:.7rem;margin-top:1.5rem;">📱 Applications</div>
+    <div class="cours-grid">
+      <a class="res-card" href="https://www.duolingo.com/course/ko/fr" target="_blank" rel="noopener">
+        <div class="res-ico">🦉</div>
+        <div><div class="res-name">Duolingo Coréen</div>
+        <div class="res-desc">Bien pour les bases et maintenir un streak quotidien. Limite pour aller au-delà du débutant.</div>
+        <div class="res-tag">iOS · Android · Gratuit</div></div>
+      </a>
+      <a class="res-card" href="https://ankiweb.net/shared/decks?search=korean" target="_blank" rel="noopener">
+        <div class="res-ico">🃏</div>
+        <div><div class="res-name">Anki</div>
+        <div class="res-desc">Le roi de la répétition espacée. Des milliers de decks gratuits pour Hangul, vocabulaire, grammaire.</div>
+        <div class="res-tag">iOS · Android · PC · Gratuit</div></div>
+      </a>
+      <a class="res-card" href="https://www.lingodeer.com" target="_blank" rel="noopener">
+        <div class="res-ico">🦌</div>
+        <div><div class="res-name">LingoDeer</div>
+        <div class="res-desc">Conçu pour les langues asiatiques. Plus rigoureux que Duolingo sur la grammaire.</div>
+        <div class="res-tag">iOS · Android · Freemium</div></div>
+      </a>
+      <a class="res-card" href="https://www.hellotalk.com" target="_blank" rel="noopener">
+        <div class="res-ico">💬</div>
+        <div><div class="res-name">HelloTalk</div>
+        <div class="res-desc">Échange linguistique avec des natifs coréens. Tu corriges leur français, ils corrigent ton coréen.</div>
+        <div class="res-tag">iOS · Android · Gratuit</div></div>
+      </a>
+      <a class="res-card" href="https://papago.naver.com" target="_blank" rel="noopener">
+        <div class="res-ico">🐦</div>
+        <div><div class="res-name">Papago (Naver)</div>
+        <div class="res-desc">Le meilleur traducteur coréen, bien au-dessus de Google Translate pour le coréen. Indispensable.</div>
+        <div class="res-tag">iOS · Android · Web · Gratuit</div></div>
+      </a>
+      <a class="res-card" href="https://www.naver.com" target="_blank" rel="noopener">
+        <div class="res-ico">📖</div>
+        <div><div class="res-name">Naver Dictionary</div>
+        <div class="res-desc">Le meilleur dictionnaire coréen en ligne. Exemples de phrases, prononciation, conjugaisons.</div>
+        <div class="res-tag">Web · Gratuit</div></div>
+      </a>
+    </div>
+  </div>
+
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════
+// DARK MODE
+// ═══════════════════════════════════════════════════════════
+function toggleDark(){
+  document.body.classList.toggle('dark');
+  const on=document.body.classList.contains('dark');
+  document.getElementById('dark-btn').textContent=on?'☀️':'🌙';
+  try{localStorage.setItem('hgl-dark',on?'1':'0');}catch{}
+}
+function initDark(){
+  try{const on=localStorage.getItem('hgl-dark')==='1';if(on){document.body.classList.add('dark');document.getElementById('dark-btn').textContent='☀️';}}catch{}
+}
+
+// ═══════════════════════════════════════════════════════════
+// UTILS
+// ═══════════════════════════════════════════════════════════
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+
+// ═══════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded',()=>{
+  initAudio();
+  initDark();
+  updDash();
+  renderAllLessons();
+  updModes();
+  startMatch('vowels');
+  renderSpeedIntro();
+});
+</script>
+</body>
+</html>

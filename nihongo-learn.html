@@ -1,0 +1,3243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>日本語 — Nihongo Learn</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#C41E3A;--red-bg:rgba(196,30,58,.08);--red-bg2:rgba(196,30,58,.2);
+  --ink:#1A1A1A;--ink2:#4A4A4A;--ink3:#999;
+  --paper:#FAFAF7;--warm:#F5EDD8;--card:#fff;
+  --border:rgba(0,0,0,.09);--border2:rgba(0,0,0,.18);
+  --green:#2D6A4F;--green-bg:rgba(45,106,79,.1);--green2:#52B788;
+  --yellow:#D4900A;--yellow-bg:rgba(212,144,10,.12);
+  --jp:'Shippori Mincho B1',serif;--ui:'DM Sans',sans-serif;
+  --r:8px;--r2:14px;--sh:0 2px 14px rgba(0,0,0,.07);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--ui);background:var(--paper);color:var(--ink);min-height:100vh;}
+button{font-family:var(--ui);cursor:pointer;}
+
+/* ── NAV ─────────────────────────────── */
+nav{position:sticky;top:0;z-index:200;background:#fff;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;padding:0 1.2rem;height:52px;gap:6px;}
+.logo{font-family:var(--jp);font-size:20px;color:var(--red);margin-right:auto;
+  text-decoration:none;display:flex;align-items:baseline;gap:7px;cursor:pointer;}
+.logo em{font-family:var(--ui);font-style:normal;font-size:11px;color:var(--ink3);font-weight:300;}
+.ntabs{display:flex;gap:2px;overflow-x:auto;}
+.ntb{padding:5px 13px;border-radius:18px;border:none;font-size:12.5px;
+  background:none;color:var(--ink2);transition:all .15s;white-space:nowrap;}
+.ntb:hover{background:var(--paper);}
+.ntb.on{background:var(--red);color:#fff;}
+
+/* ── LAYOUT ──────────────────────────── */
+main{max-width:960px;margin:0 auto;padding:1.8rem 1.2rem 4rem;}
+.page{display:none;} .page.on{display:block;}
+.ph h1{font-family:var(--jp);font-size:24px;display:flex;align-items:baseline;gap:10px;margin-bottom:.4rem;}
+.ph h1 em{font-family:var(--ui);font-style:normal;font-size:13px;color:var(--ink3);font-weight:300;}
+.rl{width:32px;height:3px;background:var(--red);border-radius:2px;margin-bottom:1.4rem;}
+.stabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.4rem;}
+.stb{padding:5px 15px;border:1px solid var(--border2);border-radius:18px;font-size:13px;
+  background:none;color:var(--ink2);transition:all .15s;}
+.stb:hover{border-color:var(--red);color:var(--red);}
+.stb.on{background:var(--red-bg);border-color:var(--red);color:var(--red);font-weight:500;}
+
+/* Lesson tab cards — distinct visuals */
+.ltabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:1.6rem;}
+.ltab{padding:0;border:2px solid var(--border);border-radius:var(--r2);background:var(--card);
+  cursor:pointer;transition:all .15s;text-align:left;overflow:hidden;min-width:160px;flex:1;}
+.ltab:hover{transform:translateY(-2px);box-shadow:var(--sh);}
+.ltab.on{border-width:2px;}
+.ltab-top{padding:.7rem 1rem .5rem;display:flex;align-items:center;gap:8px;}
+.ltab-ico{font-size:22px;line-height:1;}
+.ltab-jp{font-family:var(--jp);font-size:18px;line-height:1;}
+.ltab-body{padding:0 1rem .7rem;}
+.ltab-title{font-size:12px;font-weight:500;color:var(--ink);}
+.ltab-sub{font-size:11px;color:var(--ink3);margin-top:1px;}
+.ltab-bar{height:3px;width:100%;}
+.sp{display:none;} .sp.on{display:block;}
+
+/* ── DASHBOARD ───────────────────────── */
+.dash-top{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1.4rem;}
+.scard{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:1rem;text-align:center;}
+.scard-ico{font-size:28px;margin-bottom:6px;}
+.scard-val{font-family:var(--jp);font-size:26px;}
+.scard-lbl{font-size:11px;color:var(--ink3);margin-top:3px;}
+.xp-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:1.2rem;margin-bottom:1.4rem;}
+.xp-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:13px;}
+.xp-head b{font-weight:500;}
+.xp-track{height:10px;background:var(--paper);border-radius:5px;overflow:hidden;border:1px solid var(--border);}
+.xp-fill{height:100%;background:linear-gradient(90deg,var(--red),#E8526A);border-radius:5px;transition:width .5s;}
+.dash-acts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.4rem;}
+.dact{padding:1.1rem;border:1px solid var(--border);border-radius:var(--r2);
+  background:var(--card);text-align:left;transition:all .15s;}
+.dact:hover{border-color:var(--red);transform:translateY(-2px);box-shadow:var(--sh);}
+.dact.prime{border-color:var(--red);background:var(--red-bg);}
+.dact-ico{font-size:22px;margin-bottom:5px;}
+.dact-title{font-size:14px;font-weight:500;margin-bottom:2px;}
+.dact-desc{font-size:12px;color:var(--ink2);}
+.mast-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem;}
+.mast-head{font-size:13px;font-weight:500;margin-bottom:10px;}
+.mb-row{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
+.mb-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.mb-lbl{font-size:12px;color:var(--ink2);width:95px;flex-shrink:0;}
+.mb-track{flex:1;height:8px;background:var(--paper);border-radius:4px;overflow:hidden;border:1px solid var(--border);}
+.mb-fill{height:100%;border-radius:4px;transition:width .4s;}
+.mb-num{font-size:11px;color:var(--ink3);width:35px;text-align:right;}
+
+/* ── LESSONS ─────────────────────────── */
+.lg{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px;}
+.lcard{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:1rem;text-align:center;transition:all .15s;}
+.lcard:not(.locked):hover{border-color:var(--red);transform:translateY(-2px);box-shadow:var(--sh);}
+.lcard.done{border-color:var(--green2);background:var(--green-bg);}
+.lcard.locked{opacity:.4;cursor:not-allowed;}
+.lc-chars{font-family:var(--jp);font-size:22px;margin-bottom:5px;line-height:1.3;}
+.lc-name{font-size:11px;color:var(--ink3);margin-bottom:6px;}
+.lbadge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:8px;}
+.lb-done{background:var(--green-bg);color:var(--green);}
+.lb-new{background:var(--red-bg);color:var(--red);}
+.lb-lock{background:var(--paper);color:var(--ink3);}
+.lc-stars{font-size:13px;letter-spacing:1px;margin-top:4px;}
+
+/* ── OVERLAY ─────────────────────────── */
+#overlay{position:fixed;inset:0;z-index:500;background:var(--paper);overflow-y:auto;display:none;}
+#overlay.on{display:block;}
+.ov-bar{display:flex;align-items:center;gap:12px;padding:13px 1.4rem;
+  background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;}
+.ov-back{width:34px;height:34px;border:1px solid var(--border2);border-radius:50%;
+  background:none;font-size:16px;display:flex;align-items:center;justify-content:center;}
+.ov-back:hover{background:var(--paper);}
+.ov-title{font-family:var(--jp);font-size:17px;flex:1;}
+.ov-pn{font-size:12px;color:var(--ink3);}
+.ov-prog{height:4px;background:var(--border);}
+.ov-pf{height:100%;background:var(--red);transition:width .3s;}
+.ov-body{max-width:600px;margin:0 auto;padding:1.8rem 1.2rem;}
+
+/* banner */
+.lbanner{background:var(--warm);border:1px solid rgba(0,0,0,.1);border-radius:var(--r2);
+  padding:.7rem 1rem;margin-bottom:1.2rem;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:flex-start;}
+.lbanner-title{font-size:10px;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;width:100%;margin-bottom:2px;}
+.lbchar{display:inline-flex;flex-direction:column;align-items:center;gap:1px;cursor:pointer;
+  background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:5px 8px;transition:all .15s;}
+.lbchar:hover{border-color:var(--red);background:var(--red-bg);}
+.lbchar-jp{font-family:var(--jp);font-size:22px;line-height:1;}
+.lbchar-rm{font-size:9px;color:var(--red);font-style:italic;margin-top:1px;}
+.lbchar-fr{font-size:9px;color:var(--ink3);margin-top:1px;}
+
+/* learn card */
+.learn-card{background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:2.5rem;text-align:center;box-shadow:var(--sh);margin-bottom:1rem;}
+.lk-big{font-family:var(--jp);font-size:88px;line-height:1;transition:transform .1s;}
+.lk-big:hover{transform:scale(1.05);}
+.lk-rm{font-size:26px;color:var(--red);font-weight:500;margin-top:12px;}
+.lk-hint{font-size:13px;color:var(--ink3);margin-top:6px;}
+.learn-nav{display:flex;justify-content:center;align-items:center;gap:10px;}
+.ln-btn{padding:10px 22px;border:1px solid var(--border2);border-radius:var(--r);background:#fff;font-size:14px;transition:all .15s;}
+.ln-btn:hover{background:var(--paper);}
+.ln-red{background:var(--red);color:#fff;border-color:var(--red);}
+.ln-red:hover{opacity:.9;}
+.ldots{display:flex;gap:6px;align-items:center;}
+.ldot{width:8px;height:8px;border-radius:50%;background:var(--border2);}
+.ldot.on{background:var(--red);}
+
+/* quiz */
+.qwrap{text-align:center;}
+.q-big{font-family:var(--jp);font-size:76px;line-height:1;margin:1.5rem 0;}
+.q-tip{font-size:12px;color:var(--ink3);margin-bottom:1.4rem;}
+.q-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:380px;margin:0 auto;}
+.qo{padding:14px;border:1.5px solid var(--border2);border-radius:var(--r);font-size:16px;background:#fff;transition:all .15s;}
+.qo:hover:not(:disabled){border-color:var(--red);background:var(--red-bg);}
+.qo.ok{background:var(--green-bg);border-color:var(--green);color:var(--green);font-weight:500;}
+.qo.ko{background:var(--red-bg2);border-color:var(--red);}
+.qo:disabled{cursor:default;}
+
+/* write */
+.ty-wrap{text-align:center;}
+.ty-big{font-family:var(--jp);font-size:80px;line-height:1;margin-bottom:1.2rem;}
+.ty-row{display:flex;gap:8px;max-width:320px;margin:0 auto;}
+.ty-in{flex:1;padding:12px 16px;border:2px solid var(--border2);border-radius:var(--r);font-size:18px;text-align:center;outline:none;}
+.ty-in:focus{border-color:var(--red);}
+.ty-in.ok{border-color:var(--green);background:var(--green-bg);}
+.ty-in.ko{border-color:var(--red);background:var(--red-bg);}
+.ty-go{padding:12px 20px;background:var(--red);color:#fff;border:none;border-radius:var(--r);font-size:14px;}
+.ty-fb{font-size:18px;font-weight:500;margin-top:10px;min-height:26px;}
+.ty-nxt{padding:9px 22px;border:1px solid var(--border2);border-radius:var(--r);background:#fff;font-size:13px;margin-top:8px;}
+
+/* end screen */
+.end-wrap{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.5rem 1.5rem;text-align:center;}
+.end-jp{font-family:var(--jp);font-size:52px;color:var(--red);margin-bottom:.8rem;}
+.end-sc{font-size:28px;font-weight:500;margin-bottom:4px;}
+.end-xp{font-size:14px;color:var(--green);font-weight:500;margin-bottom:6px;}
+.end-msg{font-size:14px;color:var(--ink2);margin-bottom:1.5rem;line-height:1.6;}
+.end-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.ebtn{padding:10px 24px;border-radius:var(--r);font-size:14px;border:1px solid var(--border2);background:#fff;}
+.ebtn.p{background:var(--red);color:#fff;border-color:var(--red);}
+.ebtn:hover{opacity:.9;}
+
+/* quiz mode picker */
+.mode-pick{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:1.2rem;}
+.mpick{padding:1rem 1.5rem;border:1.5px solid var(--border2);border-radius:var(--r2);background:#fff;
+  display:flex;flex-direction:column;align-items:center;gap:4px;transition:all .15s;min-width:130px;}
+.mpick:hover{border-color:var(--red);}
+.mpick.qcm{border-color:var(--red);background:var(--red-bg);}
+.mpick-ico{font-size:26px;}
+.mpick-title{font-size:14px;font-weight:500;}
+.mpick-sub{font-size:11px;color:var(--ink3);}
+
+/* ── DARK MODE ────────────────────────── */
+body.dark{
+  --ink:#ECECEC;--ink2:#B0B0B0;--ink3:#707070;
+  --paper:#141414;--warm:#1E1A12;--card:#1F1F1F;
+  --border:rgba(255,255,255,.09);--border2:rgba(255,255,255,.18);
+  --green-bg:rgba(45,106,79,.25);--yellow-bg:rgba(212,144,10,.18);
+  --red-bg:rgba(196,30,58,.15);--red-bg2:rgba(196,30,58,.28);
+  --blue-bg:rgba(20,100,192,.18);--purple-bg:rgba(107,72,199,.18);
+}
+body.dark nav{background:#1F1F1F;border-color:rgba(255,255,255,.09);}
+body.dark .lbanner{background:#1E1A12;}
+body.dark .db-char-card,body.dark .learn-card,body.dark .xp-box,
+body.dark .mast-box,body.dark .pcfg,body.dark .cours-toc,
+body.dark .cours-example,body.dark .cours-card,body.dark .res-card,
+body.dark .scard,body.dark .lcard,body.dark .dact,body.dark .fc,
+body.dark .cours-note{background:#1F1F1F;border-color:rgba(255,255,255,.09);}
+body.dark .warm-bg,.db-mnemo{background:#1E1A12 !important;}
+body.dark .cs-table th{background:#252525;}
+body.dark input{background:#252525;color:var(--ink);border-color:rgba(255,255,255,.18);}
+body.dark .tile,body.dark .lbchar{background:#252525;}
+
+.dark-toggle{width:36px;height:36px;border:1px solid var(--border2);border-radius:50%;
+  background:none;font-size:16px;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .2s;flex-shrink:0;}
+.dark-toggle:hover{background:var(--paper);transform:rotate(20deg);}
+
+.pcfg{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.3rem;margin-bottom:1.4rem;}
+.pcfg h2{font-size:14px;font-weight:500;margin-bottom:1rem;}
+.cfg-lbl{font-size:10px;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;}
+.cfg-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px;}
+.co{padding:5px 14px;border:1px solid var(--border2);border-radius:18px;font-size:12.5px;
+  background:none;color:var(--ink2);transition:all .15s;}
+.co:hover:not(:disabled){border-color:var(--red);color:var(--red);}
+.co.on{background:var(--red-bg);border-color:var(--red);color:var(--red);font-weight:500;}
+.co:disabled{opacity:.4;cursor:not-allowed;border-style:dashed;}
+.co .lk{font-size:9px;color:var(--ink3);display:block;margin-top:1px;}
+.pstart{width:100%;padding:11px;background:var(--red);color:#fff;border:none;
+  border-radius:var(--r);font-size:14px;font-weight:500;margin-top:4px;}
+.pstart:hover{opacity:.9;}
+
+/* ex bars */
+.ex-pb{height:5px;background:var(--border);border-radius:3px;margin-bottom:1.2rem;overflow:hidden;}
+.ex-pf{height:100%;background:var(--green);border-radius:3px;transition:width .25s;}
+.ex-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--ink3);margin-bottom:1.2rem;}
+
+/* flashcard */
+.fc-out{display:flex;flex-direction:column;align-items:center;gap:1rem;}
+.fc{width:260px;height:190px;background:#fff;border:1px solid var(--border);border-radius:18px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:var(--sh);user-select:none;transition:transform .15s;gap:8px;}
+.fc:hover{transform:scale(1.02);}
+.fc-big{font-family:var(--jp);font-size:72px;line-height:1;}
+.fc-rev{font-size:20px;color:var(--red);font-weight:500;min-height:26px;}
+.fc-sub{font-size:12px;color:var(--ink3);}
+.fc-acts{display:flex;gap:10px;}
+.fca{padding:9px 20px;border:1px solid var(--border2);border-radius:var(--r);font-size:13px;background:#fff;transition:all .15s;}
+.fca:hover{background:var(--paper);}
+.fca.bad{border-color:var(--red);color:var(--red);}
+.fca.good{border-color:var(--green);color:var(--green);}
+
+/* listen */
+.li-wrap{text-align:center;}
+.li-btn{width:110px;height:110px;border-radius:50%;background:var(--red);border:none;
+  font-size:38px;margin:1rem auto 1.5rem;display:flex;align-items:center;justify-content:center;
+  transition:transform .1s;box-shadow:0 4px 18px rgba(196,30,58,.3);}
+.li-btn:hover{transform:scale(1.05);}
+.li-btn:active{transform:scale(.96);}
+.li-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:380px;margin:0 auto;}
+.lo{padding:16px 8px;border:1.5px solid var(--border2);border-radius:var(--r);
+  font-family:var(--jp);font-size:28px;background:#fff;transition:all .15s;}
+.lo:hover:not(:disabled){border-color:var(--red);background:var(--red-bg);}
+.lo.ok{background:var(--green-bg);border-color:var(--green);}
+.lo.ko{background:var(--red-bg2);border-color:var(--red);}
+.lo:disabled{cursor:default;}
+
+/* ── SRS / DAILY WIDGETS ────────────── */
+.srs-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1rem 1.2rem;}
+.srs-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem;}
+.srs-title{font-size:13px;font-weight:500;}
+.srs-count{font-size:12px;font-weight:500;padding:3px 10px;border-radius:12px;}
+.srs-count.hot{background:var(--red-bg);color:var(--red);}
+.srs-count.ok{background:var(--green-bg);color:var(--green);}
+.srs-chars{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.8rem;}
+.srs-char{font-family:var(--jp);font-size:20px;background:var(--paper);border:1px solid var(--border);
+  border-radius:var(--r);padding:4px 8px;cursor:pointer;transition:all .15s;}
+.srs-char:hover{border-color:var(--red);}
+.srs-btn{padding:8px 18px;background:var(--red);color:#fff;border:none;border-radius:var(--r);
+  font-size:13px;font-weight:500;cursor:pointer;}
+.srs-btn:hover{opacity:.9;}
+.daily-box{background:linear-gradient(135deg,var(--red),#E8526A);border-radius:var(--r2);padding:1rem 1.2rem;color:#fff;}
+.daily-head{font-size:12px;font-weight:400;margin-bottom:3px;opacity:.85;text-transform:uppercase;letter-spacing:.5px;}
+.daily-title{font-size:16px;font-weight:500;margin-bottom:.8rem;}
+.daily-btn{padding:8px 18px;background:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.4);
+  border-radius:var(--r);font-size:13px;font-weight:500;color:#fff;cursor:pointer;transition:all .15s;}
+.daily-btn:hover{background:rgba(255,255,255,.35);}
+.daily-done{font-size:13px;opacity:.9;display:flex;align-items:center;gap:6px;}
+/* ── WORD READING ───────────────────── */
+.wr-wrap{text-align:center;}
+.wr-word{font-family:var(--jp);font-size:60px;line-height:1;margin:1.2rem 0 .3rem;cursor:pointer;}
+.wr-reading{font-size:12px;color:var(--ink3);letter-spacing:2px;margin-bottom:1.2rem;}
+.wr-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:380px;margin:0 auto;}
+.wro{padding:13px;border:1.5px solid var(--border2);border-radius:var(--r);font-size:14px;
+  background:var(--card);cursor:pointer;transition:all .15s;font-weight:500;}
+.wro:hover:not(:disabled){border-color:var(--red);background:var(--red-bg);}
+.wro.ok{background:var(--green-bg);border-color:var(--green);color:var(--green);}
+.wro.ko{background:var(--red-bg2);border-color:var(--red);}
+.wro:disabled{cursor:default;}
+/* ── GAMES ───────────────────────────── */
+.game-cfg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.2rem;align-items:center;}
+.gmeta{display:flex;gap:1.5rem;margin-bottom:1rem;}
+.gmeta-st{font-size:13px;color:var(--ink2);}
+.gmeta-st b{font-size:18px;color:var(--ink);}
+.mg{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;}
+.tile{height:72px;background:var(--card);border:2px solid var(--border);border-radius:var(--r2);
+  display:flex;align-items:center;justify-content:center;font-size:15px;
+  transition:all .2s;user-select:none;}
+.tile.kana{font-family:var(--jp);font-size:28px;}
+.tile:not(.matched):not(.wrong):hover{border-color:var(--red);background:var(--red-bg);transform:scale(1.04);}
+.tile.sel{border-color:var(--red);background:var(--red-bg);transform:scale(1.04);}
+.tile.matched{background:var(--green-bg);border-color:var(--green2);cursor:default;transform:scale(.97);}
+.tile.wrong{border-color:var(--red);background:var(--red-bg2);animation:shk .35s;}
+@keyframes shk{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+
+/* speed */
+.sphud{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+.spt{font-size:26px;font-weight:500;color:var(--red);width:50px;flex-shrink:0;}
+.sptb{flex:1;height:10px;background:var(--border);border-radius:5px;overflow:hidden;}
+.sptf{height:100%;background:var(--red);border-radius:5px;transition:width 1s linear;}
+.spsc{font-size:20px;font-weight:500;width:60px;text-align:right;flex-shrink:0;}
+.spstr{font-size:13px;color:var(--yellow);margin-bottom:12px;height:18px;}
+.spch{font-family:var(--jp);font-size:80px;text-align:center;margin:12px 0;line-height:1;}
+.spopts{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:380px;margin:0 auto;}
+.spopt{padding:14px;border:1.5px solid var(--border2);border-radius:var(--r);font-size:15px;background:#fff;transition:all .1s;}
+.spopt.ok{background:var(--green-bg);border-color:var(--green);}
+.spopt.ko{background:var(--red-bg2);border-color:var(--red);}
+.spopt:disabled{cursor:default;}
+.sp-intro{text-align:center;padding:2rem;}
+.sp-intro-jp{font-family:var(--jp);font-size:48px;color:var(--red);margin-bottom:8px;}
+.sp-rec{font-size:13px;color:var(--yellow);font-weight:500;margin-bottom:4px;}
+
+/* ── CHEAT SHEET ─────────────────────── */
+.cs-section{margin-bottom:2.5rem;}
+.cs-section-title{font-family:var(--jp);font-size:18px;color:var(--ink);margin-bottom:.8rem;display:flex;align-items:baseline;gap:8px;}
+.cs-section-title em{font-family:var(--ui);font-style:normal;font-size:12px;color:var(--ink3);font-weight:300;}
+.cs-table{border-collapse:collapse;width:100%;}
+.cs-table th,.cs-table td{border:1px solid var(--border);text-align:center;padding:0;}
+.cs-table th{background:var(--warm);font-size:11px;font-weight:500;padding:6px 4px;color:var(--ink2);}
+.kc{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:8px 4px;cursor:pointer;min-width:52px;min-height:52px;transition:background .15s;}
+.kc:hover{background:var(--red-bg);}
+.kc-jp{font-family:var(--jp);font-size:20px;line-height:1;}
+.kc-rm{font-size:9px;color:var(--red);font-style:italic;margin-top:2px;}
+.kc.empty{background:var(--paper);cursor:default;}
+.cs-print{padding:6px 16px;background:none;border:1px solid var(--border2);border-radius:var(--r);font-size:12px;color:var(--ink2);margin-bottom:1.2rem;}
+.cs-print:hover{border-color:var(--red);color:var(--red);}
+.cs-cols{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+@media(max-width:640px){.cs-cols{grid-template-columns:1fr;}}
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  nav,.ntabs,.stabs,.stb,.cs-print-row,.ltabs{display:none!important;}
+  .page{display:none!important;}
+  #pg-cs{display:block!important;margin:0;padding:0;}
+  body{margin:0;}
+  main{padding:6mm 8mm;max-width:100%;}
+  .ph h1{font-size:16px;margin-bottom:3mm;}
+  .rl{display:none;}
+  .cs-cols{display:grid;grid-template-columns:1fr 1fr;gap:6mm;}
+  .cs-section{margin-bottom:4mm;}
+  .cs-section-title{font-size:12px;margin-bottom:2mm;}
+  .cs-table th{font-size:9px;padding:3px;}
+  .kc{min-width:28px;min-height:28px;padding:3px 2px;}
+  .kc-jp{font-size:15px;}
+  .kc-rm{font-size:7px;margin-top:1px;}
+  @page{size:A4 landscape;margin:10mm;}
+  /* Page 1 = hiragana + katakana, hide dakuten */
+  body.print-p1 #cs-daku-section{display:none!important;}
+  body.print-p1 .cs-cols{display:grid;}
+  /* Page 2 = dakuten only, hide hira+kata */
+  body.print-p2 .cs-cols{display:none!important;}
+  body.print-p2 #cs-daku-section{display:block!important;}
+}
+
+/* ── STATS ───────────────────────────── */
+.st-legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:1rem;font-size:12px;}
+.stl{display:flex;align-items:center;gap:5px;color:var(--ink2);}
+.stl-dot{width:12px;height:12px;border-radius:3px;}
+.stgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(58px,1fr));gap:6px;}
+.stc{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r);padding:8px 4px;text-align:center;}
+.stc:hover{transform:scale(1.08);z-index:1;}
+.stc-jp{font-family:var(--jp);font-size:20px;line-height:1;margin-bottom:3px;}
+.stc-rm{font-size:9px;color:var(--ink3);}
+.stc[data-m="1"]{border-color:var(--yellow);background:var(--yellow-bg);}
+.stc[data-m="2"]{border-color:var(--green2);background:var(--green-bg);}
+.stc[data-m="3"]{border-color:var(--green);background:rgba(45,106,79,.18);}
+.cpop{position:fixed;background:#fff;border:1px solid var(--border2);border-radius:var(--r2);
+  padding:1.2rem;box-shadow:0 8px 32px rgba(0,0,0,.15);z-index:600;min-width:200px;display:none;}
+
+/* ── RESPONSIVE ──────────────────────── */
+@media(max-width:580px){
+  .dash-top{grid-template-columns:1fr 1fr;}.scard:last-child{grid-column:1/-1;}
+  .dash-acts{grid-template-columns:1fr;}
+  .mg{grid-template-columns:repeat(3,1fr);}
+  .li-opts{grid-template-columns:1fr 1fr;}
+  .lg{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));}
+  .q-opts{grid-template-columns:1fr 1fr;}
+}
+/* ── COURS ───────────────────────────── */
+.cours-wrap{max-width:720px;}
+.cours-section{margin-bottom:2.8rem;}
+.cours-h2{font-family:var(--jp);font-size:20px;color:var(--ink);margin-bottom:.3rem;display:flex;align-items:baseline;gap:10px;}
+.cours-h2 span{font-family:var(--ui);font-size:12px;color:var(--red);font-weight:400;letter-spacing:.5px;text-transform:uppercase;}
+.cours-divider{width:40px;height:3px;background:var(--red);border-radius:2px;margin-bottom:1rem;}
+.cours-p{font-size:14.5px;color:var(--ink2);line-height:1.85;margin-bottom:.9rem;}
+.cours-p b{color:var(--ink);font-weight:500;}
+.cours-p em{color:var(--red);font-style:normal;font-weight:500;}
+.cours-note{background:var(--warm);border-left:3px solid var(--red);padding:.8rem 1rem;border-radius:0 var(--r) var(--r) 0;font-size:13.5px;color:var(--ink2);line-height:1.7;margin-bottom:1rem;}
+.cours-note b{color:var(--ink);}
+.cours-example{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1rem 1.2rem;margin-bottom:1rem;}
+.cours-ex-jp{font-family:var(--jp);font-size:26px;color:var(--ink);margin-bottom:4px;cursor:pointer;}
+.cours-ex-rm{font-size:12px;color:var(--red);font-style:italic;margin-bottom:2px;}
+.cours-ex-fr{font-size:13px;color:var(--ink3);}
+.cours-ex-note{font-size:11px;color:var(--ink3);margin-top:4px;border-top:1px solid var(--border);padding-top:4px;}
+.cours-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.cours-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1rem;}
+.cours-card-title{font-size:12px;font-weight:500;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem;}
+.cours-card-jp{font-family:var(--jp);font-size:22px;color:var(--ink);margin-bottom:4px;}
+.cours-card-body{font-size:13px;color:var(--ink2);line-height:1.6;}
+.cours-img{width:100%;border-radius:var(--r2);border:1px solid var(--border);margin-bottom:1rem;overflow:hidden;}
+.cours-badge{display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:500;margin-right:6px;margin-bottom:4px;}
+.cb-red{background:var(--red-bg);color:var(--red);}
+.cb-blue{background:rgba(20,100,192,.1);color:#1464C0;}
+.cb-grn{background:var(--green-bg);color:var(--green);}
+.cb-ylw{background:var(--yellow-bg);color:var(--yellow);}
+.sentence-demo{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem;margin-bottom:1rem;overflow-x:auto;}
+.sdem-row{display:flex;gap:0;align-items:flex-start;flex-wrap:wrap;margin-bottom:.5rem;}
+.sdem-block{display:flex;flex-direction:column;align-items:center;min-width:60px;}
+.sdem-jp{font-family:var(--jp);font-size:22px;padding:6px 10px;border-radius:var(--r) var(--r) 0 0;}
+.sdem-role{font-size:9px;padding:2px 6px;border-radius:0 0 var(--r) var(--r);font-weight:500;letter-spacing:.3px;text-transform:uppercase;width:100%;text-align:center;}
+.sdem-plus{font-size:20px;color:var(--ink3);padding:6px 2px;align-self:center;}
+.sdem-fr{font-size:12px;color:var(--ink3);margin-top:4px;font-style:italic;}
+.prog-compare{display:flex;gap:12px;margin-bottom:1rem;}
+.prog-lang{flex:1;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:.8rem 1rem;}
+.prog-lang-title{font-size:11px;font-weight:500;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.prog-lang-text{font-size:13px;color:var(--ink2);line-height:1.6;}
+.cours-toc{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1rem 1.2rem;margin-bottom:2rem;}
+.cours-toc-title{font-size:12px;font-weight:500;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.6rem;}
+.cours-toc a{display:block;font-size:13px;color:var(--red);text-decoration:none;padding:3px 0;border-bottom:1px solid var(--border);}
+.cours-toc a:last-child{border-bottom:none;}
+.cours-toc a:hover{opacity:.7;}
+@media(max-width:580px){.cours-grid{grid-template-columns:1fr;}.prog-compare{flex-direction:column;}}
+.res-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:1rem;display:flex;gap:12px;align-items:flex-start;text-decoration:none;color:inherit;
+  transition:all .15s;}
+.res-card:hover{border-color:var(--red);transform:translateY(-2px);box-shadow:var(--sh);}
+.res-ico{font-size:28px;flex-shrink:0;line-height:1;margin-top:2px;}
+.res-name{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px;}
+.res-desc{font-size:12px;color:var(--ink2);line-height:1.55;margin-bottom:5px;}
+.res-tag{font-size:10px;color:var(--red);font-weight:500;letter-spacing:.3px;}
+/* ── DÉBUTANT ─────────────────────────── */
+.db-wrap{max-width:680px;margin:0 auto;}
+
+/* Welcome screen */
+.db-welcome{text-align:center;padding:3rem 1rem;}
+.db-welcome-jp{font-family:var(--jp);font-size:72px;color:var(--red);
+  animation:dbFloat 3s ease-in-out infinite;}
+@keyframes dbFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.db-welcome-title{font-size:24px;font-weight:500;margin:.8rem 0 .4rem;}
+.db-welcome-sub{font-size:14px;color:var(--ink2);line-height:1.7;max-width:420px;margin:0 auto 2rem;}
+.db-start{padding:14px 36px;background:var(--red);color:#fff;border:none;border-radius:30px;
+  font-size:16px;font-weight:500;cursor:pointer;box-shadow:0 6px 24px rgba(196,30,58,.35);
+  transition:all .2s;}
+.db-start:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(196,30,58,.4);}
+.db-start:active{transform:translateY(0);}
+
+/* Chapter nav */
+.db-chapters{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:1.5rem;}
+.db-ch{background:var(--card);border:2px solid var(--border);border-radius:var(--r2);
+  padding:.9rem;text-align:center;cursor:pointer;transition:all .15s;position:relative;overflow:hidden;}
+.db-ch:hover:not(.db-ch-lock){border-color:var(--red);transform:translateY(-2px);box-shadow:var(--sh);}
+.db-ch.db-ch-done{border-color:var(--green2);background:var(--green-bg);}
+.db-ch.db-ch-active{border-color:var(--red);background:var(--red-bg);}
+.db-ch.db-ch-lock{opacity:.4;cursor:not-allowed;}
+.db-ch-num{font-size:11px;color:var(--ink3);margin-bottom:4px;}
+.db-ch-jp{font-family:var(--jp);font-size:24px;line-height:1;margin-bottom:4px;}
+.db-ch-name{font-size:12px;font-weight:500;color:var(--ink);}
+.db-ch-badge{font-size:10px;margin-top:4px;}
+.db-ch-prog{height:3px;background:var(--border);border-radius:2px;margin-top:6px;overflow:hidden;}
+.db-ch-progf{height:100%;background:var(--red);border-radius:2px;transition:width .4s;}
+
+/* Lesson screen */
+.db-lesson{animation:dbSlideIn .35s cubic-bezier(.4,0,.2,1);}
+@keyframes dbSlideIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+.db-top{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem;}
+.db-back{width:36px;height:36px;border:1px solid var(--border2);border-radius:50%;
+  background:none;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.db-back:hover{background:var(--paper);}
+.db-top-title{font-family:var(--jp);font-size:17px;flex:1;}
+.db-top-prog{font-size:12px;color:var(--ink3);}
+.db-pbar{height:6px;background:var(--border);border-radius:3px;margin-bottom:1.8rem;overflow:hidden;}
+.db-pfill{height:100%;border-radius:3px;transition:width .4s cubic-bezier(.4,0,.2,1);}
+
+/* Character step */
+.db-step{animation:dbPop .4s cubic-bezier(.34,1.56,.64,1);}
+@keyframes dbPop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+.db-char-card{background:var(--card);border:1px solid var(--border);border-radius:24px;
+  padding:2rem 1.5rem;text-align:center;box-shadow:var(--sh);margin-bottom:1.2rem;position:relative;}
+.db-char-big{font-family:var(--jp);font-size:100px;line-height:1;cursor:pointer;
+  display:inline-block;transition:transform .15s;color:var(--ink);}
+.db-char-big:hover{transform:scale(1.08);}
+.db-char-big.db-playing{animation:dbPulse .4s ease;}
+@keyframes dbPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+.db-char-rm{font-size:32px;color:var(--red);font-weight:500;margin-top:8px;}
+.db-char-hint{font-size:13px;color:var(--ink3);margin-top:4px;}
+.db-sound-btn{width:56px;height:56px;border-radius:50%;background:var(--red);border:none;
+  color:#fff;font-size:22px;cursor:pointer;margin:12px auto 0;display:flex;
+  align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(196,30,58,.3);transition:all .15s;}
+.db-sound-btn:hover{transform:scale(1.08);}
+.db-sound-btn:active{transform:scale(.95);}
+
+/* Mnemonic */
+.db-mnemo{background:var(--warm);border:1px solid rgba(0,0,0,.08);border-radius:var(--r2);
+  padding:1rem 1.2rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:14px;}
+.db-mnemo-img{width:72px;height:72px;flex-shrink:0;border-radius:12px;
+  background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;}
+.db-mnemo-text{font-size:13px;color:var(--ink2);line-height:1.65;}
+.db-mnemo-text b{color:var(--ink);}
+
+/* Stroke hint */
+.db-strokes{display:flex;gap:8px;justify-content:center;margin-bottom:1.2rem;flex-wrap:wrap;}
+.db-stroke{background:#fff;border:1px solid var(--border);border-radius:10px;padding:6px 10px;
+  font-size:11px;color:var(--ink2);display:flex;align-items:center;gap:5px;}
+.db-stroke-n{width:18px;height:18px;background:var(--red);color:#fff;border-radius:50%;
+  font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:500;flex-shrink:0;}
+
+/* Nav buttons */
+.db-nav{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;}
+.db-btn{padding:11px 26px;border-radius:30px;font-size:14px;cursor:pointer;font-weight:500;
+  border:none;transition:all .15s;}
+.db-btn-red{background:var(--red);color:#fff;box-shadow:0 4px 16px rgba(196,30,58,.3);}
+.db-btn-red:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(196,30,58,.35);}
+.db-btn-out{background:none;border:1.5px solid var(--border2);color:var(--ink2);}
+.db-btn-out:hover{border-color:var(--red);color:var(--red);}
+.db-btn-grn{background:var(--green);color:#fff;box-shadow:0 4px 14px rgba(45,106,79,.3);}
+.db-btn-grn:hover{transform:translateY(-2px);}
+
+/* Quiz in beginner */
+.db-quiz{animation:dbSlideIn .35s ease;}
+.db-quiz-q{font-family:var(--jp);font-size:84px;text-align:center;margin:1rem 0;
+  cursor:pointer;line-height:1;}
+.db-quiz-q.shake{animation:shk .4s;}
+.db-quiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:360px;margin:0 auto 1.2rem;}
+.db-qo{padding:15px;border:2px solid var(--border2);border-radius:var(--r);font-size:17px;
+  background:#fff;cursor:pointer;transition:all .15s;font-weight:500;}
+.db-qo:hover:not(:disabled){border-color:var(--red);background:var(--red-bg);}
+.db-qo.ok{background:var(--green-bg);border-color:var(--green);color:var(--green);animation:dbPop .3s ease;}
+.db-qo.ko{background:var(--red-bg2);border-color:var(--red);animation:shk .4s;}
+.db-qo:disabled{cursor:default;}
+
+/* Result / confetti screen */
+.db-result{text-align:center;padding:2rem 1rem;animation:dbPop .5s cubic-bezier(.34,1.56,.64,1);}
+.db-result-jp{font-family:var(--jp);font-size:64px;color:var(--red);margin-bottom:.5rem;}
+.db-result-score{font-size:28px;font-weight:500;margin-bottom:6px;}
+.db-result-msg{font-size:14px;color:var(--ink2);margin-bottom:1.5rem;line-height:1.6;}
+.db-stars{font-size:36px;letter-spacing:8px;margin-bottom:1rem;
+  animation:dbPop .6s .2s cubic-bezier(.34,1.56,.64,1) both;}
+.db-confetti{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;}
+.db-conf-piece{position:absolute;width:8px;height:8px;border-radius:2px;
+  animation:dbConfFall linear forwards;}
+@keyframes dbConfFall{
+  0%  {transform:translateY(-20px) rotate(0deg);opacity:1;}
+  100%{transform:translateY(100vh) rotate(720deg);opacity:0;}
+}
+/* repeat notice */
+.db-repeat{background:var(--blue-bg,rgba(20,100,192,.08));border:1px solid rgba(20,100,192,.2);
+  border-radius:var(--r);padding:.7rem 1rem;font-size:13px;color:#1464C0;
+  margin-bottom:1rem;text-align:center;}
+/* ── PLAN JAPON ──────────────────────── */
+.plan-wrap{max-width:720px;}
+/* Countdown */
+.countdown-box{background:linear-gradient(135deg,#C41E3A,#8B0000);border-radius:20px;
+  padding:1.8rem;color:#fff;text-align:center;margin-bottom:1.5rem;position:relative;overflow:hidden;}
+.countdown-box::before{content:'🗾';position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);
+  font-size:80px;opacity:.15;}
+.cd-label{font-size:11px;text-transform:uppercase;letter-spacing:1px;opacity:.8;margin-bottom:.5rem;}
+.cd-numbers{display:flex;justify-content:center;gap:1rem;margin-bottom:.8rem;}
+.cd-unit{display:flex;flex-direction:column;align-items:center;}
+.cd-val{font-family:var(--jp);font-size:52px;line-height:1;font-weight:700;}
+.cd-sub{font-size:10px;opacity:.7;margin-top:2px;text-transform:uppercase;letter-spacing:.5px;}
+.cd-msg{font-size:13px;opacity:.9;line-height:1.5;}
+/* Progress summary */
+.plan-progress{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem;}
+.pp-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:.9rem;text-align:center;}
+.pp-val{font-size:22px;font-weight:500;color:var(--red);margin-bottom:3px;}
+.pp-lbl{font-size:11px;color:var(--ink3);}
+.pp-bar{height:4px;background:var(--border);border-radius:2px;margin-top:6px;overflow:hidden;}
+.pp-fill{height:100%;background:var(--red);border-radius:2px;}
+/* Weekly plan */
+.plan-week{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:1.2rem;margin-bottom:1rem;transition:all .15s;}
+.plan-week.current{border-color:var(--red);border-width:2px;background:var(--red-bg);}
+.plan-week.done{border-color:var(--green2);background:var(--green-bg);opacity:.8;}
+.pw-head{display:flex;align-items:center;gap:10px;margin-bottom:.7rem;}
+.pw-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:500;flex-shrink:0;}
+.pw-num.current{background:var(--red);color:#fff;}
+.pw-num.done{background:var(--green);color:#fff;}
+.pw-num.future{background:var(--border);color:var(--ink3);}
+.pw-title{font-size:14px;font-weight:500;color:var(--ink);}
+.pw-subtitle{font-size:12px;color:var(--ink3);margin-top:1px;}
+.pw-badge{margin-left:auto;font-size:11px;padding:2px 9px;border-radius:10px;}
+.pw-badge.current{background:var(--red);color:#fff;}
+.pw-badge.done{background:var(--green-bg);color:var(--green);}
+.pw-goals{display:flex;flex-direction:column;gap:5px;}
+.pw-goal{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--ink2);line-height:1.5;}
+.pw-goal-ico{font-size:14px;flex-shrink:0;margin-top:1px;}
+.pw-tip{margin-top:.7rem;font-size:12px;color:var(--ink3);background:var(--paper);
+  border-radius:var(--r);padding:6px 10px;border-left:2px solid var(--red);font-style:italic;}
+.pw-when{font-size:12px;padding:6px 10px;border-radius:var(--r);margin-bottom:.7rem;
+  display:flex;align-items:center;gap:6px;font-weight:500;}
+.pw-when.go{background:var(--green-bg);color:var(--green);}
+.pw-when.wait{background:var(--yellow-bg);color:var(--yellow);}
+.pw-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:.9rem;}
+.pw-act{padding:7px 14px;border:1.5px solid var(--red);border-radius:18px;font-size:12px;
+  font-weight:500;color:var(--red);background:none;cursor:pointer;transition:all .15s;white-space:nowrap;}
+.pw-act:hover{background:var(--red);color:#fff;}
+/* Survival kit */
+.survival-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:8px;}
+.sv-cat{font-size:11px;font-weight:500;color:var(--ink3);text-transform:uppercase;
+  letter-spacing:.5px;margin:1rem 0 .4rem;grid-column:1/-1;}
+.sv-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:.8rem 1rem;cursor:pointer;transition:all .15s;display:flex;gap:10px;align-items:flex-start;}
+.sv-card:hover{border-color:var(--red);background:var(--red-bg);}
+.sv-jp{font-family:var(--jp);font-size:20px;line-height:1.2;flex-shrink:0;min-width:80px;}
+.sv-right{}
+.sv-rm{font-size:11px;color:var(--red);font-style:italic;margin-bottom:2px;}
+.sv-fr{font-size:13px;color:var(--ink);font-weight:500;}
+.sv-note{font-size:11px;color:var(--ink3);margin-top:2px;}
+.sv-prio{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:6px;}
+.sv-prio.red{background:var(--red);}
+.sv-prio.ylw{background:var(--yellow);}
+.sv-prio.grn{background:var(--green);}
+/* Tips */
+.tips-list{display:flex;flex-direction:column;gap:10px;}
+.tip-item{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  padding:1rem 1.2rem;display:flex;gap:12px;align-items:flex-start;}
+.tip-ico{font-size:24px;flex-shrink:0;line-height:1;margin-top:2px;}
+.tip-title{font-size:14px;font-weight:500;color:var(--ink);margin-bottom:4px;}
+.tip-body{font-size:13px;color:var(--ink2);line-height:1.65;}
+.tip-body b{color:var(--ink);}
+.tip-tag{display:inline-block;font-size:10px;font-weight:500;padding:1px 8px;
+  border-radius:8px;margin-bottom:5px;}
+.tt-red{background:var(--red-bg);color:var(--red);}
+.tt-grn{background:var(--green-bg);color:var(--green);}
+.tt-blu{background:var(--blue-bg,rgba(20,100,192,.1));color:#1464C0;}
+/* Plan tabs */
+.plan-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.4rem;}
+.ptb{padding:6px 16px;border:1.5px solid var(--border2);border-radius:18px;font-size:13px;
+  background:none;color:var(--ink2);cursor:pointer;transition:all .15s;}
+.ptb:hover{border-color:var(--red);color:var(--red);}
+.ptb.on{background:var(--red);border-color:var(--red);color:#fff;font-weight:500;}
+@media(max-width:580px){.plan-progress{grid-template-columns:1fr 1fr;}.cd-val{font-size:38px;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" style="padding:5px 12px;border:1px solid var(--border2);border-radius:18px;font-size:12px;color:var(--ink3);text-decoration:none;white-space:nowrap;margin-right:4px;flex-shrink:0;" title="Choisir une langue">🌏</a>
+  <div class="logo" onclick="goTab('home')">日本語 <em>nihongo learn</em></div>
+  <div class="ntabs">
+    <button class="ntb on" data-tab="home"     onclick="goTab('home')">🏠 Accueil</button>
+    <button class="ntb"    data-tab="plan"     onclick="goTab('plan')">🗾 Plan Japon</button>
+    <button class="ntb"    data-tab="cours"    onclick="goTab('cours')">📖 Cours</button>
+    <button class="ntb"    data-tab="debut"    onclick="goTab('debut')">✨ Débutant</button>
+    <button class="ntb"    data-tab="lessons"  onclick="goTab('lessons')">📚 Leçons</button>
+    <button class="ntb"    data-tab="practice" onclick="goTab('practice')">🎯 Exercices</button>
+    <button class="ntb"    data-tab="games"    onclick="goTab('games')">🎮 Jeux</button>
+    <button class="ntb"    data-tab="cs"       onclick="goTab('cs')">📋 Tableaux</button>
+    <button class="ntb"    data-tab="stats"    onclick="goTab('stats')">📊 Progrès</button>
+  </div>
+  <button class="dark-toggle" id="dark-btn" onclick="toggleDark()" title="Mode sombre">🌙</button>
+</nav>
+
+<!-- LESSON OVERLAY -->
+<div id="overlay">
+  <div class="ov-bar">
+    <button class="ov-back" onclick="closeOv()">←</button>
+    <div class="ov-title" id="ov-title"></div>
+    <div class="ov-pn" id="ov-pn"></div>
+  </div>
+  <div class="ov-prog"><div class="ov-pf" id="ov-pf" style="width:0%"></div></div>
+  <div class="ov-body" id="ov-body"></div>
+</div>
+
+<!-- CHAR POPUP -->
+<div class="cpop" id="cpop" onclick="this.style.display='none'"></div>
+
+<main>
+
+<!-- HOME -->
+<div class="page on" id="pg-home">
+  <div class="ph"><h1>Tableau de bord <em>ダッシュボード</em></h1><div class="rl"></div></div>
+  <div class="dash-top">
+    <div class="scard"><div class="scard-ico">⚡</div><div class="scard-val" id="d-xp">0</div><div class="scard-lbl">Points XP</div></div>
+    <div class="scard"><div class="scard-ico">🔥</div><div class="scard-val" id="d-str">0</div><div class="scard-lbl">Jours consécutifs</div></div>
+    <div class="scard"><div class="scard-ico">✅</div><div class="scard-val" id="d-mas">0</div><div class="scard-lbl">Maîtrisés</div></div>
+  </div>
+  <div class="xp-box">
+    <div class="xp-head"><b id="d-lvl">Niveau 1</b><span id="d-xpn" style="color:var(--ink3)">0 / 50 XP</span></div>
+    <div class="xp-track"><div class="xp-fill" id="d-xpf" style="width:0%"></div></div>
+  </div>
+  <div class="dash-acts">
+    <div class="dact prime" onclick="goNextLesson()">
+      <div class="dact-ico">📖</div>
+      <div class="dact-title">Continuer la leçon</div>
+      <div class="dact-desc" id="d-nextl">Prochain groupe</div>
+    </div>
+    <div class="dact" onclick="startQuickPractice()">
+      <div class="dact-ico">⚡</div>
+      <div class="dact-title">Pratique rapide</div>
+      <div class="dact-desc">10 questions sur tes points faibles</div>
+    </div>
+    <div class="dact" onclick="goTab('games');showGameTab('speed')">
+      <div class="dact-ico">⏱️</div>
+      <div class="dact-title">Speed Round</div>
+      <div class="dact-desc">60 secondes, maximum de réponses</div>
+    </div>
+    <div class="dact" onclick="goTab('games');showGameTab('match')">
+      <div class="dact-ico">🃏</div>
+      <div class="dact-title">Jeu de paires</div>
+      <div class="dact-desc">Associe kana et romaji</div>
+    </div>
+  </div>
+  <div class="mast-box">
+    <div class="mast-head">Maîtrise par catégorie</div>
+    <div id="d-mbars"></div>
+  </div>
+  <div id="d-srs" style="margin-top:1.2rem;"></div>
+  <div id="d-daily" style="margin-top:1rem;"></div>
+</div>
+
+<!-- LESSONS -->
+<div class="page" id="pg-lessons">
+  <div class="ph"><h1>Leçons <em>レッスン</em></h1><div class="rl"></div></div>
+  <div class="ltabs" id="ltabs">
+    <button class="ltab on" id="ltab-h" onclick="showLTab('h')">
+      <div class="ltab-bar" style="background:#C41E3A;"></div>
+      <div class="ltab-top"><span class="ltab-ico">🌸</span><span class="ltab-jp">あいう</span></div>
+      <div class="ltab-body">
+        <div class="ltab-title">Hiragana</div>
+        <div class="ltab-sub">Écriture arrondie · mots japonais natifs</div>
+      </div>
+    </button>
+    <button class="ltab" id="ltab-k" onclick="showLTab('k')">
+      <div class="ltab-bar" style="background:#1464C0;"></div>
+      <div class="ltab-top"><span class="ltab-ico">⚡</span><span class="ltab-jp" style="color:#1464C0;">アイウ</span></div>
+      <div class="ltab-body">
+        <div class="ltab-title">Katakana</div>
+        <div class="ltab-sub">Écriture angulaire · mots étrangers</div>
+      </div>
+    </button>
+    <button class="ltab" id="ltab-v" onclick="showLTab('v')">
+      <div class="ltab-bar" style="background:#2D6A4F;"></div>
+      <div class="ltab-top"><span class="ltab-ico">📝</span><span class="ltab-jp" style="color:#2D6A4F;">語彙</span></div>
+      <div class="ltab-body">
+        <div class="ltab-title">Vocabulaire</div>
+        <div class="ltab-sub">Chiffres, couleurs, verbes, jours…</div>
+      </div>
+    </button>
+  </div>
+  <div class="sp on" id="lt-h"></div>
+  <div class="sp"    id="lt-k"></div>
+  <div class="sp"    id="lt-v"></div>
+</div>
+
+<!-- PRACTICE -->
+<div class="page" id="pg-practice">
+  <div class="ph"><h1>Exercices <em>練習</em></h1><div class="rl"></div></div>
+  <div class="pcfg">
+    <h2>Configuration</h2>
+    <div>
+      <div class="cfg-lbl">Contenu</div>
+      <div class="cfg-row" id="cfg-set">
+        <button class="co on" data-v="h-basic" onclick="selSet(this)">Hiragana basique</button>
+        <button class="co"    data-v="k-basic" onclick="selSet(this)">Katakana basique</button>
+        <button class="co"    data-v="h-all"   onclick="selSet(this)">Hiragana complet</button>
+        <button class="co"    data-v="k-all"   onclick="selSet(this)">Katakana complet</button>
+        <button class="co"    data-v="vocab"   onclick="selSet(this)">Vocabulaire</button>
+        <button class="co"    data-v="weak"    onclick="selSet(this)">⚡ Points faibles</button>
+        <button class="co"    data-v="words-h" onclick="selSet(this)">📖 Lire des mots (ひ)</button>
+        <button class="co"    data-v="words-k" onclick="selSet(this)">📖 Lire des mots (カ)</button>
+      </div>
+    </div>
+    <div>
+      <div class="cfg-lbl">Mode — <span id="unlock-hint" style="color:var(--red);font-size:10px;"></span></div>
+      <div class="cfg-row" id="cfg-mode"></div>
+    </div>
+    <button class="pstart" onclick="startPractice()">▶ Commencer (20 questions)</button>
+  </div>
+  <div id="ex-area"></div>
+</div>
+
+<!-- GAMES -->
+<div class="page" id="pg-games">
+  <div class="ph"><h1>Jeux <em>ゲーム</em></h1><div class="rl"></div></div>
+  <div class="stabs">
+    <button class="stb on" onclick="showGameTab('match')">🃏 Paires</button>
+    <button class="stb"    onclick="showGameTab('speed')">⚡ Speed Round</button>
+  </div>
+  <div class="sp on" id="gt-match">
+    <div class="game-cfg">
+      <span style="font-size:13px;font-weight:500;color:var(--ink2);">Contenu :</span>
+      <button class="co on" data-v="h-basic" onclick="selMatch(this)">ひ basique</button>
+      <button class="co"    data-v="k-basic" onclick="selMatch(this)">ア basique</button>
+      <button class="co"    data-v="h-daku"  onclick="selMatch(this)">ひ dakuten</button>
+      <button class="co"    data-v="mix"     onclick="selMatch(this)">Mixte</button>
+    </div>
+    <div id="match-area"></div>
+  </div>
+  <div class="sp" id="gt-speed">
+    <div class="game-cfg">
+      <span style="font-size:13px;font-weight:500;color:var(--ink2);">Contenu :</span>
+      <button class="co on" data-v="h-basic" onclick="selSpeed(this)">ひ basique</button>
+      <button class="co"    data-v="k-basic" onclick="selSpeed(this)">ア basique</button>
+      <button class="co"    data-v="h-all"   onclick="selSpeed(this)">Tout ひ</button>
+      <button class="co"    data-v="hk"      onclick="selSpeed(this)">ひ + ア</button>
+    </div>
+    <div id="speed-area"></div>
+  </div>
+</div>
+
+<!-- CHEAT SHEET -->
+<div class="page" id="pg-cs">
+  <div class="ph"><h1>Tableaux <em>五十音図</em></h1><div class="rl"></div></div>
+  <div class="cs-print-row" style="display:flex;gap:10px;margin-bottom:1.2rem;">
+    <button class="cs-print" onclick="doPrint('p1')">🖨️ Imprimer page 1 — Hiragana + Katakana</button>
+    <button class="cs-print" onclick="doPrint('p2')">🖨️ Imprimer page 2 — Dakuten</button>
+  </div>
+  <div class="cs-cols">
+    <div>
+      <div class="cs-section">
+        <div class="cs-section-title">ひらがな <em>Hiragana</em></div>
+        <div id="cs-h"></div>
+      </div>
+    </div>
+    <div>
+      <div class="cs-section">
+        <div class="cs-section-title">カタカナ <em>Katakana</em></div>
+        <div id="cs-k"></div>
+      </div>
+    </div>
+  </div>
+  <div id="cs-daku-section" class="cs-section" style="margin-top:1rem;">
+    <div class="cs-section-title">が行 Dakuten <em>Hiragana + Katakana</em></div>
+    <div id="cs-daku"></div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="page" id="pg-stats">
+  <div class="ph"><h1>Progrès <em>進歩</em></h1><div class="rl"></div></div>
+  <div class="st-legend">
+    <div class="stl"><div class="stl-dot" style="background:var(--border2)"></div>Non vu</div>
+    <div class="stl"><div class="stl-dot" style="background:var(--yellow)"></div>En cours</div>
+    <div class="stl"><div class="stl-dot" style="background:var(--green2)"></div>Bien ≥70%</div>
+    <div class="stl"><div class="stl-dot" style="background:var(--green)"></div>Maîtrisé ≥90%</div>
+  </div>
+  <div class="stabs">
+    <button class="stb on" onclick="showStTab('h')">ひらがな</button>
+    <button class="stb"    onclick="showStTab('k')">カタカナ</button>
+  </div>
+  <div class="sp on" id="st-h"><div class="stgrid" id="sg-h"></div></div>
+  <div class="sp"    id="st-k"><div class="stgrid" id="sg-k"></div></div>
+  <div style="margin-top:1.5rem;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem;">
+    <div style="font-size:13px;font-weight:500;margin-bottom:10px;">Statistiques</div>
+    <div id="st-global" style="font-size:13px;color:var(--ink2);line-height:2;"></div>
+  </div>
+  <button onclick="if(confirm('Effacer toute la progression ?')){localStorage.removeItem('ngl4');location.reload();}"
+    style="margin-top:1rem;padding:7px 16px;border:1px solid var(--border2);border-radius:var(--r);background:none;font-size:12px;color:var(--ink3);">
+    Réinitialiser
+  </button>
+</div>
+
+<!-- PLAN JAPON -->
+<div class="page" id="pg-plan">
+  <div id="plan-root"></div>
+</div>
+
+<!-- DÉBUTANT -->
+<div class="page" id="pg-debut">
+  <div id="debut-root"></div>
+</div>
+
+<!-- COURS -->
+<div class="page" id="pg-cours">
+  <div class="ph"><h1>Cours <em>にほんごのにゅうもん</em></h1><div class="rl"></div></div>
+  <div id="cours-body"></div>
+</div>
+
+</main>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════════
+const HG = [
+  {id:'h1', name:'Voyelles',     ch:[['あ','a'],['い','i'],['う','u'],['え','e'],['お','o']]},
+  {id:'h2', name:'K-row',        ch:[['か','ka'],['き','ki'],['く','ku'],['け','ke'],['こ','ko']]},
+  {id:'h3', name:'S-row',        ch:[['さ','sa'],['し','shi'],['す','su'],['せ','se'],['そ','so']]},
+  {id:'h4', name:'T-row',        ch:[['た','ta'],['ち','chi'],['つ','tsu'],['て','te'],['と','to']]},
+  {id:'h5', name:'N-row',        ch:[['な','na'],['に','ni'],['ぬ','nu'],['ね','ne'],['の','no']]},
+  {id:'h6', name:'H-row',        ch:[['は','ha'],['ひ','hi'],['ふ','fu'],['へ','he'],['ほ','ho']]},
+  {id:'h7', name:'M-row',        ch:[['ま','ma'],['み','mi'],['む','mu'],['め','me'],['も','mo']]},
+  {id:'h8', name:'Y / W / N',    ch:[['や','ya'],['ゆ','yu'],['よ','yo'],['わ','wa'],['ん','n']]},
+  {id:'h9', name:'R-row',        ch:[['ら','ra'],['り','ri'],['る','ru'],['れ','re'],['ろ','ro']]},
+  {id:'h10',name:'Dakuten G',    ch:[['が','ga'],['ぎ','gi'],['ぐ','gu'],['げ','ge'],['ご','go']]},
+  {id:'h11',name:'Dakuten Z/D',  ch:[['ざ','za'],['じ','ji'],['ず','zu'],['ぜ','ze'],['ぞ','zo'],['だ','da'],['で','de'],['ど','do']]},
+  {id:'h12',name:'Dakuten B/P',  ch:[['ば','ba'],['び','bi'],['ぶ','bu'],['べ','be'],['ぼ','bo'],['ぱ','pa'],['ぴ','pi'],['ぷ','pu'],['ぺ','pe'],['ぽ','po']]},
+];
+const KG = [
+  {id:'k1', name:'Voyelles',     ch:[['ア','a'],['イ','i'],['ウ','u'],['エ','e'],['オ','o']]},
+  {id:'k2', name:'K-row',        ch:[['カ','ka'],['キ','ki'],['ク','ku'],['ケ','ke'],['コ','ko']]},
+  {id:'k3', name:'S-row',        ch:[['サ','sa'],['シ','shi'],['ス','su'],['セ','se'],['ソ','so']]},
+  {id:'k4', name:'T-row',        ch:[['タ','ta'],['チ','chi'],['ツ','tsu'],['テ','te'],['ト','to']]},
+  {id:'k5', name:'N-row',        ch:[['ナ','na'],['ニ','ni'],['ヌ','nu'],['ネ','ne'],['ノ','no']]},
+  {id:'k6', name:'H-row',        ch:[['ハ','ha'],['ヒ','hi'],['フ','fu'],['ヘ','he'],['ホ','ho']]},
+  {id:'k7', name:'M-row',        ch:[['マ','ma'],['ミ','mi'],['ム','mu'],['メ','me'],['モ','mo']]},
+  {id:'k8', name:'Y / W / N',    ch:[['ヤ','ya'],['ユ','yu'],['ヨ','yo'],['ワ','wa'],['ン','n']]},
+  {id:'k9', name:'R-row',        ch:[['ラ','ra'],['リ','ri'],['ル','ru'],['レ','re'],['ロ','ro']]},
+  {id:'k10',name:'Dakuten G/Z',  ch:[['ガ','ga'],['ギ','gi'],['グ','gu'],['ゲ','ge'],['ゴ','go'],['ザ','za'],['ジ','ji'],['ズ','zu'],['ゼ','ze'],['ゾ','zo']]},
+  {id:'k11',name:'Dakuten D/B/P',ch:[['ダ','da'],['デ','de'],['ド','do'],['バ','ba'],['ビ','bi'],['ブ','bu'],['ベ','be'],['ボ','bo'],['パ','pa'],['ピ','pi'],['プ','pu'],['ペ','pe'],['ポ','po']]},
+];
+const VG = [
+  {id:'v1',name:'Chiffres 1–10', ch:[['いち','1'],['に','2'],['さん','3'],['よん','4'],['ご','5'],['ろく','6'],['なな','7'],['はち','8'],['きゅう','9'],['じゅう','10']]},
+  {id:'v2',name:'Couleurs',      ch:[['あか','rouge'],['あお','bleu'],['きいろ','jaune'],['しろ','blanc'],['くろ','noir'],['みどり','vert'],['むらさき','violet']]},
+  {id:'v3',name:'Jours',         ch:[['げつようび','lundi'],['かようび','mardi'],['すいようび','mercredi'],['もくようび','jeudi'],['きんようび','vendredi'],['どようび','samedi'],['にちようび','dimanche']]},
+  {id:'v4',name:'Nourriture',    ch:[['すし','sushi'],['ラーメン','ramen'],['おにぎり','onigiri'],['うどん','udon'],['たこやき','takoyaki'],['てんぷら','tempura'],['みそしる','miso']]},
+  {id:'v5',name:'Verbes',        ch:[['たべる','manger'],['のむ','boire'],['みる','voir'],['きく','écouter'],['いく','aller'],['くる','venir'],['かく','écrire'],['よむ','lire']]},
+  {id:'v6',name:'Adjectifs',     ch:[['おおきい','grand'],['ちいさい','petit'],['あつい','chaud'],['さむい','froid'],['いい','bien'],['わるい','mauvais'],['たかい','cher'],['やすい','pas cher']]},
+];
+const ROMALT = {'shi':['shi','si'],'chi':['chi','ti'],'tsu':['tsu','tu'],'fu':['fu','hu'],'ji':['ji','zi','di'],'zu':['zu','du']};
+
+
+// ═══════════════════════════════════════════════════════
+// PROGRESS
+// ═══════════════════════════════════════════════════════
+const SK = 'ngl4';
+const LVS = [0,50,150,300,500,800,1200,1800,2600,3600,5000,7000];
+function loadP(){try{return JSON.parse(localStorage.getItem(SK)||'{}');}catch{return{};}}
+function saveP(d){try{localStorage.setItem(SK,JSON.stringify(d));}catch{}}
+function getP(){const d=loadP();return{xp:d.xp||0,str:d.str||0,lastDay:d.lastDay||'',lessons:d.lessons||{},chars:d.chars||{},rec:d.rec||0};}
+function addXP(n){const p=getP();p.xp+=n;saveP(p);}
+function recChar(ch,ok){const p=getP();if(!p.chars[ch])p.chars[ch]={ok:0,seen:0,last:0};p.chars[ch].seen++;if(ok)p.chars[ch].ok++;p.chars[ch].last=Date.now();saveP(p);}
+function mastery(ch){
+  const p=getP(); const s=p.chars[ch];
+  if(!s||!s.seen) return 0;
+  const r=s.ok/s.seen;
+  if(s.seen < 4) return 1;                    // trop peu vu
+  if(r >= 0.92 && s.seen >= 20) return 3;     // maîtrisé : 92%+ sur 20+ réponses
+  if(r >= 0.75 && s.seen >= 10) return 2;     // bien : 75%+ sur 10+ réponses
+  return 1;
+}
+function updStreak(){const p=getP();const t=new Date().toISOString().slice(0,10);const y=new Date(Date.now()-86400000).toISOString().slice(0,10);if(p.lastDay===t)return;p.str=p.lastDay===y?p.str+1:1;p.lastDay=t;saveP(p);}
+function lvlInfo(xp){let l=1;for(let i=1;i<LVS.length;i++)if(xp>=LVS[i])l=i+1;const nx=LVS[l]||LVS[LVS.length-1];const pr=LVS[l-1]||0;return{l,pct:Math.min(100,Math.round((xp-pr)/(nx-pr)*100)),nx,pr};}
+function doneLessons(){return Object.values(getP().lessons).filter(Boolean).length;}
+
+// ═══════════════════════════════════════════════════════
+// AUDIO
+// ═══════════════════════════════════════════════════════
+function initAudio(){}
+function speak(txt){
+  if(!txt)return;
+  const url='https://translate.google.com/translate_tts?ie=UTF-8&tl=ja&client=tw-ob&q='+encodeURIComponent(txt);
+  const a=new Audio(url);a.volume=1;a.play().catch(()=>{});
+}
+
+// ═══════════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════════
+function goTab(t){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.ntb').forEach(b=>b.classList.remove('on'));
+  document.getElementById('pg-'+t).classList.add('on');
+  document.querySelector(`.ntb[data-tab="${t}"]`).classList.add('on');
+  if(t==='home')    updDash();
+  if(t==='plan')    renderPlan();
+  if(t==='lessons') { renderLessons('lt-h',HG); renderLessons('lt-k',KG); renderVocab(); }
+  if(t==='practice')updModes();
+  if(t==='stats')   updStats();
+  if(t==='cs')      renderCS();
+  if(t==='cours')   renderCours();
+  if(t==='debut')   initDebut();
+}
+function showLTab(t){
+  document.querySelectorAll('#pg-lessons .sp').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.ltab').forEach(b=>{
+    b.classList.remove('on');
+    b.style.borderColor='var(--border)';
+    b.style.background='var(--card)';
+  });
+  document.getElementById('lt-'+t).classList.add('on');
+  const btn=document.getElementById('ltab-'+t);
+  btn.classList.add('on');
+  const colors={h:'#C41E3A',k:'#1464C0',v:'#2D6A4F'};
+  btn.style.borderColor=colors[t];
+  btn.style.background=t==='h'?'rgba(196,30,58,.06)':t==='k'?'rgba(20,100,192,.06)':'rgba(45,106,79,.06)';
+}
+function showGameTab(t){
+  document.querySelectorAll('#pg-games .sp').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('#pg-games .stb').forEach(b=>b.classList.remove('on'));
+  document.getElementById('gt-'+t).classList.add('on');
+  document.querySelectorAll('#pg-games .stb')[['match','speed'].indexOf(t)].classList.add('on');
+  if(t==='match')initMatch();
+  if(t==='speed')renderSpeedIntro();
+}
+function showStTab(t){
+  document.querySelectorAll('#pg-stats .sp').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('#pg-stats .stb').forEach(b=>b.classList.remove('on'));
+  document.getElementById('st-'+t).classList.add('on');
+  document.querySelectorAll('#pg-stats .stb')[['h','k'].indexOf(t)].classList.add('on');
+}
+
+// ═══════════════════════════════════════════════════════
+// DASHBOARD
+// ═══════════════════════════════════════════════════════
+function updDash(){
+  const p=getP(); const li=lvlInfo(p.xp);
+  document.getElementById('d-xp').textContent=p.xp;
+  document.getElementById('d-str').textContent=p.str;
+  document.getElementById('d-mas').textContent=HG.flatMap(g=>g.ch).filter(([c])=>mastery(c)===3).length;
+  document.getElementById('d-lvl').textContent='Niveau '+li.l;
+  document.getElementById('d-xpn').textContent=(p.xp-li.pr)+' / '+(li.nx-li.pr)+' XP';
+  document.getElementById('d-xpf').style.width=li.pct+'%';
+  const nxt=[...HG,...KG].find(g=>!p.lessons[g.id]);
+  document.getElementById('d-nextl').textContent=nxt?nxt.ch.slice(0,4).map(([c])=>c).join(' ')+' — '+nxt.name:'🎉 Toutes terminées !';
+  const cats=[
+    {lbl:'Hiragana basique',ch:HG.slice(0,9).flatMap(g=>g.ch),col:'#C41E3A'},
+    {lbl:'Hiragana dakuten',ch:HG.slice(9).flatMap(g=>g.ch),  col:'#E8526A'},
+    {lbl:'Katakana basique',ch:KG.slice(0,9).flatMap(g=>g.ch),col:'#1464C0'},
+    {lbl:'Katakana dakuten',ch:KG.slice(9).flatMap(g=>g.ch),  col:'#52A8E8'},
+  ];
+  document.getElementById('d-mbars').innerHTML=cats.map(c=>{
+    const tot=c.ch.length, done=c.ch.filter(([x])=>mastery(x)>=2).length, pct=Math.round(done/tot*100);
+    return `<div class="mb-row"><div class="mb-dot" style="background:${c.col}"></div><div class="mb-lbl">${c.lbl}</div><div class="mb-track"><div class="mb-fill" style="width:${pct}%;background:${c.col}"></div></div><div class="mb-num">${done}/${tot}</div></div>`;
+  }).join('');
+  renderSRSWidget();
+  renderDailyWidget();
+}
+
+// ═══════════════════════════════════════════════════════
+// LESSONS
+// ═══════════════════════════════════════════════════════
+function renderLessons(id, groups){
+  const p=getP(); let prevOk=true;
+  document.getElementById(id).innerHTML='<div class="lg">'+groups.map(g=>{
+    const done=!!p.lessons[g.id], locked=!prevOk;
+    if(!locked)prevOk=done;
+    const sf=done?Math.round(g.ch.reduce((s,[c])=>s+mastery(c),0)/g.ch.length):0;
+    return `<div class="lcard${done?' done':locked?' locked':''}" onclick="${locked?'':  `openLesson('${g.id}','${id.slice(-1)}')`}">
+      <div class="lc-chars">${g.ch.slice(0,4).map(([c])=>c).join(' ')}</div>
+      <div class="lc-name">${g.name}</div>
+      <div class="lbadge ${done?'lb-done':locked?'lb-lock':'lb-new'}">${done?'✓ Terminé':locked?'🔒 Verrouillé':'◎ Nouveau'}</div>
+      ${done?`<div class="lc-stars">${'★'.repeat(sf)+'☆'.repeat(3-sf)}</div>`:''}
+    </div>`;
+  }).join('')+'</div>';
+}
+function renderVocab(){
+  const p=getP();
+  document.getElementById('lt-v').innerHTML='<div class="lg">'+VG.map(g=>`
+    <div class="lcard${p.lessons[g.id]?' done':''}" onclick="openLesson('${g.id}','v')">
+      <div class="lc-chars" style="font-size:16px;">${g.ch.slice(0,3).map(([c])=>c).join('・')}</div>
+      <div class="lc-name">${g.name}</div>
+      <div class="lbadge ${p.lessons[g.id]?'lb-done':'lb-new'}">${p.lessons[g.id]?'✓ Terminé':'◎ Commencer'}</div>
+    </div>`).join('')+'</div>';
+}
+
+// ── OVERLAY ──
+let ovL=null, ovIdx=0, ovQDeck=[], ovQIdx=0, ovQOk=0, ovQMode='qcm';
+
+function openLesson(id, type){
+  const G = type==='h'?HG : type==='k'?KG : VG;
+  ovL = G.find(g=>g.id===id);
+  if(!ovL) return;
+  ovIdx=0;
+  document.getElementById('ov-title').textContent = ovL.name;
+  document.getElementById('overlay').classList.add('on');
+  renderLearn();
+}
+function closeOv(){
+  document.getElementById('overlay').classList.remove('on');
+  // Refresh lessons grids so unlocks are visible immediately
+  renderLessons('lt-h', HG);
+  renderLessons('lt-k', KG);
+  renderVocab();
+  updDash();
+}
+function setProg(pct, txt){ document.getElementById('ov-pf').style.width=pct+'%'; document.getElementById('ov-pn').textContent=txt; }
+
+function banner(){
+  const isVocab = ovL.id.startsWith('v');
+  return `<div class="lbanner">
+    <span class="lbanner-title">Caractères de cette leçon — clique pour écouter</span>
+    ${ovL.ch.map(([c,r])=>`<span class="lbchar" onclick="speak('${c}')">
+      <span class="lbchar-jp">${c}</span>
+      <span class="lbchar-rm" style="${isVocab?'color:var(--green)':''}">${r}</span>
+    </span>`).join('')}
+  </div>`;
+}
+
+function renderLearn(){
+  ovIdx = Math.max(0, Math.min(ovIdx, ovL.ch.length-1));
+  const [c,r] = ovL.ch[ovIdx];
+  setProg(Math.round((ovIdx+1)/ovL.ch.length*100), `${ovIdx+1} / ${ovL.ch.length}`);
+  speak(c);
+  document.getElementById('ov-body').innerHTML = `
+    <div style="text-align:center;margin-bottom:.8rem;font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;">Phase 1 — Apprendre</div>
+    ${banner()}
+    <div class="learn-card">
+      <div class="lk-big" onclick="speak('${c}')">${c}</div>
+      <div class="lk-rm">${r}</div>
+      <div class="lk-hint">🔊 Clique pour écouter</div>
+    </div>
+    <div class="learn-nav">
+      ${ovIdx>0 ? `<button class="ln-btn" onclick="ovIdx--;renderLearn()">← Préc</button>` : '<span></span>'}
+      <div class="ldots">${ovL.ch.map((_,i)=>`<div class="ldot${i===ovIdx?' on':''}"></div>`).join('')}</div>
+      ${ovIdx<ovL.ch.length-1
+        ? `<button class="ln-btn ln-red" onclick="ovIdx++;renderLearn()">Suivant →</button>`
+        : `<button class="ln-btn ln-red" onclick="showQuizPicker()">Passer au quiz ▶</button>`}
+    </div>`;
+}
+
+function showQuizPicker(){
+  document.getElementById('ov-body').innerHTML = `
+    ${banner()}
+    <div class="end-wrap" style="padding:1.8rem;">
+      <div style="font-family:var(--jp);font-size:32px;color:var(--ink);margin-bottom:.4rem;">テスト</div>
+      <div style="font-size:14px;color:var(--ink2);margin-bottom:1.5rem;">Choisis le mode du quiz</div>
+      <div class="mode-pick">
+        <button class="mpick qcm" onclick="startLQ('qcm')">
+          <span class="mpick-ico">🔤</span>
+          <span class="mpick-title">QCM</span>
+          <span class="mpick-sub">4 choix proposés</span>
+        </button>
+        <button class="mpick" onclick="startLQ('write')">
+          <span class="mpick-ico">✍️</span>
+          <span class="mpick-title">Écrire</span>
+          <span class="mpick-sub">Tape le romaji toi-même</span>
+        </button>
+      </div>
+    </div>`;
+}
+
+function buildQuizDeck(chars, size=10){
+  // Triple the source before shuffling — prevents order from leaking through on small decks
+  const base = chars.map(([c,r])=>({ch:c,rm:r}));
+  let deck = shuffle([...base,...base,...base]).slice(0,size);
+  // Pass to remove consecutive identical chars
+  for(let i=1;i<deck.length;i++){
+    if(deck[i].ch===deck[i-1].ch){
+      const j=deck.findIndex((d,k)=>k>i&&d.ch!==deck[i].ch);
+      if(j>0)[deck[i],deck[j]]=[deck[j],deck[i]];
+    }
+  }
+  return deck;
+}
+
+function startLQ(mode){
+  ovQMode=mode;
+  ovQDeck=buildQuizDeck(ovL.ch, 10);
+  ovQIdx=0; ovQOk=0;
+  renderLQ();
+}
+
+// QCM dans la leçon : distracteurs = autres sons DE CETTE MÊME LEÇON uniquement
+function getLessonDistractors(correctRm){
+  const pool = ovL.ch.map(([,r])=>r).filter(r=>r!==correctRm);
+  // S'il n'y a pas assez de candidats dans la leçon (ex: leçon de 2 chars),
+  // on complète avec les leçons précédentes du même type
+  if(pool.length >= 3) return shuffle(pool).slice(0,3);
+  const allG = [...HG,...KG];
+  const idx = allG.findIndex(g=>g.id===ovL.id);
+  const extra = allG.slice(Math.max(0,idx-3),idx).flatMap(g=>g.ch).map(([,r])=>r)
+    .filter(r=>r!==correctRm && !pool.includes(r));
+  return shuffle([...pool,...extra]).slice(0,3);
+}
+
+function renderLQ(){
+  if(ovQIdx>=ovQDeck.length){ endLQ(); return; }
+  const card = ovQDeck[ovQIdx];
+  setProg(Math.round(ovQIdx/ovQDeck.length*100), `Quiz ${ovQIdx+1}/${ovQDeck.length} · ${ovQOk} ✓`);
+  if(ovQMode==='write'){ renderLQWrite(card); return; }
+  const distractors = getLessonDistractors(card.rm);
+  const opts = shuffle([card.rm, ...distractors]);
+  document.getElementById('ov-body').innerHTML = `
+    <div style="text-align:center;margin-bottom:8px;font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;">🔤 QCM — Quel est le romaji ?</div>
+    <div class="qwrap">
+      <div class="q-big" onclick="speak('${card.ch}')">${card.ch}</div>
+      <div class="q-tip">🔊 Clique sur le caractère pour écouter</div>
+      <div class="q-opts">${opts.map(o=>`<button class="qo" onclick="ansLQ(this,'${o}','${card.rm}')">${o}</button>`).join('')}</div>
+    </div>`;
+}
+function ansLQ(btn, chosen, correct){
+  document.querySelectorAll('.qo').forEach(b=>{b.disabled=true; if(b.textContent===correct)b.classList.add('ok');});
+  const ok=chosen===correct;
+  if(!ok)btn.classList.add('ko'); else ovQOk++;
+  recChar(ovQDeck[ovQIdx].ch, ok); speak(ovQDeck[ovQIdx].ch);
+  setTimeout(()=>{ovQIdx++; renderLQ();}, 900);
+}
+
+function renderLQWrite(card){
+  document.getElementById('ov-body').innerHTML = `
+    <div style="text-align:center;margin-bottom:8px;font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;">✍️ Écriture — Tape le romaji</div>
+    <div class="ty-wrap">
+      <div class="ty-big" onclick="speak('${card.ch}')">${card.ch}</div>
+      <div class="ty-row">
+        <input class="ty-in" id="lq-in" placeholder="Romaji..." autocomplete="off" autocorrect="off" spellcheck="false">
+        <button class="ty-go" onclick="checkLQWrite()">→</button>
+      </div>
+      <div class="ty-fb" id="lq-fb"></div>
+      <div id="lq-nxt"></div>
+    </div>`;
+  const inp = document.getElementById('lq-in');
+  inp.focus();
+  inp.onkeydown = e=>{ if(e.key==='Enter') checkLQWrite(); };
+}
+function checkLQWrite(){
+  const inp=document.getElementById('lq-in');
+  if(!inp||inp.disabled) return;
+  const val=inp.value.trim().toLowerCase();
+  const card=ovQDeck[ovQIdx];
+  const alts=ROMALT[card.rm]||[card.rm];
+  const ok=alts.includes(val);
+  inp.className='ty-in '+(ok?'ok':'ko'); inp.disabled=true;
+  const fb=document.getElementById('lq-fb');
+  fb.style.color=ok?'var(--green)':'var(--red)';
+  fb.textContent=ok?'✓ Correct !':'✗ C\'était : '+card.rm;
+  if(ok)ovQOk++; recChar(card.ch,ok); speak(card.ch);
+  document.getElementById('lq-nxt').innerHTML=`<button class="ty-nxt" onclick="ovQIdx++;renderLQ()">Suivant →</button>`;
+}
+
+function endLQ(){
+  const pct=Math.round(ovQOk/ovQDeck.length*100), pass=pct>=70;
+  const xp=pass?20+ovQOk*5:5; addXP(xp); updStreak();
+  if(pass){const p=getP();p.lessons[ovL.id]=true;saveP(p);}
+  setProg(100,'');
+  document.getElementById('ov-body').innerHTML=`
+    <div class="end-wrap">
+      <div class="end-jp">${pass?'合格':'不合格'}</div>
+      <div class="end-sc">${ovQOk} / ${ovQDeck.length} — ${pct}%</div>
+      <div class="end-xp">+${xp} XP</div>
+      <div class="end-msg">${pass?'✅ Leçon validée !':'❌ Pas encore — révise et réessaie.'}</div>
+      <div class="end-row">
+        <button class="ebtn" onclick="closeOv()">← Retour</button>
+        ${!pass?`<button class="ebtn p" onclick="ovIdx=0;renderLearn()">Réviser</button>`:''}
+        ${pass?`<button class="ebtn p" onclick="closeOv()">Continuer ✓</button>`:''}
+      </div>
+    </div>`;
+}
+function goNextLesson(){
+  const p=getP(); const nxt=[...HG,...KG].find(g=>!p.lessons[g.id]);
+  if(nxt){goTab('lessons'); openLesson(nxt.id,nxt.id.startsWith('h')?'h':'k');}
+}
+
+// ═══════════════════════════════════════════════════════
+// PRACTICE
+// ═══════════════════════════════════════════════════════
+let pSet='h-basic', pMode='flash';
+let exDeck=[], exIdx=0, exOk=0, exRev=false;
+
+const MODES=[
+  {v:'flash',   label:'Flashcards',          req:0, ico:'🃏'},
+  {v:'qcm-kr',  label:'Kana → Romaji (QCM)', req:0, ico:'🔤'},
+  {v:'qcm-rk',  label:'Romaji → Kana (QCM)', req:2, ico:'🔁'},
+  {v:'type',    label:'Écrire le romaji',     req:4, ico:'✍️'},
+  {v:'listen',  label:'Écouter & identifier', req:6, ico:'🔊'},
+];
+
+function selSet(btn){
+  document.querySelectorAll('#cfg-set .co').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on'); pSet=btn.dataset.v;
+}
+function updModes(){
+  const done=doneLessons();
+  const hint=MODES.filter(m=>m.req>done).sort((a,b)=>a.req-b.req)[0];
+  document.getElementById('unlock-hint').textContent=hint?`Prochain déverrouillage : ${hint.label} (${hint.req} leçons)`:'';
+  document.getElementById('cfg-mode').innerHTML=MODES.map(m=>{
+    const locked=done<m.req, active=pMode===m.v&&!locked;
+    return `<button class="co${active?' on':''}" data-v="${m.v}" ${locked?'disabled':''} onclick="selMode(this)" title="${locked?`Débloqué à ${m.req} leçons`:''}">
+      ${m.ico} ${m.label}${locked?`<span class="lk">🔒 ${m.req} leçons</span>`:''}
+    </button>`;
+  }).join('');
+}
+function selMode(btn){
+  if(btn.disabled) return;
+  document.querySelectorAll('#cfg-mode .co').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on'); pMode=btn.dataset.v;
+}
+
+function startPractice(){
+  const raw=getDeck(pSet);
+  if(!raw.length){document.getElementById('ex-area').innerHTML='<p style="color:var(--ink3);font-size:13px;padding:1rem;">Aucun résultat pour ce filtre.</p>';return;}
+  exDeck=shuffle(raw).slice(0,20); exIdx=0; exOk=0; exRev=false;
+  renderEx();
+}
+function startQuickPractice(){
+  goTab('practice'); pSet='weak'; pMode='qcm-kr'; updModes();
+  document.querySelectorAll('#cfg-set .co').forEach(b=>b.classList.toggle('on',b.dataset.v==='weak'));
+  startPractice();
+}
+function exBar(){
+  return `<div class="ex-pb"><div class="ex-pf" style="width:${Math.round(exIdx/exDeck.length*100)}%"></div></div>
+  <div class="ex-meta"><span>${exIdx+1} / ${exDeck.length}</span><span>✓ ${exOk}</span></div>`;
+}
+
+function renderFlash(card){
+  exRev=false;
+  document.getElementById('ex-area').innerHTML=`${exBar()}
+    <div class="fc-out">
+      <div class="fc" id="exfc" onclick="revFlash()">
+        <span class="fc-big">${card.ch}</span>
+        <span class="fc-rev" id="fc-rv"></span>
+        <span class="fc-sub" id="fc-sb">← cliquer pour révéler</span>
+      </div>
+      <div id="fc-acts"><button class="fca" onclick="speak('${card.ch}')">🔊 Écouter</button></div>
+    </div>`;
+}
+function revFlash(){
+  if(exRev)return; exRev=true;
+  const card=exDeck[exIdx];
+  document.getElementById('fc-rv').textContent=card.rm;
+  document.getElementById('fc-sb').textContent='';
+  speak(card.ch);
+  document.getElementById('fc-acts').innerHTML=`
+    <button class="fca bad" onclick="doFlash(false)">✗ Raté</button>
+    <button class="fca" onclick="speak('${card.ch}')">🔊</button>
+    <button class="fca good" onclick="doFlash(true)">✓ Correct</button>`;
+}
+function doFlash(ok){recChar(exDeck[exIdx].ch,ok);if(ok)exOk++;exIdx++;renderEx();}
+
+function renderQCM(card, dir){
+  const allKana=getDeck('h-all').concat(getDeck('k-all'));
+  const pool=[...new Set(allKana.map(c=>c.rm))].filter(r=>r!==card.rm);
+  const opts=shuffle([card.rm,...shuffle(pool).slice(0,3)]);
+  let qH, oH;
+  if(dir==='kr'){
+    qH=`<div class="q-big" onclick="speak('${card.ch}')">${card.ch}</div>`;
+    oH=opts.map(o=>`<button class="qo" onclick="doQCM(this,'${o}','${card.rm}')">${o}</button>`).join('');
+  } else {
+    qH=`<div style="font-size:28px;font-weight:500;text-align:center;color:var(--red);margin:1.5rem 0;">${card.rm}</div>`;
+    oH=opts.map(o=>`<button class="qo" style="font-family:var(--jp);font-size:24px;" onclick="doQCM(this,'${o}','${card.rm}')">${allKana.find(c=>c.rm===o)?.ch||o}</button>`).join('');
+  }
+  document.getElementById('ex-area').innerHTML=`${exBar()}
+    <div class="qwrap">${qH}<div class="q-tip">🔊 Clique pour écouter</div><div class="q-opts">${oH}</div></div>`;
+}
+function doQCM(btn, chosen, correct){
+  const allKana=getDeck('h-all').concat(getDeck('k-all'));
+  document.querySelectorAll('.qo').forEach(b=>{
+    b.disabled=true;
+    if(b.textContent===correct||(allKana.find(c=>c.rm===correct)?.ch===b.textContent))b.classList.add('ok');
+  });
+  const ok=chosen===correct; if(!ok)btn.classList.add('ko'); else exOk++;
+  recChar(exDeck[exIdx].ch,ok); speak(exDeck[exIdx].ch);
+  setTimeout(()=>{exIdx++;renderEx();},900);
+}
+
+function renderTyping(card){
+  document.getElementById('ex-area').innerHTML=`${exBar()}
+    <div class="ty-wrap">
+      <div class="ty-big" onclick="speak('${card.ch}')">${card.ch}</div>
+      <div class="ty-row">
+        <input class="ty-in" id="tyin" placeholder="Romaji..." autocomplete="off" autocorrect="off" spellcheck="false">
+        <button class="ty-go" onclick="checkTyping()">→</button>
+      </div>
+      <div class="ty-fb" id="tyfb"></div>
+      <div id="tynxt"></div>
+    </div>`;
+  const inp=document.getElementById('tyin'); inp.focus();
+  inp.onkeydown=e=>{if(e.key==='Enter')checkTyping();};
+}
+function checkTyping(){
+  const inp=document.getElementById('tyin'); if(!inp||inp.disabled)return;
+  const val=inp.value.trim().toLowerCase(), card=exDeck[exIdx];
+  const alts=ROMALT[card.rm]||[card.rm], ok=alts.includes(val);
+  inp.className='ty-in '+(ok?'ok':'ko'); inp.disabled=true;
+  const fb=document.getElementById('tyfb');
+  fb.style.color=ok?'var(--green)':'var(--red)';
+  fb.textContent=ok?'✓ Correct !':'✗ C\'était : '+card.rm;
+  recChar(card.ch,ok); speak(card.ch); if(ok)exOk++;
+  document.getElementById('tynxt').innerHTML=`<button class="ty-nxt" onclick="exIdx++;renderEx()">Suivant →</button>`;
+}
+
+function renderListen(card){
+  const pool=getDeck('h-all').filter(c=>c.ch!==card.ch);
+  const opts=shuffle([card.ch,...shuffle(pool).slice(0,3).map(c=>c.ch)]);
+  speak(card.ch);
+  document.getElementById('ex-area').innerHTML=`${exBar()}
+    <div class="li-wrap">
+      <div style="font-size:13px;color:var(--ink3);text-align:center;margin-bottom:.5rem;">Écoute et identifie le caractère</div>
+      <button class="li-btn" onclick="speak('${card.ch}')">🔊</button>
+      <div class="li-opts">${opts.map(o=>`<button class="lo" onclick="doListen(this,'${o}','${card.ch}')">${o}</button>`).join('')}</div>
+    </div>`;
+}
+function doListen(btn, chosen, correct){
+  document.querySelectorAll('.lo').forEach(b=>{b.disabled=true;if(b.textContent===correct)b.classList.add('ok');});
+  const ok=chosen===correct; if(!ok)btn.classList.add('ko'); else exOk++;
+  recChar(exDeck[exIdx].ch,ok);
+  setTimeout(()=>{exIdx++;renderEx();},900);
+}
+function renderExEnd(){
+  const pct=Math.round(exOk/exDeck.length*100), xp=10+exOk*3;
+  addXP(xp); updStreak();
+  document.getElementById('ex-area').innerHTML=`
+    <div class="end-wrap">
+      <div class="end-jp">終了</div>
+      <div class="end-sc">${exOk} / ${exDeck.length} — ${pct}%</div>
+      <div class="end-xp">+${xp} XP</div>
+      <div class="end-msg">${pct>=90?'🎌 Parfait !':pct>=70?'👍 Bien joué !':'💪 Continue !'}</div>
+      <div class="end-row">
+        <button class="ebtn" onclick="document.getElementById('ex-area').innerHTML=''">Retour</button>
+        <button class="ebtn p" onclick="startPractice()">Rejouer</button>
+      </div>
+    </div>`;
+  updDash();
+}
+
+// ═══════════════════════════════════════════════════════
+// MATCHING GAME
+// ═══════════════════════════════════════════════════════
+let mSet='h-basic', mSel=null, mPairs=0, mAtt=0, mStart=0, mTID=null, mTiles=[];
+
+function selMatch(btn){
+  document.querySelectorAll('#gt-match .co').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on'); mSet=btn.dataset.v; initMatch();
+}
+function initMatch(){ startMatch(mSet); }
+function startMatch(k){
+  mSet=k; clearInterval(mTID);
+  const pool=shuffle(getDeck(k)).slice(0,6);
+  mTiles=[];
+  pool.forEach((it,i)=>{
+    mTiles.push({id:'k'+i,type:'kana',ch:it.ch,rm:it.rm,matched:false});
+    mTiles.push({id:'r'+i,type:'rom', ch:it.ch,rm:it.rm,matched:false});
+  });
+  const sh=shuffle([...mTiles]);
+  mSel=null; mPairs=0; mAtt=0; mStart=Date.now();
+  document.getElementById('match-area').innerHTML=`
+    <div class="gmeta">
+      <div class="gmeta-st">Paires : <b id="mp">0</b>/6</div>
+      <div class="gmeta-st">Essais : <b id="ma">0</b></div>
+      <div class="gmeta-st">Temps : <b id="mt">0s</b></div>
+    </div>
+    <div class="mg" id="mgrid">${sh.map(t=>`
+      <div class="tile${t.type==='kana'?' kana':''}" id="t-${t.id}" data-id="${t.id}" onclick="clickTile(this)">
+        ${t.type==='kana'?t.ch:t.rm}
+      </div>`).join('')}
+    </div>`;
+  mTID=setInterval(()=>{const el=document.getElementById('mt');if(el)el.textContent=Math.round((Date.now()-mStart)/1000)+'s';else clearInterval(mTID);},1000);
+}
+function clickTile(el){
+  if(el.classList.contains('matched')||el.classList.contains('wrong'))return;
+  const tile=mTiles.find(t=>t.id===el.dataset.id); if(!tile||tile.matched)return;
+  if(!mSel){mSel=tile;el.classList.add('sel');if(tile.type==='kana')speak(tile.ch);return;}
+  if(mSel.id===tile.id){el.classList.remove('sel');mSel=null;return;}
+  mAtt++; document.getElementById('ma').textContent=mAtt;
+  document.getElementById('t-'+mSel.id).classList.remove('sel');
+  if(mSel.ch===tile.ch&&mSel.type!==tile.type){
+    tile.matched=true; mSel.matched=true;
+    el.classList.add('matched'); document.getElementById('t-'+mSel.id).classList.add('matched');
+    speak(tile.ch); mPairs++; document.getElementById('mp').textContent=mPairs; mSel=null;
+    if(mPairs===6)matchWin();
+  } else {
+    const ps=mSel; mSel=null;
+    el.classList.add('wrong'); document.getElementById('t-'+ps.id).classList.add('wrong');
+    setTimeout(()=>{el.classList.remove('wrong');document.getElementById('t-'+ps.id).classList.remove('wrong');},400);
+  }
+}
+function matchWin(){
+  clearInterval(mTID);
+  const secs=Math.round((Date.now()-mStart)/1000);
+  const xp=Math.max(10,30-mAtt+Math.max(0,60-secs)); addXP(xp); updStreak();
+  setTimeout(()=>{
+    const g=document.getElementById('mgrid');
+    if(g)g.insertAdjacentHTML('afterend',`
+      <div class="end-wrap" style="margin-top:1rem;">
+        <div class="end-jp">完成</div>
+        <div class="end-sc">⏱ ${secs}s — ${mAtt} essais</div>
+        <div class="end-xp">+${xp} XP</div>
+        <div class="end-msg">${mAtt<=7?'✨ Parfait !':mAtt<=12?'👍 Bien joué !':'Continue !'}</div>
+        <div class="end-row"><button class="ebtn p" onclick="startMatch('${mSet}')">Rejouer</button></div>
+      </div>`);
+  },300);
+}
+
+// ═══════════════════════════════════════════════════════
+// SPEED ROUND
+// ═══════════════════════════════════════════════════════
+let ssSet='h-basic', ssTID=null, ssTL=60, ssSc=0, ssStr=0, ssTot=0, ssDeck=[], ssI=0;
+
+function selSpeed(btn){
+  document.querySelectorAll('#gt-speed .co').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on'); ssSet=btn.dataset.v; renderSpeedIntro();
+}
+function renderSpeedIntro(){
+  clearInterval(ssTID);
+  const p=getP();
+  document.getElementById('speed-area').innerHTML=`
+    <div class="sp-intro">
+      <div class="sp-intro-jp">準備</div>
+      <div style="font-size:14px;color:var(--ink2);margin-bottom:8px;">60 secondes · Réponds le plus vite possible</div>
+      ${p.rec?`<div class="sp-rec">🏆 Record : ${p.rec} pts</div>`:''}
+      <div style="margin-top:1.2rem;"><button class="ebtn p" style="font-size:15px;padding:12px 32px;" onclick="launchSpeed()">▶ Commencer</button></div>
+    </div>`;
+}
+function launchSpeed(){
+  clearInterval(ssTID); ssTL=60; ssSc=0; ssStr=0; ssTot=0; ssI=0;
+  ssDeck=shuffle(getDeck(ssSet)); renderSpeedCard();
+  ssTID=setInterval(()=>{
+    ssTL--;
+    const tf=document.getElementById('sptf'), tn=document.getElementById('sptn');
+    if(tf)tf.style.width=(ssTL/60*100)+'%'; if(tn)tn.textContent=ssTL;
+    if(ssTL<=0)endSpeed();
+  },1000);
+}
+function renderSpeedCard(){
+  if(ssI>=ssDeck.length)ssDeck=shuffle(getDeck(ssSet));
+  const card=ssDeck[ssI%ssDeck.length];
+  const pool=[...new Set(getDeck(ssSet).map(c=>c.rm))].filter(r=>r!==card.rm);
+  const opts=shuffle([card.rm,...shuffle(pool).slice(0,3)]);
+  document.getElementById('speed-area').innerHTML=`
+    <div class="sphud">
+      <div class="spt" id="sptn">${ssTL}</div>
+      <div class="sptb"><div class="sptf" id="sptf" style="width:${ssTL/60*100}%"></div></div>
+      <div class="spsc" id="spsc">${ssSc}</div>
+    </div>
+    <div class="spstr">${ssStr>=3?'🔥 Série ×'+(Math.floor(ssStr/3)+1):''}</div>
+    <div class="spch" onclick="speak('${card.ch}')">${card.ch}</div>
+    <div class="spopts">${opts.map(o=>`<button class="spopt" onclick="doSpeed(this,'${o}','${card.rm}','${card.ch}')">${o}</button>`).join('')}</div>`;
+  speak(card.ch);
+}
+function doSpeed(btn, chosen, correct, ch){
+  document.querySelectorAll('.spopt').forEach(b=>b.disabled=true);
+  const ok=chosen===correct; btn.classList.add(ok?'ok':'ko');
+  if(!ok)document.querySelectorAll('.spopt').forEach(b=>{if(b.textContent===correct)b.classList.add('ok');});
+  if(ok){ssStr++;ssSc+=Math.floor(ssStr/3)+1;}else ssStr=0;
+  ssTot++; recChar(ch,ok); document.getElementById('spsc').textContent=ssSc; ssI++;
+  setTimeout(renderSpeedCard,400);
+}
+function endSpeed(){
+  clearInterval(ssTID);
+  const p=getP(); const isRec=ssSc>(p.rec||0);
+  if(isRec)p.rec=ssSc; addXP(ssSc); updStreak(); saveP(p);
+  document.getElementById('speed-area').innerHTML=`
+    <div class="sp-intro">
+      <div class="sp-intro-jp">${ssSc}</div>
+      <div style="font-size:20px;font-weight:500;margin-bottom:4px;">points</div>
+      ${isRec?`<div class="sp-rec">🏆 Nouveau record !</div>`:p.rec?`<div class="sp-rec">Record : ${p.rec} pts</div>`:''}
+      <div style="font-size:13px;color:var(--ink2);margin:8px 0 1.2rem;">${ssTot} réponses</div>
+      <div class="end-row"><button class="ebtn p" onclick="launchSpeed()">Rejouer</button></div>
+    </div>`;
+  updDash();
+}
+
+// ═══════════════════════════════════════════════════════
+// CHEAT SHEET
+// ═══════════════════════════════════════════════════════
+const CS_ROWS=[
+  {label:'a',  h:['あ','い','う','え','お'], k:['ア','イ','ウ','エ','オ'], rm:['a','i','u','e','o']},
+  {label:'k',  h:['か','き','く','け','こ'], k:['カ','キ','ク','ケ','コ'], rm:['ka','ki','ku','ke','ko']},
+  {label:'s',  h:['さ','し','す','せ','そ'], k:['サ','シ','ス','セ','ソ'], rm:['sa','shi','su','se','so']},
+  {label:'t',  h:['た','ち','つ','て','と'], k:['タ','チ','ツ','テ','ト'], rm:['ta','chi','tsu','te','to']},
+  {label:'n',  h:['な','に','ぬ','ね','の'], k:['ナ','ニ','ヌ','ネ','ノ'], rm:['na','ni','nu','ne','no']},
+  {label:'h',  h:['は','ひ','ふ','へ','ほ'], k:['ハ','ヒ','フ','ヘ','ホ'], rm:['ha','hi','fu','he','ho']},
+  {label:'m',  h:['ま','み','む','め','も'], k:['マ','ミ','ム','メ','モ'], rm:['ma','mi','mu','me','mo']},
+  {label:'y',  h:['や',null,'ゆ',null,'よ'], k:['ヤ',null,'ユ',null,'ヨ'], rm:['ya',null,'yu',null,'yo']},
+  {label:'r',  h:['ら','り','る','れ','ろ'], k:['ラ','リ','ル','レ','ロ'], rm:['ra','ri','ru','re','ro']},
+  {label:'w',  h:['わ',null,null,null,'を'], k:['ワ',null,null,null,'ヲ'], rm:['wa',null,null,null,'wo']},
+  {label:'n',  h:[null,null,'ん',null,null], k:[null,null,'ン',null,null], rm:[null,null,'n',null,null]},
+];
+const CS_DAKU=[
+  {label:'g',  h:['が','ぎ','ぐ','げ','ご'], k:['ガ','ギ','グ','ゲ','ゴ'], rm:['ga','gi','gu','ge','go']},
+  {label:'z',  h:['ざ','じ','ず','ぜ','ぞ'], k:['ザ','ジ','ズ','ゼ','ゾ'], rm:['za','ji','zu','ze','zo']},
+  {label:'d',  h:['だ','ぢ','づ','で','ど'], k:['ダ','ヂ','ヅ','デ','ド'], rm:['da','di','du','de','do']},
+  {label:'b',  h:['ば','び','ぶ','べ','ぼ'], k:['バ','ビ','ブ','ベ','ボ'], rm:['ba','bi','bu','be','bo']},
+  {label:'p',  h:['ぱ','ぴ','ぷ','ぺ','ぽ'], k:['パ','ピ','プ','ペ','ポ'], rm:['pa','pi','pu','pe','po']},
+];
+const VWLS=['a','i','u','e','o'];
+
+function makeCSTable(rows){
+  return `<table class="cs-table">
+    <thead><tr><th>Row</th>${VWLS.map(v=>`<th>${v}</th>`).join('')}</tr></thead>
+    <tbody>${rows.map(row=>`<tr>
+      <th>${row.label}</th>
+      ${row.h.map((c,i)=>c?`<td><div class="kc" onclick="speak('${c}')">
+        <div class="kc-jp">${c}</div>
+        <div class="kc-rm">${row.rm[i]}</div>
+      </div></td>`:`<td><div class="kc empty"></div></td>`).join('')}
+    </tr>`).join('')}</tbody>
+  </table>`;
+}
+function makeKTable(rows){
+  return `<table class="cs-table">
+    <thead><tr><th>Row</th>${VWLS.map(v=>`<th>${v}</th>`).join('')}</tr></thead>
+    <tbody>${rows.map(row=>`<tr>
+      <th>${row.label}</th>
+      ${row.k.map((c,i)=>c?`<td><div class="kc" onclick="speak('${c}')">
+        <div class="kc-jp">${c}</div>
+        <div class="kc-rm">${row.rm[i]}</div>
+      </div></td>`:`<td><div class="kc empty"></div></td>`).join('')}
+    </tr>`).join('')}</tbody>
+  </table>`;
+}
+function makeDakuTable(rows){
+  return `<table class="cs-table" style="margin-bottom:.8rem;">
+    <thead><tr><th>Row</th>${VWLS.map(v=>`<th>${v}</th>`).join('')}<th></th>${VWLS.map(v=>`<th>${v}</th>`).join('')}</tr>
+    <tr><th></th>${VWLS.map(()=>'<th style="font-size:9px;color:var(--ink3)">ひ</th>').join('')}<th></th>${VWLS.map(()=>'<th style="font-size:9px;color:var(--blue)">カ</th>').join('')}</tr></thead>
+    <tbody>${rows.map(row=>`<tr>
+      <th>${row.label}</th>
+      ${row.h.map((c,i)=>c?`<td><div class="kc" onclick="speak('${c}')"><div class="kc-jp">${c}</div><div class="kc-rm">${row.rm[i]}</div></div></td>`:`<td><div class="kc empty"></div></td>`).join('')}
+      <td style="background:var(--border);width:1px;padding:0;"></td>
+      ${row.k.map((c,i)=>c?`<td><div class="kc" onclick="speak('${c}')"><div class="kc-jp" style="color:var(--blue)">${c}</div><div class="kc-rm">${row.rm[i]}</div></div></td>`:`<td><div class="kc empty"></div></td>`).join('')}
+    </tr>`).join('')}</tbody>
+  </table>`;
+}
+
+let csRendered=false;
+function renderCS(){
+  if(csRendered)return;
+  document.getElementById('cs-h').innerHTML=makeCSTable(CS_ROWS);
+  document.getElementById('cs-k').innerHTML=makeKTable(CS_ROWS);
+  document.getElementById('cs-daku').innerHTML=makeDakuTable(CS_DAKU);
+  csRendered=true;
+}
+
+// ═══════════════════════════════════════════════════════
+// STATS
+// ═══════════════════════════════════════════════════════
+function updStats(){
+  renderSGrid('sg-h', HG.flatMap(g=>g.ch.map(([c,r])=>({ch:c,rm:r}))));
+  renderSGrid('sg-k', KG.flatMap(g=>g.ch.map(([c,r])=>({ch:c,rm:r}))));
+  const p=getP();
+  const all=HG.flatMap(g=>g.ch).concat(KG.flatMap(g=>g.ch));
+  const seen=all.filter(([c])=>(p.chars[c]?.seen||0)>0).length;
+  const mas=all.filter(([c])=>mastery(c)===3).length;
+  const tot=Object.values(p.chars).reduce((s,v)=>s+(v.seen||0),0);
+  const ok=Object.values(p.chars).reduce((s,v)=>s+(v.ok||0),0);
+  document.getElementById('st-global').innerHTML=`
+    XP total : <b>${p.xp}</b> · Niveau : <b>${lvlInfo(p.xp).l}</b><br>
+    Caractères vus : <b>${seen} / ${all.length}</b><br>
+    Maîtrisés : <b>${mas}</b><br>
+    Réponses totales : <b>${tot}</b> · Réussite : <b>${tot?Math.round(ok/tot*100):0}%</b><br>
+    Streak : <b>${p.str} jour${p.str!==1?'s':''}</b> 🔥 · Speed record : <b>${p.rec||0} pts</b>`;
+}
+function renderSGrid(id, items){
+  document.getElementById(id).innerHTML=items.map(it=>{
+    const m=mastery(it.ch); const s=loadP().chars[it.ch]||{};
+    const r=s.seen?Math.round(s.ok/s.seen*100):0;
+    return `<div class="stc" data-m="${m}" onclick="showCpop(this,'${it.ch}','${it.rm}',${s.seen||0},${s.ok||0},${r})">
+      <div class="stc-jp">${it.ch}</div>
+      <div class="stc-rm">${it.rm}</div>
+    </div>`;
+  }).join('');
+}
+function showCpop(el, ch, rm, seen, ok, rate){
+  speak(ch);
+  const r=el.getBoundingClientRect();
+  const pop=document.getElementById('cpop');
+  pop.innerHTML=`
+    <div style="font-family:var(--jp);font-size:48px;color:var(--red);text-align:center;cursor:pointer;margin-bottom:8px;" onclick="speak('${ch}')">${ch}</div>
+    <div style="text-align:center;font-size:18px;font-weight:500;margin-bottom:12px;">${rm}</div>
+    <div style="font-size:12px;color:var(--ink2);line-height:2;">
+      Vus : <b>${seen}</b> · Corrects : <b>${ok}</b><br>
+      Réussite : <b>${rate}%</b><br>
+      Niveau : <b>${['—','Débutant','Bien','Maîtrisé'][mastery(ch)]}</b>
+    </div>
+    <div style="font-size:11px;color:var(--ink3);margin-top:8px;text-align:center;">Cliquer pour fermer</div>`;
+  pop.style.display='block';
+  pop.style.left=Math.min(r.left, window.innerWidth-220)+'px';
+  pop.style.top=(r.bottom+8+window.scrollY)+'px';
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.stc')&&!e.target.closest('.cpop'))
+    document.getElementById('cpop').style.display='none';
+});
+
+// ═══════════════════════════════════════════════════════
+// COURS
+// ═══════════════════════════════════════════════════════
+let coursRendered = false;
+function renderCours(){
+  if(coursRendered) return;
+  coursRendered = true;
+
+  const ex = (jp, rm, fr, note='') => `
+    <div class="cours-example" onclick="speak('${jp}')">
+      <div class="cours-ex-jp">🔊 ${jp}</div>
+      <div class="cours-ex-rm">${rm}</div>
+      <div class="cours-ex-fr">${fr}</div>
+      ${note ? `<div class="cours-ex-note">${note}</div>` : ''}
+    </div>`;
+
+  const block = (color, role, jp) => `
+    <div class="sdem-block">
+      <div class="sdem-jp" style="background:${color}20;border:1px solid ${color}40;">${jp}</div>
+      <div class="sdem-role" style="background:${color};color:#fff;">${role}</div>
+    </div>`;
+
+  document.getElementById('cours-body').innerHTML = `
+  <div class="cours-wrap">
+
+  <!-- TABLE DES MATIÈRES -->
+  <div class="cours-toc">
+    <div class="cours-toc-title">Table des matières</div>
+    <a href="#c1" onclick="document.getElementById('c1').scrollIntoView({behavior:'smooth'});return false;">1. Un peu d'histoire — comment le japonais est né</a>
+    <a href="#c2" onclick="document.getElementById('c2').scrollIntoView({behavior:'smooth'});return false;">2. Les trois alphabets — oui, trois</a>
+    <a href="#c3" onclick="document.getElementById('c3').scrollIntoView({behavior:'smooth'});return false;">3. L'hiragana — les sons de base</a>
+    <a href="#c4" onclick="document.getElementById('c4').scrollIntoView({behavior:'smooth'});return false;">4. Le katakana — le mode turbo</a>
+    <a href="#c5" onclick="document.getElementById('c5').scrollIntoView({behavior:'smooth'});return false;">5. Hiragana vs Katakana — qui fait quoi ?</a>
+    <a href="#c6" onclick="document.getElementById('c6').scrollIntoView({behavior:'smooth'});return false;">6. Comment fonctionne une phrase japonaise</a>
+    <a href="#c7" onclick="document.getElementById('c7').scrollIntoView({behavior:'smooth'});return false;">7. Les particules — la colle grammaticale</a>
+    <a href="#c8" onclick="document.getElementById('c8').scrollIntoView({behavior:'smooth'});return false;">8. Conseils pour bien progresser</a>
+    <a href="#c9" onclick="document.getElementById('c9').scrollIntoView({behavior:'smooth'});return false;">🎁 Bonus — Ressources YouTube & Applications</a>
+    <a href="#c10" onclick="document.getElementById('c10').scrollIntoView({behavior:'smooth'});return false;">⌨️ Écrire en japonais sur iPhone</a>
+  </div>
+
+  <!-- 1. HISTOIRE -->
+  <div class="cours-section" id="c1">
+    <div class="cours-h2">1. Un peu d'histoire <span>歴史</span></div>
+    <div class="cours-divider"></div>
+
+    <div class="cours-img">
+      <svg viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#FAFAF7;">
+        <defs><marker id="arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#C41E3A"/></marker></defs>
+        <!-- Timeline -->
+        <line x1="60" y1="90" x2="640" y2="90" stroke="#C41E3A" stroke-width="2" marker-end="url(#arr)"/>
+        <!-- Points -->
+        <circle cx="120" cy="90" r="8" fill="#C41E3A"/>
+        <circle cx="280" cy="90" r="8" fill="#C41E3A"/>
+        <circle cx="430" cy="90" r="8" fill="#C41E3A"/>
+        <circle cx="570" cy="90" r="8" fill="#C41E3A"/>
+        <!-- Labels haut -->
+        <text x="120" y="72" text-anchor="middle" font-size="11" fill="#4A4A4A" font-family="DM Sans, sans-serif">~400 apr. J-C</text>
+        <text x="120" y="58" text-anchor="middle" font-size="10" fill="#999" font-family="DM Sans, sans-serif">Les Kanji</text>
+        <text x="120" y="46" text-anchor="middle" font-size="10" fill="#999" font-family="DM Sans, sans-serif">arrivent de Chine</text>
+        <text x="430" y="72" text-anchor="middle" font-size="11" fill="#4A4A4A" font-family="DM Sans, sans-serif">~900 apr. J-C</text>
+        <text x="430" y="58" text-anchor="middle" font-size="10" fill="#999" font-family="DM Sans, sans-serif">Le Katakana</text>
+        <text x="430" y="46" text-anchor="middle" font-size="10" fill="#999" font-family="DM Sans, sans-serif">est formalisé</text>
+        <!-- Labels bas -->
+        <text x="280" y="112" text-anchor="middle" font-size="11" fill="#4A4A4A" font-family="DM Sans, sans-serif">~800 apr. J-C</text>
+        <text x="280" y="126" text-anchor="middle" font-size="10" fill="#999" font-family="DM Sans, sans-serif">L'Hiragana naît</text>
+        <text x="280" y="140" text-anchor="middle" font-size="10" fill="#999" font-family="DM Sans, sans-serif">des kanji simplifiés</text>
+        <text x="570" y="112" text-anchor="middle" font-size="11" fill="#4A4A4A" font-family="DM Sans, sans-serif">Aujourd'hui</text>
+        <text x="570" y="126" text-anchor="middle" font-size="10" fill="#999" font-family="DM Sans, sans-serif">Les 3 systèmes</text>
+        <text x="570" y="140" text-anchor="middle" font-size="10" fill="#999" font-family="DM Sans, sans-serif">coexistent</text>
+      </svg>
+    </div>
+
+    <p class="cours-p">Le japonais n'a <b>pas toujours eu son propre système d'écriture</b>. Pendant des siècles, les Japonais parlaient leur langue mais n'avaient aucun moyen de l'écrire. Puis vers le IVe siècle, les kanji — les caractères chinois — ont traversé la mer.</p>
+    <p class="cours-p">Problème : le chinois et le japonais <b>n'ont presque rien en commun</b> grammaticalement. C'est un peu comme si les Français avaient reçu l'alphabet arabe et décidé de s'en débrouiller. Le résultat : les Japonais ont utilisé les kanji uniquement pour leur son, en ignorant leur sens. Ce système s'appelait le <em>man'yōgana</em>.</p>
+    <p class="cours-p">Vers le VIIIe–IXe siècle, des moines bouddhistes ont simplifié ces kanji compliqués pour créer un système phonétique rapide à écrire : le <b>katakana</b>. Quelques années plus tard, dans les cours impériales (surtout par les femmes de la cour, qui avaient moins accès à l'éducation formelle), une version plus cursive et arrondie apparaît : l'<b>hiragana</b>.</p>
+    <div class="cours-note">😄 <b>Anecdote historique :</b> Les hommes nobles de l'époque considéraient l'hiragana comme "l'écriture des femmes" et s'en méfiaient. Résultat : la plus grande œuvre littéraire du Japon médiéval, <em>Le Dit du Genji</em> (≈ l'an 1000), a été écrite <b>entièrement en hiragana</b> par une femme, Murasaki Shikibu. Les "sérieux" écrits en kanji sont depuis tombés dans l'oubli. La revanche de l'hiragana.</div>
+  </div>
+
+  <!-- 2. TROIS ALPHABETS -->
+  <div class="cours-section" id="c2">
+    <div class="cours-h2">2. Les trois alphabets <span>三つの文字</span></div>
+    <div class="cours-divider"></div>
+    <p class="cours-p">Le japonais moderne utilise <b>trois systèmes d'écriture simultanément</b>, souvent dans la même phrase. Oui, dans la même phrase. Ne t'inquiète pas, ça devient naturel.</p>
+    <div class="cours-grid">
+      <div class="cours-card">
+        <div class="cours-card-title">ひらがな · Hiragana</div>
+        <div class="cours-card-jp">あいうえお</div>
+        <div class="cours-card-body"><b>46 syllabes de base.</b> C'est le système que tu apprends en premier. Arrondi, "doux". Il sert pour les mots japonais natifs, les conjugaisons, les particules grammaticales.</div>
+      </div>
+      <div class="cours-card">
+        <div class="cours-card-title">カタカナ · Katakana</div>
+        <div class="cours-card-jp">アイウエオ</div>
+        <div class="cours-card-body"><b>46 syllabes identiques</b> à l'hiragana mais avec des formes angulaires. Réservé aux mots étrangers, onomatopées, et noms d'espèces animales/végétales.</div>
+      </div>
+      <div class="cours-card">
+        <div class="cours-card-title">漢字 · Kanji</div>
+        <div class="cours-card-jp">日本語</div>
+        <div class="cours-card-body"><b>2 000+ caractères</b> à usage courant (il en existe ~50 000). Chaque kanji a un sens et plusieurs lectures. Le niveau final boss. On n'en parle pas trop pour l'instant.</div>
+      </div>
+      <div class="cours-card">
+        <div class="cours-card-title">ローマ字 · Rōmaji</div>
+        <div class="cours-card-jp">a i u e o</div>
+        <div class="cours-card-body">Les <b>lettres latines</b> utilisées pour transcrire le japonais en alphabet romain. C'est ce que tu écris dans les exercices de ce site. Pratique pour apprendre, à éviter ensuite.</div>
+      </div>
+    </div>
+    <div class="cours-note">🎯 <b>Bonne nouvelle :</b> Hiragana et Katakana représentent <b>exactement les mêmes sons</b>. Maîtriser l'un, c'est comprendre l'autre à 90%. Ce sont juste deux "polices de caractères" différentes pour le même contenu phonétique.</div>
+  </div>
+
+  <!-- 3. HIRAGANA -->
+  <div class="cours-section" id="c3">
+    <div class="cours-h2">3. L'hiragana <span>ひらがな</span></div>
+    <div class="cours-divider"></div>
+    <p class="cours-p">L'hiragana est le <b>premier alphabet à maîtriser</b>. Chaque caractère représente une syllabe — jamais une lettre isolée comme en français. On dit un <em>syllabaire</em> plutôt qu'un alphabet.</p>
+    <div class="cours-note">⚡ <b>Comment ça marche :</b> En japonais, les syllabes suivent une structure très régulière : consonne + voyelle. Tous les sons finissent par <b>a, i, u, e</b> ou <b>o</b> — sauf <b>ん</b> (n) qui est le seul "son orphelin" sans voyelle.</div>
+    <p class="cours-p">Le tableau de base s'organise en <b>lignes et colonnes</b> comme une grille. Les colonnes sont les 5 voyelles (a, i, u, e, o), les lignes sont les consonnes (k, s, t, n, h, m, y, r, w). Chaque case = une syllabe.</p>
+    ${ex('かきくけこ', 'ka · ki · ku · ke · ko', 'La ligne K : cinq sons, une seule consonne', 'Tu vois le motif ? Ka, ki, ku, ke, ko. La consonne reste, la voyelle change.')}
+    <p class="cours-p">Ensuite viennent les <b>dakuten</b> (les petites virgules ゛en haut à droite) qui transforment les sons doux en sons voisés. Le <em>か</em> (ka) devient <em>が</em> (ga), le <em>さ</em> (sa) devient <em>ざ</em> (za), etc. C'est le même personnage mais avec un "accent".</p>
+    ${ex('かが · さざ · ただ · はば', 'ka→ga · sa→za · ta→da · ha→ba', 'Les dakuten transforment les consonnes sourdes en sonores')}
+    <p class="cours-p">Il y a aussi le <b>handakuten</b> (le petit cercle °) qui s'applique uniquement à la ligne H pour créer les sons P : <em>は→ぱ</em> (ha→pa), <em>ひ→ぴ</em> (hi→pi), etc.</p>
+  </div>
+
+  <!-- 4. KATAKANA -->
+  <div class="cours-section" id="c4">
+    <div class="cours-h2">4. Le katakana <span>カタカナ</span></div>
+    <div class="cours-divider"></div>
+    <p class="cours-p">Le katakana représente <b>exactement les mêmes sons</b> que l'hiragana. Même organisation en tableau, mêmes syllabes. La seule différence, c'est l'aspect visuel : <b>plus angulaire, plus "dur"</b>, comme une écriture d'imprimerie militaire versus une écriture manuscrite.</p>
+    <div class="cours-grid">
+      <div class="cours-card" style="text-align:center;">
+        <div class="cours-card-title">Hiragana — arrondi</div>
+        <div style="font-family:var(--jp);font-size:32px;letter-spacing:8px;color:var(--ink);">あいうえお</div>
+        <div style="font-size:11px;color:var(--ink3);margin-top:6px;">Doux, courbes, naturel</div>
+      </div>
+      <div class="cours-card" style="text-align:center;">
+        <div class="cours-card-title">Katakana — angulaire</div>
+        <div style="font-family:var(--jp);font-size:32px;letter-spacing:8px;color:var(--blue,#1464C0);">アイウエオ</div>
+        <div style="font-size:11px;color:var(--ink3);margin-top:6px;">Angles droits, net, "étranger"</div>
+      </div>
+    </div>
+    <p class="cours-p">Le katakana sert principalement à transcrire les <b>mots d'origine étrangère</b> — ce qu'on appelle les <em>gairaigo</em> (外来語). Quand le Japon emprunte un mot à une autre langue, il le "japonise" phonétiquement et l'écrit en katakana.</p>
+    ${ex('コーヒー', 'kōhī', '"café" (de l\'anglais coffee)', 'Le ー (tiret long) allonge la voyelle précédente. Coffee → Ko-hī.')}
+    ${ex('テレビ', 'terebi', '"télévision" (de l\'anglais TV / television)', 'Te-re-bi. Les Japonais ont adapté le son à leur syllabaire.')}
+    ${ex('フランス', 'Furansu', '"France"', 'Voilà comment ton pays s\'écrit en katakana !')}
+    <div class="cours-note">😄 <b>Le katakana peut être impitoyable :</b> parfois les mots sont tellement transformés qu'on ne reconnaît plus l'original. <em>アイスクリーム</em> (aisukurīmu) = ice cream. <em>マクドナルド</em> (Makudonarudo) = McDonald's. Et mon préféré : <em>サラリーマン</em> (sararīman) = "salary man", un employé de bureau. Bonne chance pour les deviner à l'oral.</div>
+  </div>
+
+  <!-- 5. HIRA VS KATA -->
+  <div class="cours-section" id="c5">
+    <div class="cours-h2">5. Hiragana vs Katakana <span>使い分け</span></div>
+    <div class="cours-divider"></div>
+    <p class="cours-p">Voici la règle simple pour savoir quel syllabaire utiliser :</p>
+    <div class="cours-grid">
+      <div class="cours-card">
+        <div class="cours-card-title" style="color:var(--red);">ひらがな — pour…</div>
+        <div class="cours-card-body" style="line-height:2;">
+          <span class="cours-badge cb-red">Mots japonais natifs</span><br>
+          <span class="cours-badge cb-red">Conjugaisons</span><br>
+          <span class="cours-badge cb-red">Particules (は、が、を…)</span><br>
+          <span class="cours-badge cb-red">Suffixes, préfixes</span><br>
+          <span class="cours-badge cb-red">Textes pour enfants</span>
+        </div>
+      </div>
+      <div class="cours-card">
+        <div class="cours-card-title" style="color:#1464C0;">カタカナ — pour…</div>
+        <div class="cours-card-body" style="line-height:2;">
+          <span class="cours-badge cb-blue">Mots étrangers (gairaigo)</span><br>
+          <span class="cours-badge cb-blue">Noms étrangers</span><br>
+          <span class="cours-badge cb-blue">Onomatopées</span><br>
+          <span class="cours-badge cb-blue">Noms scientifiques</span><br>
+          <span class="cours-badge cb-blue">Effet stylistique / emphase</span>
+        </div>
+      </div>
+    </div>
+    <p class="cours-p">En pratique, un texte japonais standard mélange les trois systèmes dans la même phrase. Voici un exemple réel :</p>
+    <div class="cours-example">
+      <div class="cours-ex-jp" onclick="speak('わたしはフランスじんです')">🔊 わたしは<span style="color:#1464C0;">フランス</span>じんです。</div>
+      <div class="cours-ex-rm">Watashi wa <span style="color:#1464C0;">Furansu</span>-jin desu.</div>
+      <div class="cours-ex-fr">Je suis Français(e).</div>
+      <div class="cours-ex-note">En rouge : hiragana (mots natifs + particule は) · En bleu : katakana (mot étranger "France") · Pas de kanji ici mais ils seraient normalement présents dans un vrai texte.</div>
+    </div>
+  </div>
+
+  <!-- 6. STRUCTURE DE PHRASE -->
+  <div class="cours-section" id="c6">
+    <div class="cours-h2">6. Structure d'une phrase japonaise <span>文の構造</span></div>
+    <div class="cours-divider"></div>
+    <p class="cours-p">C'est ici que le japonais commence à vraiment dépayser. En français, l'ordre est <b>Sujet – Verbe – Objet</b> (SVO) : <em>"Je mange du sushi"</em>. En japonais, c'est <b>Sujet – Objet – Verbe</b> (SOV) : <em>"Je du-sushi mange"</em>. Le verbe arrive <b>toujours à la fin</b>.</p>
+
+    <div class="sentence-demo">
+      <div style="font-size:11px;color:var(--ink3);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px;">Français (SVO)</div>
+      <div class="sdem-row">
+        ${block('#C41E3A','Sujet','Je')}
+        <div class="sdem-plus">+</div>
+        ${block('#1464C0','Verbe','mange')}
+        <div class="sdem-plus">+</div>
+        ${block('#2D6A4F','Objet','du sushi')}
+      </div>
+    </div>
+
+    <div class="sentence-demo">
+      <div style="font-size:11px;color:var(--ink3);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px;">Japonais (SOV) — わたしはすしをたべます</div>
+      <div class="sdem-row">
+        ${block('#C41E3A','Sujet','わたしは')}
+        <div class="sdem-plus">+</div>
+        ${block('#2D6A4F','Objet','すしを')}
+        <div class="sdem-plus">+</div>
+        ${block('#1464C0','Verbe','たべます')}
+      </div>
+      <div class="sdem-fr">"Je (wa) sushi (wo) mange" → Watashi wa sushi wo tabemasu.</div>
+    </div>
+
+    <p class="cours-p">Pourquoi le verbe à la fin ? Parce que le japonais fonctionne par <b>entonnoir</b> : tu poses le contexte progressivement et le verbe final "conclut" la phrase. C'est différent mais pas plus difficile — juste une autre logique.</p>
+    <div class="cours-note">😄 <b>Conséquence amusante :</b> en japonais, tu peux interrompre quelqu'un <em>avant</em> qu'il ait fini sa phrase et tu ne sais pas encore ce qu'il voulait faire. "Je… mon patron… pour le projet… le budget…" — et là arrive le verbe final : "…<em>déteste</em>." Bienvenue au Japon.</div>
+    <p class="cours-p">Autre différence majeure : <b>le japonais n'a pas d'espace</b> entre les mots. Les caractères s'enchaînent sans interruption. C'est lisible parce que les kanji, kana et katakana permettent de "voir" les frontières des mots visuellement.</p>
+    <p class="cours-p">Enfin, il n'y a <b>pas d'articles</b> (pas de "le", "la", "un", "des"), <b>pas de pluriel marqué</b>, et souvent <b>le sujet est omis</b> quand il est évident du contexte. La langue est extrêmement économique.</p>
+    ${ex('たべます', 'tabemasu', '"Je mange / il mange / nous mangeons / on mange..."', 'Sans contexte, tous ces sens sont possibles. Le contexte décide.')}
+  </div>
+
+  <!-- 7. PARTICULES -->
+  <div class="cours-section" id="c7">
+    <div class="cours-h2">7. Les particules <span>助詞</span></div>
+    <div class="cours-divider"></div>
+    <p class="cours-p">Les particules sont de <b>petits mots (souvent une seule syllabe)</b> qui indiquent la fonction grammaticale de chaque élément dans la phrase. Là où le français utilise l'ordre des mots et les prépositions, le japonais utilise des particules <em>collées après chaque groupe</em>.</p>
+    <div class="cours-grid">
+      <div class="cours-card">
+        <div class="cours-card-title">は (wa) — thème</div>
+        <div class="cours-card-body">Marque le sujet ou le thème de la phrase. <b>"En ce qui concerne…"</b><br><br>わたし<em>は</em> — "quant à moi…"</div>
+      </div>
+      <div class="cours-card">
+        <div class="cours-card-title">が (ga) — sujet grammatical</div>
+        <div class="cours-card-body">Marque le sujet grammatical strict, souvent pour insister ou dans les subordonnées.<br><br>ねこ<em>が</em>いる — "il y a un chat"</div>
+      </div>
+      <div class="cours-card">
+        <div class="cours-card-title">を (wo) — objet direct</div>
+        <div class="cours-card-body">Marque ce sur quoi porte l'action. Équivalent du complément d'objet direct français.<br><br>すし<em>を</em>たべます — "mange du sushi"</div>
+      </div>
+      <div class="cours-card">
+        <div class="cours-card-title">に (ni) — direction/lieu</div>
+        <div class="cours-card-body">Indique la destination, la cible, le moment. Équivalent de "à", "dans", "en", "vers".<br><br>とうきょう<em>に</em>いきます — "vais à Tokyo"</div>
+      </div>
+      <div class="cours-card">
+        <div class="cours-card-title">で (de) — lieu d'action</div>
+        <div class="cours-card-body">Là où l'action se passe. Différent de に qui indique la destination.<br><br>レストラン<em>で</em>たべます — "mange au restaurant"</div>
+      </div>
+      <div class="cours-card">
+        <div class="cours-card-title">の (no) — possession</div>
+        <div class="cours-card-body">Relie deux noms. Équivalent du "de" possessif français, mais à l'envers.<br><br>わたし<em>の</em>ほん — "mon livre" (litt. "moi-de livre")</div>
+      </div>
+    </div>
+    <div class="cours-note">⚠️ <b>Attention pièges :</b> La particule は s'écrit avec le caractère <em>ha</em> mais se prononce <em>wa</em>. La particule を s'écrit <em>wo</em> mais se prononce <em>o</em>. C'est une exception historique. Oui, c'est agaçant. Non, tu ne peux pas y échapper.</div>
+    ${ex('わたしはがくせいです', 'Watashi wa gakusei desu.', 'Je suis étudiant(e).', 'Watashi (moi) + wa (particule thème) + gakusei (étudiant) + desu (suis = verbe d\'état)')}
+    ${ex('きょうとにいきます', 'Kyōto ni ikimasu.', 'Je vais à Kyoto.', 'Kyōto + ni (vers) + ikimasu (aller au présent poli)')}
+  </div>
+
+  <!-- 8. CONSEILS -->
+  <div class="cours-section" id="c8">
+    <div class="cours-h2">8. Conseils pour bien progresser <span>アドバイス</span></div>
+    <div class="cours-divider"></div>
+    <div class="cours-img">
+      <svg viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#FAFAF7;">
+        <!-- Road to Japan -->
+        <rect x="0" y="0" width="700" height="160" fill="#FAFAF7"/>
+        <!-- Route -->
+        <path d="M 30 140 Q 350 80 670 130" stroke="#E0D5C0" stroke-width="30" fill="none" stroke-linecap="round"/>
+        <path d="M 30 140 Q 350 80 670 130" stroke="white" stroke-width="3" fill="none" stroke-dasharray="20 15" stroke-linecap="round"/>
+        <!-- Étapes -->
+        <circle cx="90" cy="128" r="18" fill="#C41E3A"/>
+        <text x="90" y="133" text-anchor="middle" font-size="14" fill="white" font-family="DM Sans">1</text>
+        <text x="90" y="150" text-anchor="middle" font-size="10" fill="#4A4A4A" font-family="DM Sans">Hiragana</text>
+
+        <circle cx="230" cy="106" r="18" fill="#C41E3A"/>
+        <text x="230" y="111" text-anchor="middle" font-size="14" fill="white" font-family="DM Sans">2</text>
+        <text x="230" y="128" text-anchor="middle" font-size="10" fill="#4A4A4A" font-family="DM Sans">Katakana</text>
+
+        <circle cx="380" cy="94" r="18" fill="#C41E3A"/>
+        <text x="380" y="99" text-anchor="middle" font-size="14" fill="white" font-family="DM Sans">3</text>
+        <text x="380" y="116" text-anchor="middle" font-size="10" fill="#4A4A4A" font-family="DM Sans">Phrases simples</text>
+
+        <circle cx="530" cy="100" r="18" fill="#C41E3A"/>
+        <text x="530" y="105" text-anchor="middle" font-size="14" fill="white" font-family="DM Sans">4</text>
+        <text x="530" y="122" text-anchor="middle" font-size="10" fill="#4A4A4A" font-family="DM Sans">Kanji de base</text>
+
+        <text x="655" y="125" text-anchor="middle" font-family="DM Sans" font-size="24">🗾</text>
+        <text x="655" y="148" text-anchor="middle" font-size="10" fill="#C41E3A" font-family="DM Sans" font-weight="500">Tokyo !</text>
+      </svg>
+    </div>
+
+    <p class="cours-p">Voici quelques vérités que personne ne te dit au départ mais que tu découvriras de toute façon :</p>
+    <div class="cours-note">✅ <b>L'hiragana en premier, toujours.</b> Avant d'apprendre des mots, des phrases ou de la grammaire, maîtrise les 46 caractères de base. Ça prend 1 à 2 semaines de pratique quotidienne. C'est le fondement de tout le reste.</div>
+    <div class="cours-note">🔄 <b>La répétition espacée, c'est la clé.</b> Voir un caractère une fois ne suffit pas. Ce site t'oblige à accumuler <b>20 réponses correctes à 92%</b> avant de considérer un caractère comme maîtrisé. C'est intentionnel — c'est ce que la science de l'apprentissage recommande.</div>
+    <div class="cours-note">👂 <b>Écoute dès le début.</b> Clique sur chaque caractère pour entendre sa prononciation. Le japonais est une langue très régulière en termes de sons — pas d'exception comme en français. Ce que tu lis, tu le prononces.</div>
+    <div class="cours-note">🎯 <b>Objectif réaliste avant le Japon :</b> Maîtriser hiragana + katakana te permettra de lire les menus, les panneaux, les noms de stations, et de déchiffrer phonétiquement la plupart des mots. C'est énorme en pratique. Les kanji viendront après le voyage.</div>
+    <div class="cours-note">😄 <b>Le mot le plus utile du japonais :</b> <em>すみません</em> (sumimasen). Ça veut dire "excusez-moi", "pardon", "merci pour votre peine" et "je suis vraiment désolé d'exister". Une phrase universelle. À mémoriser en priorité absolue.</div>
+    ${ex('すみません', 'Sumimasen', '"Excusez-moi / Pardon / S\'il vous plaît"', 'À utiliser pour attirer l\'attention d\'un serveur, s\'excuser de bousculer quelqu\'un, ou demander de l\'aide dans la rue. Tu vas en avoir besoin toutes les 10 minutes.')}
+  </div>
+
+  <!-- BONUS RESSOURCES -->
+  <div class="cours-section" id="c9">
+    <div class="cours-h2">🎁 Bonus — Ressources pour aller plus loin <span>リンク集</span></div>
+    <div class="cours-divider"></div>
+    <p class="cours-p">Tu as fini les leçons de ce site ? Voici ce que les apprenants sérieux utilisent pour continuer à progresser.</p>
+
+    <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:.7rem;margin-top:1rem;">▶ Chaînes YouTube</div>
+    <div class="cours-grid">
+      <a class="res-card" href="https://www.youtube.com/@JapanesePod101" target="_blank" rel="noopener">
+        <div class="res-ico">🎌</div>
+        <div>
+          <div class="res-name">JapanesePod101</div>
+          <div class="res-desc">La référence absolue. Des milliers de vidéos du niveau débutant à avancé, structurées par thème. Parfait pour accompagner l'apprentissage des kana.</div>
+          <div class="res-tag">Débutant → Avancé · EN</div>
+        </div>
+      </a>
+      <a class="res-card" href="https://www.youtube.com/@YukiDoke" target="_blank" rel="noopener">
+        <div class="res-ico">🌸</div>
+        <div>
+          <div class="res-name">Yuki Doke</div>
+          <div class="res-desc">Une Japonaise qui enseigne sa langue de façon naturelle et immersive. Excellent pour l'oreille, la culture, et apprendre en contexte réel.</div>
+          <div class="res-tag">Débutant → Intermédiaire · FR/JP</div>
+        </div>
+      </a>
+      <a class="res-card" href="https://www.youtube.com/@NihongoGoDon" target="_blank" rel="noopener">
+        <div class="res-ico">⛩️</div>
+        <div>
+          <div class="res-name">Nihongo Go Don</div>
+          <div class="res-desc">Chaîne francophone spécialisée dans l'explication de la grammaire japonaise. Clair, pédagogique, et avec un vrai sens de la progression.</div>
+          <div class="res-tag">Débutant → Intermédiaire · FR</div>
+        </div>
+      </a>
+      <a class="res-card" href="https://www.youtube.com/@GameGrammar" target="_blank" rel="noopener">
+        <div class="res-ico">🎮</div>
+        <div>
+          <div class="res-name">Game Grammar</div>
+          <div class="res-desc">Apprend le japonais à travers les jeux vidéo Nintendo. Analyse des phrases dans Pokemon, Zelda, Animal Crossing. Motivant si tu es gamer.</div>
+          <div class="res-tag">Intermédiaire · EN</div>
+        </div>
+      </a>
+    </div>
+
+    <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:.7rem;margin-top:1.5rem;">📱 Applications</div>
+    <div class="cours-grid">
+      <a class="res-card" href="https://www.duolingo.com/course/ja/fr" target="_blank" rel="noopener">
+        <div class="res-ico">🦉</div>
+        <div>
+          <div class="res-name">Duolingo — Japonais</div>
+          <div class="res-desc">Le classique. Bien pour l'hiragana et les premières phrases. Limité pour aller au-delà du débutant, mais parfait pour maintenir un streak quotidien.</div>
+          <div class="res-tag">iOS · Android · Gratuit</div>
+        </div>
+      </a>
+      <a class="res-card" href="https://www.wanikani.com" target="_blank" rel="noopener">
+        <div class="res-ico">🦀</div>
+        <div>
+          <div class="res-name">WaniKani</div>
+          <div class="res-desc">La meilleure app pour apprendre les kanji par la répétition espacée. Système mnémotechnique très efficace. Gratuit jusqu'au niveau 3, payant ensuite.</div>
+          <div class="res-tag">Web · iOS · Freemium · EN</div>
+        </div>
+      </a>
+      <a class="res-card" href="https://ankiweb.net/shared/decks?search=japanese" target="_blank" rel="noopener">
+        <div class="res-ico">🃏</div>
+        <div>
+          <div class="res-name">Anki</div>
+          <div class="res-desc">Le roi de la répétition espacée. Moins beau que les autres mais redoutablement efficace. Des milliers de decks gratuits pour hiragana, katakana, kanji, vocabulaire.</div>
+          <div class="res-tag">iOS · Android · PC · Gratuit</div>
+        </div>
+      </a>
+      <a class="res-card" href="https://www.lingodeer.com" target="_blank" rel="noopener">
+        <div class="res-ico">🦌</div>
+        <div>
+          <div class="res-name">LingoDeer</div>
+          <div class="res-desc">Conçu spécifiquement pour les langues asiatiques (japonais, coréen, mandarin). Plus rigoureux que Duolingo sur la grammaire. Très recommandé pour passer à l'écrit.</div>
+          <div class="res-tag">iOS · Android · Freemium</div>
+        </div>
+      </a>
+      <a class="res-card" href="https://www.hellotalk.com" target="_blank" rel="noopener">
+        <div class="res-ico">💬</div>
+        <div>
+          <div class="res-name">HelloTalk</div>
+          <div class="res-desc">Met en relation des apprenants du monde entier avec des locuteurs natifs. Tu corriges leur français, ils corrigent ton japonais. L'échange de langue le plus naturel.</div>
+          <div class="res-tag">iOS · Android · Gratuit</div>
+        </div>
+      </a>
+      <a class="res-card" href="https://jisho.org" target="_blank" rel="noopener">
+        <div class="res-ico">📖</div>
+        <div>
+          <div class="res-name">Jisho.org</div>
+          <div class="res-desc">Le meilleur dictionnaire japonais en ligne. Recherche par kana, kanji, anglais. Dessine un kanji à la main pour le retrouver. Indispensable dès que tu commences à lire.</div>
+          <div class="res-tag">Web · iOS · Gratuit</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="cours-note" style="margin-top:1rem;">🗾 <b>Conseil de survie pour le Japon :</b> Google Translate en mode caméra (pointe vers n'importe quel texte japonais → traduction instantanée). Télécharge le pack japonais offline avant de partir — les zones sans réseau au Japon existent aussi.</div>
+  </div>
+
+  <!-- IPHONE TYPING -->
+  <div class="cours-section" id="c10">
+    <div class="cours-h2">⌨️ Écrire en japonais sur iPhone <span>フリック入力</span></div>
+    <div class="cours-divider"></div>
+    <p class="cours-p">Une fois le clavier japonais activé sur ton iPhone, tu as <b>deux façons d'écrire</b> : en romaji (comme sur ce site) ou en flick — le mode qu'utilisent tous les Japonais. Les deux tapent en hiragana, mais la méthode flick est beaucoup plus rapide une fois maîtrisée.</p>
+
+    <div class="cours-grid">
+      <div class="cours-card">
+        <div class="cours-card-title" style="color:var(--red);">Clavier Romaji — 日本語ローマ字</div>
+        <div class="cours-card-body">Tu tapes les sons en alphabet latin : <b>k-a</b> → か, <b>s-h-i</b> → し. L'iPhone propose des suggestions d'hiragana au fur et à mesure. Pratique si tu connais déjà le romaji, moins naturel que le flick.</div>
+      </div>
+      <div class="cours-card">
+        <div class="cours-card-title" style="color:#1464C0;">Clavier Flick — フリック入力</div>
+        <div class="cours-card-body">Un clavier 3×4 avec les rangées japonaises (あ, か, さ…). Tu tapes en <b>glissant le doigt</b> dans une direction. C'est le mode par défaut des Japonais — rapide et précis une fois habitué.</div>
+      </div>
+    </div>
+
+    <div class="cours-section" style="margin-top:1.5rem;margin-bottom:0;">
+      <div class="cours-h2" style="font-size:16px;">Le clavier Flick en détail</div>
+      <div style="width:28px;height:3px;background:var(--red);border-radius:2px;margin-bottom:1rem;"></div>
+    </div>
+
+    <p class="cours-p">Le clavier flick affiche une grille de 10 touches. Chaque touche contient <b>une rangée complète de 5 sons</b>. Le son "neutre" (la voyelle <em>a</em>) s'obtient avec un simple tap. Les 4 autres sons de la rangée s'obtiennent en glissant dans une des 4 directions.</p>
+
+    <div class="cours-example" style="background:var(--warm);">
+      <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:1rem;">Exemple avec la touche <span style="font-family:var(--jp);font-size:18px;">か</span></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:240px;margin:0 auto 1rem;">
+        <div></div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center;">
+          <div style="font-family:var(--jp);font-size:20px;color:var(--red);">き</div>
+          <div style="font-size:9px;color:var(--ink3);">↑ haut</div>
+        </div>
+        <div></div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center;">
+          <div style="font-family:var(--jp);font-size:20px;color:var(--red);">け</div>
+          <div style="font-size:9px;color:var(--ink3);">← gauche</div>
+        </div>
+        <div style="background:var(--red);border-radius:8px;padding:8px;text-align:center;">
+          <div style="font-family:var(--jp);font-size:20px;color:#fff;">か</div>
+          <div style="font-size:9px;color:rgba(255,255,255,.8);">tap = ka</div>
+        </div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center;">
+          <div style="font-family:var(--jp);font-size:20px;color:var(--red);">く</div>
+          <div style="font-size:9px;color:var(--ink3);">→ droite</div>
+        </div>
+        <div></div>
+        <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center;">
+          <div style="font-family:var(--jp);font-size:20px;color:var(--red);">こ</div>
+          <div style="font-size:9px;color:var(--ink3);">↓ bas</div>
+        </div>
+        <div></div>
+      </div>
+      <div style="font-size:12px;color:var(--ink3);text-align:center;">Tap = か · Haut = き · Droite = く · Bas = こ · Gauche = け</div>
+    </div>
+
+    <div class="cours-note">📐 <b>La logique des directions :</b> la direction correspond à l'ordre des voyelles <em>a / i / u / e / o</em> dans le sens horaire. Haut = i, droite = u, bas = e, gauche = o. Une fois que tu as ce réflexe pour <em>une</em> rangée, il s'applique à toutes.</div>
+
+    <div class="cours-section" style="margin-top:1.5rem;margin-bottom:0;">
+      <div class="cours-h2" style="font-size:16px;">Les touches spéciales</div>
+      <div style="width:28px;height:3px;background:var(--red);border-radius:2px;margin-bottom:1rem;"></div>
+    </div>
+
+    <div class="cours-grid">
+      <div class="cours-card">
+        <div class="cours-card-title">&#12316; Touche dakuten — ゛゜</div>
+        <div class="cours-card-body" style="line-height:1.9;">En bas à gauche du clavier. Tape <b>か</b> puis cette touche → <b>が</b>. Tape <b>は</b> puis deux fois → <b>ぱ</b>. Transforme n'importe quel kana en sa version voisée.</div>
+      </div>
+      <div class="cours-card">
+        <div class="cours-card-title">小 Touche petite — 小文字</div>
+        <div class="cours-card-body" style="line-height:1.9;">Rend un kana petit : <b>つ</b> → <b>っ</b> (double consonne), <b>や</b> → <b>ゃ</b> (combinaison). Indispensable pour écrire <b>って</b> (tte) ou <b>きゃ</b> (kya).</div>
+      </div>
+      <div class="cours-card">
+        <div class="cours-card-title">ー Touche allongement</div>
+        <div class="cours-card-body" style="line-height:1.9;">Le tiret long qui allonge une voyelle en katakana. コーヒー = kōhī (café). Uniquement en katakana — n'existe pas en hiragana.</div>
+      </div>
+      <div class="cours-card">
+        <div class="cours-card-title">ABC → かな Basculer</div>
+        <div class="cours-card-body" style="line-height:1.9;">Le globe 🌐 en bas à gauche change de clavier. Pour passer rapidement de l'anglais au japonais pendant une conversation — utile quand tu mélanges les deux.</div>
+      </div>
+    </div>
+
+    <div class="cours-section" style="margin-top:1.5rem;margin-bottom:0;">
+      <div class="cours-h2" style="font-size:16px;">Les suggestions automatiques</div>
+      <div style="width:28px;height:3px;background:var(--red);border-radius:2px;margin-bottom:1rem;"></div>
+    </div>
+
+    <p class="cours-p">En tapant, l'iPhone affiche une barre de <b>suggestions en kanji et en kana</b> au-dessus du clavier. C'est là que la magie opère : tu tapes phonétiquement, l'iPhone convertit en kanji. Tu n'as pas besoin de savoir écrire les kanji — juste les reconnaître pour choisir le bon.</p>
+
+    ${ex('にほん', 'nihon', 'Tu tapes ni-ho-n en flick, l\'iPhone propose 日本, 二本, 二ホン…', 'Tap sur 日本 pour sélectionner le bon kanji — c\'est comme ça que les Japonais écrivent tous les jours.')}
+    ${ex('すみません', 'sumimasen', 'Tu tapes s-u-m-i en flick, la suggestion "すみません" apparaît immédiatement', 'Les mots courants apparaissent en entier dès les premières syllabes — inutile de tout taper.')}
+
+    <div class="cours-note">😄 <b>Le secret des Japonais :</b> personne ne tape les kanji lettre par lettre. Tout le monde tape phonétiquement en kana et sélectionne le kanji dans la liste. C'est pour ça que maîtriser la lecture de kana est la première étape indispensable — même pour taper sur un clavier japonais.</div>
+
+    <div class="cours-section" style="margin-top:1.5rem;margin-bottom:0;">
+      <div class="cours-h2" style="font-size:16px;">Écrire des phrases utiles pour le voyage</div>
+      <div style="width:28px;height:3px;background:var(--red);border-radius:2px;margin-bottom:1rem;"></div>
+    </div>
+
+    <p class="cours-p">En voyage, tu auras souvent besoin de <b>montrer ton téléphone</b> à quelqu'un plutôt que de parler. Voici comment taper les phrases les plus utiles :</p>
+
+    ${ex('えきはどこですか？', 'eki wa doko desu ka?', 'Où est la gare ?', 'Tape : e-ki-wa-do-ko-de-su-ka — l\'iPhone propose la phrase complète après quelques syllabes')}
+    ${ex('これはいくらですか？', 'kore wa ikura desu ka?', 'C\'est combien ça ?', 'Utile pour montrer le téléphone au vendeur')}
+    ${ex('アレルギーがあります', 'arerugī ga arimasu', 'J\'ai une allergie', 'Suivi du type d\'allergie — tape en katakana pour les noms de substances')}
+    ${ex('たすけてください！', 'tasukete kudasai!', 'Aidez-moi !', 'À espérer ne jamais utiliser mais à mémoriser quand même')}
+
+    <div class="cours-note">🎯 <b>Conseil pratique :</b> crée des <b>raccourcis texte</b> dans Réglages → Général → Clavier → Raccourcis. Par exemple : tape "sumi" → s'étend en "すみません". Ou "arig" → "ありがとうございます". Ça prend 2 minutes à configurer et ça sauve la mise au restaurant.</div>
+  </div>
+
+  </div>`; // end cours-wrap
+}
+
+function doPrint(page){
+  document.body.classList.remove('print-p1','print-p2');
+  document.body.classList.add('print-'+page);
+  window.print();
+  // Clean up after dialog closes
+  setTimeout(()=>document.body.classList.remove('print-p1','print-p2'), 1000);
+}
+
+// ═══════════════════════════════════════════════════════
+// DÉBUTANT MODULE
+// ═══════════════════════════════════════════════════════
+
+// Mnemonics: [emoji_svg_key, text]
+const MNEMO = {
+  'あ':'🐜|<b>あ (a)</b> — Un <b>A</b>nanas qui tombe. Le trait du haut c\'est la feuille, en dessous les deux jambes. <em>"Ahhh !"</em> dit-il en tombant.',
+  'い':'🦎|<b>い (i)</b> — Deux <b>I</b>bérons côte à côte. Deux petits traits comme deux doigts levés. <em>"Ii !"</em> = "bien" en japonais !',
+  'う':'🐟|<b>う (u)</b> — Une bouche qui dit <b>U</b>. Le petit trait du haut, la courbe du bas. Fais la moue en prononçant <em>"u"</em>.',
+  'え':'🧚|<b>え (e)</b> — Une <b>É</b>toile filante avec une croix en dessous. Élégant et léger comme la lettre.',
+  'お':'🐙|<b>お (o)</b> — Un <b>O</b>ctopus qui agite ses tentacules. Le cercle du milieu = sa tête. <em>"Oh !"</em>',
+  'か':'⚔️|<b>か (ka)</b> — Un <b>Ka</b>taná planté dans le sol. La lame verticale et la garde horizontale.',
+  'き':'🔑|<b>き (ki)</b> — Une <b>Ki</b>té (clé) compliquée. Quatre traits comme les dents d\'une clé ancienne.',
+  'く':'👄|<b>く (ku)</b> — Un bec qui dit <b>"Cou-cou"</b>. Un simple angle, comme un bec de coucou.',
+  'け':'🏗️|<b>け (ke)</b> — Un <b>K</b>echup renversé sur une table. Trois traits comme une structure.',
+  'こ':'🌊|<b>こ (ko)</b> — Deux vagues <b>Co</b>urtes. Deux lignes qui ondulent doucement.',
+  'さ':'🐠|<b>さ (sa)</b> — Un <b>Sa</b>umon qui saute. Deux traits horizontaux et un crochet en bas.',
+  'し':'🪝|<b>し (shi)</b> — Un <b>Shi</b>shio (hameçon). Une courbe vers le bas comme un hameçon.',
+  'す':'🌀|<b>す (su)</b> — Un <b>Su</b>perficiel tourbillon. La spirale comme un escargot.',
+  'せ':'🌿|<b>せ (se)</b> — Un <b>Se</b>rpent qui monte dans un arbre. Traits qui s\'entrecroisent.',
+  'そ':'〰️|<b>そ (so)</b> — Une vague <b>So</b>nore. Deux traits qui font "sososo" comme le bruit de la mer.',
+  'た':'🪵|<b>た (ta)</b> — Un <b>Ta</b>bleau accroché. Une croix avec un crochet en bas à droite.',
+  'ち':'🌱|<b>ち (chi)</b> — Un <b>Chi</b>gnon tombant. Le trait du haut retombe comme une mèche.',
+  'つ':'🌙|<b>つ (tsu)</b> — Un croissant de lune <b>Tsu</b>nami. La courbe rappelle un vague qui déferle.',
+  'て':'🪝|<b>て (te)</b> — Un <b>Te</b>ndon qui se contracte. Deux traits avec un crochet, comme un muscle.',
+  'と':'🗡️|<b>と (to)</b> — Un <b>To</b>tem planté. Un trait vertical avec une petite pointe.',
+  'な':'🪢|<b>な (na)</b> — Un nœud com<b>na</b>rd. Trois traits emmêlés comme une corde nouée.',
+  'に':'🚪|<b>に (ni)</b> — Une <b>Ni</b>che avec une porte. Deux traits comme une ouverture.',
+  'ぬ':'🌀|<b>ぬ (nu)</b> — Un <b>Nu</b>age tourbillonnant. La spirale ressemble à de la vapeur.',
+  'ね':'🐈|<b>ね (ne)</b> — Un chat <b>Ne</b>ko qui se retourne. La queue en spirale.',
+  'の':'🌀|<b>の (no)</b> — Un signe <b>"No"</b> en spirale. Simple et rond comme un interdit.',
+  'は':'🚩|<b>は (ha)</b> — Un drapeau <b>Ha</b>i (oui). Trois traits dont un qui flotte.',
+  'ひ':'😊|<b>ひ (hi)</b> — Un sourire <b>Hi</b>larant. La courbe du bas c\'est le sourire, le trait = les yeux.',
+  'ふ':'🌬️|<b>ふ (fu)</b> — Le <b>Fu</b>mée qui s\'échappe. Quatre traits comme de la vapeur qui monte.',
+  'へ':'⛰️|<b>へ (he)</b> — Un mont <b>He</b>. Un simple triangle, comme une montagne vue de face.',
+  'ほ':'🏠|<b>ほ (ho)</b> — Une <b>Ho</b>use (maison). Quatre traits comme une maison avec ses murs.',
+  'ま':'🐟|<b>ま (ma)</b> — Un <b>Ma</b>caroneau nageant. Deux traits et un rond = la tête et les nageoires.',
+  'み':'🌊|<b>み (mi)</b> — Une <b>Mi</b>lle vagues. Deux courbes qui s\'entrelacent comme des vagues.',
+  'む':'🐄|<b>む (mu)</b> — Un <b>Mu</b>— comme une vache. Le trait et la courbe font penser à une vache qui mugit.',
+  'め':'🌀|<b>め (me)</b> — Un œil <b>Me</b>. En japonais, me = œil ! Et ça ressemble vraiment à un œil vu de face.',
+  'も':'🪡|<b>も (mo)</b> — Un fil <b>Mo</b>utonné. Trois traits entortillés comme de la laine.',
+  'や':'🌿|<b>や (ya)</b> — Un <b>Ya</b>k qui broute. La forme rappelle des cornes et une tête baissée.',
+  'ゆ':'🐟|<b>ゆ (yu)</b> — Un <b>You</b>ki (poisson). La courbe comme un poisson qui nage.',
+  'よ':'🌊|<b>よ (yo)</b> — <b>Yo</b>! Les vagues disent salut. Deux traits comme des vagues qui s\'élèvent.',
+  'わ':'🌱|<b>わ (wa)</b> — Un <b>Wa</b>gon qui monte. La courbe et le trait vertical.',
+  'ん':'😤|<b>ん (n)</b> — Un nez <b>n</b>arin. Le seul son sans voyelle ! Comme un "n" cursif.',
+  'ら':'🌺|<b>ら (ra)</b> — Un <b>Ra</b>meau fleuri. Le trait du haut et la courbe du bas.',
+  'り':'🌧️|<b>り (ri)</b> — La <b>Ri</b>vière qui coule. Deux traits comme la pluie qui tombe.',
+  'る':'🌀|<b>る (ru)</b> — Un <b>Ru</b>isseau qui tourbillonne. La spirale finale = l\'eau qui tourne.',
+  'れ':'🌿|<b>れ (re)</b> — Un <b>Re</b>gard courbé. Comme ら mais avec un retour en arrière.',
+  'ろ':'〰️|<b>ろ (ro)</b> — Un <b>Ro</b>uleau. Comme る mais sans la spirale — plus simple.',
+};
+
+// Stroke hints for each character
+const STROKES = {
+  'あ':['Horizontal haut','Arc central','Trait + boucle bas'],
+  'い':['Courbe gauche','Trait droit court'],
+  'う':['Petit trait haut','Arc de bas'],
+  'え':['Horizontal','Croix centrale','Courbe bas'],
+  'お':['Vertical','Horizontal','Cercle + trait'],
+  'か':['Vertical','Horizontal haut','Courbe droite'],
+  'き':['Deux horizontaux','Vertical','Courbe bas'],
+  'く':['Un seul trait angulaire'],
+  'け':['Vertical','Horizontal','Trait droit'],
+  'こ':['Horizontal haut','Courbe bas'],
+  'し':['Un seul arc vers le bas'],
+  'す':['Horizontal','Vertical','Spirale'],
+  'へ':['Un seul trait en pointe'],
+  'の':['Un seul arc spiral'],
+};
+
+// Beginner chapters
+const DB_CHAPTERS = [
+  {id:'db0', name:'Bienvenue', sub:'Introduction', chars:null, type:'intro'},
+  {id:'db1', name:'Voyelles', sub:'Les 5 sons de base', chars:HG[0].ch, color:'#C41E3A'},
+  {id:'db2', name:'K-row', sub:'ka ki ku ke ko', chars:HG[1].ch, color:'#E8526A'},
+  {id:'db3', name:'S-row', sub:'sa shi su se so', chars:HG[2].ch, color:'#D4900A'},
+  {id:'db4', name:'T-row', sub:'ta chi tsu te to', chars:HG[3].ch, color:'#1464C0'},
+  {id:'db5', name:'N-row', sub:'na ni nu ne no', chars:HG[4].ch, color:'#6B48C7'},
+  {id:'db6', name:'H-row', sub:'ha hi fu he ho', chars:HG[5].ch, color:'#2D6A4F'},
+  {id:'db7', name:'M-row', sub:'ma mi mu me mo', chars:HG[6].ch, color:'#C07800'},
+  {id:'db8', name:'Y/W/N', sub:'ya yu yo wa n', chars:HG[7].ch, color:'#C41E3A'},
+  {id:'db9', name:'R-row', sub:'ra ri ru re ro', chars:HG[8].ch, color:'#1A88C9'},
+];
+
+let dbState = {chapter: null, stepIdx: 0, phase: 'home', quizQ: [], quizIdx: 0, quizOk: 0};
+
+function initDebut(){ renderDbHome(); }
+
+// ── HOME ──
+function renderDbHome(){
+  dbState.phase='home';
+  const P = getP();
+  const done = ch => P.lessons && P.lessons['db_'+ch.id];
+  const anyStarted = DB_CHAPTERS.some(c=>c.type!=='intro'&&done(c));
+  const root = document.getElementById('debut-root');
+  let html = `<div class="db-wrap">`;
+
+  if(!anyStarted){
+    html += `<div class="db-welcome">
+      <div class="db-welcome-jp">日本語</div>
+      <div class="db-welcome-title">Apprends les kana pas à pas</div>
+      <div class="db-welcome-sub">Hiragana + Katakana avec animations, astuces mémoire, et mini-quizzes. Commence par les voyelles — c'est là que tout démarre 🎌</div>
+      <button class="db-start" onclick="dbGoChapter('db1')">▶ Commencer — Hiragana</button>
+    </div>`;
+  } else {
+    html += `<div class="ph"><h1>Cours débutant <em>はじめましょう</em></h1><div class="rl"></div></div>`;
+    // Hiragana
+    html += `<div style="font-size:13px;font-weight:500;color:var(--red);margin-bottom:.6rem;display:flex;align-items:center;gap:8px;"><span style="font-family:var(--jp);font-size:20px;">ひらがな</span> Hiragana</div><div class="db-chapters">`;
+    const hChs = DB_CHAPTERS.filter(c=>c.type!=='intro');
+    hChs.forEach((ch,i)=>{
+      const isDone=!!done(ch), isLocked=i>0&&!done(hChs[i-1]), col=ch.color||'#C41E3A';
+      html+=`<div class="db-ch ${isDone?'db-ch-done':isLocked?'db-ch-lock':''}" onclick="${isLocked?'':  `dbGoChapter('${ch.id}')`}">
+        <div class="db-ch-num">Chapitre ${i+1}</div>
+        <div class="db-ch-jp" style="color:${isDone?'var(--green)':col}">${ch.chars[0][0]}</div>
+        <div class="db-ch-name">${ch.name}</div>
+        <div class="db-ch-badge">${isDone?'✅':isLocked?'🔒':'◎'} ${isDone?'Terminé':isLocked?'Verrouillé':'À faire'}</div>
+        <div class="db-ch-prog"><div class="db-ch-progf" style="width:${isDone?100:0}%;background:${col};"></div></div>
+      </div>`;
+    });
+    html+=`</div>`;
+    // Katakana
+    const hDone = hChs.every(c=>done(c));
+    html += `<div style="font-size:13px;font-weight:500;color:#1464C0;margin:1.2rem 0 .6rem;display:flex;align-items:center;gap:8px;"><span style="font-family:var(--jp);font-size:20px;color:#1464C0;">カタカナ</span> Katakana${!hDone?` <span style="font-size:11px;color:var(--ink3);font-weight:400;">(termine l'hiragana d'abord)</span>`:''}
+    </div><div class="db-chapters">`;
+    DB_CHAPTERS_K.forEach((ch,i)=>{
+      const isDone=!!done(ch), prevOk=i===0?hDone:!!done(DB_CHAPTERS_K[i-1]);
+      const isLocked=!prevOk, col=ch.color||'#1464C0';
+      html+=`<div class="db-ch ${isDone?'db-ch-done':isLocked?'db-ch-lock':''}" onclick="${isLocked?'':  `dbGoChapter('${ch.id}')`}">
+        <div class="db-ch-num">カタカナ ${i+1}</div>
+        <div class="db-ch-jp" style="color:${isDone?'var(--green)':col}">${ch.chars[0][0]}</div>
+        <div class="db-ch-name">${ch.name}</div>
+        <div class="db-ch-badge">${isDone?'✅':isLocked?'🔒':'◎'} ${isDone?'Terminé':isLocked?'Verrouillé':'À faire'}</div>
+        <div class="db-ch-prog"><div class="db-ch-progf" style="width:${isDone?100:0}%;background:${col};"></div></div>
+      </div>`;
+    });
+    html+=`</div>`;
+    const nxt = [...hChs,...DB_CHAPTERS_K].find(c=>!done(c)&&!(hChs.indexOf(c)===-1&&!hDone));
+    if(nxt) html+=`<div style="text-align:center;margin-top:.8rem;"><button class="db-btn db-btn-red" onclick="dbGoChapter('${nxt.id}')">▶ Continuer — ${nxt.name}</button></div>`;
+  }
+  html+=`</div>`;
+  root.innerHTML = html;
+}
+
+function dbGoChapter(id){
+  const ch = [...DB_CHAPTERS,...DB_CHAPTERS_K].find(c=>c.id===id);
+  if(!ch||!ch.chars) return;
+  dbState.chapter = id;
+  dbState.stepIdx = 0;
+  dbState.phase = 'learn';
+  renderDbLearn();
+}
+
+// ── LEARN ──
+function renderDbLearn(){
+  const ch = [...DB_CHAPTERS,...DB_CHAPTERS_K].find(c=>c.id===dbState.chapter);
+  const chars = ch.chars;
+  const idx = dbState.stepIdx;
+  const [jp, rm] = chars[idx];
+  const total = chars.length;
+  const col = ch.color || '#C41E3A';
+  const pct = Math.round(idx/total*100);
+  // Use katakana mnemonics if it's a katakana chapter
+  const mnemoMap = ch.type==='k' ? MNEMO_K : MNEMO;
+  const mnemoRaw = mnemoMap[jp] || MNEMO[jp] || '';
+  const [mnemoIco, mnemoTxt] = mnemoRaw ? mnemoRaw.split('|') : ['',''];
+  const strokes = STROKES[jp];
+
+  setTimeout(()=>speak(jp), 300);
+
+  document.getElementById('debut-root').innerHTML = `<div class="db-wrap">
+    <div class="db-lesson">
+      <div class="db-top">
+        <button class="db-back" onclick="renderDbHome()">←</button>
+        <div class="db-top-title">${ch.name} — ${ch.sub}</div>
+        <div class="db-top-prog">${idx+1} / ${total}</div>
+      </div>
+      <div class="db-pbar"><div class="db-pfill" style="width:${pct}%;background:${col};"></div></div>
+      <div class="db-step">
+        <div class="db-char-card">
+          <div id="db-char-big" class="db-char-big" onclick="dbPlayChar('${jp}')" style="color:${col==='#C41E3A'?'var(--ink)':col}">${jp}</div>
+          <div class="db-char-rm" style="color:${col}">${rm}</div>
+          <div class="db-char-hint">🔊 Clique sur le caractère pour écouter</div>
+          <button class="db-sound-btn" style="background:${col};box-shadow:0 4px 16px ${col}50;" onclick="dbPlayChar('${jp}')">🔊</button>
+        </div>
+        ${mnemoTxt ? `<div class="db-mnemo">
+          <div class="db-mnemo-img"><span style="font-size:32px;">${mnemoIco}</span></div>
+          <div class="db-mnemo-text">${mnemoTxt}</div>
+        </div>` : ''}
+        ${strokes ? `<div class="db-strokes">${strokes.map((s,i)=>`<div class="db-stroke"><div class="db-stroke-n">${i+1}</div>${s}</div>`).join('')}</div>` : ''}
+        <div class="db-nav">
+          ${idx>0 ? `<button class="db-btn db-btn-out" onclick="dbPrev()">← Revoir</button>` : ''}
+          ${idx < total-1
+            ? `<button class="db-btn db-btn-red" style="background:${col};" onclick="dbNext()">Suivant →</button>`
+            : `<button class="db-btn db-btn-grn" onclick="dbStartQuiz()">✏️ Quiz →</button>`}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function dbPlayChar(jp){
+  speak(jp);
+  const el=document.getElementById('db-char-big');
+  if(!el)return;
+  el.classList.remove('db-playing');void el.offsetWidth;el.classList.add('db-playing');
+  setTimeout(()=>el.classList.remove('db-playing'),500);
+}
+function dbNext(){ dbState.stepIdx++; renderDbLearn(); }
+function dbPrev(){ if(dbState.stepIdx>0){dbState.stepIdx--; renderDbLearn();} }
+
+// ── QUIZ ──
+function dbStartQuiz(){
+  const ch = [...DB_CHAPTERS,...DB_CHAPTERS_K].find(c=>c.id===dbState.chapter);
+  const cards = ch.chars.map(([c,r])=>({ch:c,rm:r}));
+  dbState.quizQ = buildQuizDeck(ch.chars, Math.min(10, ch.chars.length*2));
+  dbState.quizIdx=0; dbState.quizOk=0; dbState.phase='quiz';
+  renderDbQuiz();
+}
+
+function renderDbQuiz(){
+  if(dbState.quizIdx>=dbState.quizQ.length){dbEndQuiz();return;}
+  const ch=[...DB_CHAPTERS,...DB_CHAPTERS_K].find(c=>c.id===dbState.chapter);
+  const card=dbState.quizQ[dbState.quizIdx];
+  const col=ch.color||'#C41E3A';
+  const pct=Math.round(dbState.quizIdx/dbState.quizQ.length*100);
+  const pool=ch.chars.map(([,r])=>r).filter(r=>r!==card.rm);
+  const opts=shuffle([card.rm,...shuffle(pool).slice(0,3)]);
+  setTimeout(()=>speak(card.ch),200);
+  document.getElementById('debut-root').innerHTML=`<div class="db-wrap">
+    <div class="db-quiz">
+      <div class="db-top">
+        <button class="db-back" onclick="dbGoChapter('${dbState.chapter}')">← Cours</button>
+        <div class="db-top-title">Quiz — ${ch.name}</div>
+        <div class="db-top-prog">${dbState.quizIdx+1}/${dbState.quizQ.length} · ✓${dbState.quizOk}</div>
+      </div>
+      <div class="db-pbar"><div class="db-pfill" style="width:${pct}%;background:${col};"></div></div>
+      <div class="db-repeat">🔊 Clique sur le caractère pour l'entendre</div>
+      <div class="db-quiz-q" id="dbqq" style="color:${col==='#C41E3A'?'var(--ink)':col}" onclick="dbPlayChar('${card.ch}')">${card.ch}</div>
+      <div class="db-quiz-opts">${opts.map(o=>`<button class="db-qo" onclick="dbAnswer(this,'${o}','${card.rm}')">${o}</button>`).join('')}</div>
+    </div>
+  </div>`;
+}
+
+function dbAnswer(btn,chosen,correct){
+  document.querySelectorAll('.db-qo').forEach(b=>{b.disabled=true;if(b.textContent===correct)b.classList.add('ok');});
+  const ok=chosen===correct;if(!ok)btn.classList.add('ko');else dbState.quizOk++;
+  recChar(dbState.quizQ[dbState.quizIdx].ch,ok);speak(dbState.quizQ[dbState.quizIdx].ch);
+  setTimeout(()=>{dbState.quizIdx++;renderDbQuiz();},800);
+}
+
+function dbEndQuiz(){
+  const ch=[...DB_CHAPTERS,...DB_CHAPTERS_K].find(c=>c.id===dbState.chapter);
+  const allChs=[...DB_CHAPTERS.filter(c=>c.type!=='intro'),...DB_CHAPTERS_K];
+  const curIdx=allChs.findIndex(c=>c.id===dbState.chapter);
+  const total=dbState.quizQ.length,ok=dbState.quizOk,pct=Math.round(ok/total*100),pass=pct>=70;
+  const xp=pass?25+ok*4:8;
+  if(pass){
+    const p=getP();p.lessons=p.lessons||{};p.lessons['db_'+ch.id]=true;saveP(p);
+    addXP(xp);updStreak();dbConfetti();
+  } else { addXP(xp); }
+  const stars=pct>=90?3:pct>=70?2:1;
+  const nxtCh=pass&&curIdx<allChs.length-1?allChs[curIdx+1]:null;
+  document.getElementById('debut-root').innerHTML=`<div class="db-wrap">
+    <div class="db-result">
+      <div class="db-result-jp">${pass?'合格！':'もう一度'}</div>
+      <div class="db-stars">${'⭐'.repeat(stars)+'☆'.repeat(3-stars)}</div>
+      <div class="db-result-score">${ok} / ${total} — ${pct}%</div>
+      <div style="font-size:14px;color:var(--green);font-weight:500;margin-bottom:6px;">+${xp} XP</div>
+      <div class="db-result-msg">${pass?(pct>=90?'🎌 Parfait ! Tu maîtrises ces caractères.':'✅ Bien joué ! Continue.'):'💪 Pas encore — relis et réessaie !'}</div>
+      <div class="db-nav">
+        <button class="db-btn db-btn-out" onclick="dbGoChapter('${dbState.chapter}')">🔄 Revoir</button>
+        ${nxtCh?`<button class="db-btn db-btn-grn" onclick="dbGoChapter('${nxtCh.id}')">Suivant →</button>`:''}
+        ${pass&&!nxtCh?`<button class="db-btn db-btn-red" onclick="renderDbHome()">🏠 Terminé !</button>`:''}
+        ${!pass?`<button class="db-btn db-btn-red" onclick="dbStartQuiz()">Réessayer</button>`:''}
+      </div>
+    </div>
+  </div>`;
+}
+
+function dbConfetti(){
+  const c=document.createElement('div');c.className='db-confetti';document.body.appendChild(c);
+  const cols=['#C41E3A','#D4900A','#1464C0','#2D6A4F','#6B48C7','#E8526A'];
+  for(let i=0;i<60;i++){
+    const p=document.createElement('div');p.className='db-conf-piece';
+    p.style.left=Math.random()*100+'vw';p.style.background=cols[Math.floor(Math.random()*cols.length)];
+    p.style.animationDuration=(1.5+Math.random()*2)+'s';p.style.animationDelay=Math.random()*.8+'s';
+    c.appendChild(p);
+  }
+  setTimeout(()=>c.remove(),4000);
+}
+
+// ═══════════════════════════════════════════════════════
+// PLAN JAPON
+// ═══════════════════════════════════════════════════════
+const JAPAN_DATE = new Date('2026-07-01');
+
+// Each week defines: what chars to study, cumulative set key, and direct action buttons
+const WEEKS = [
+  {
+    title:'Hiragana — Voyelles + K + S + T',
+    sub:'Les 20 premiers caractères',
+    when:'🟡 Commence les exercices dès jour 3 — apprends 2 rangées avant de réviser.',
+    set:'w1',   // custom set: HG rows 0-3
+    goals:[
+      {ico:'📖',txt:'Cours débutant : Voyelles, K-row, S-row, T-row'},
+      {ico:'🃏',txt:'Flashcards sur les 4 rangées apprises — quand tu scores 80%+ enchaîne le QCM'},
+      {ico:'🔊',txt:'Mode "Écouter & identifier" pour ancrer les sons'},
+      {ico:'✍️',txt:'Réécris les caractères à la main — la mémoire musculaire compte'},
+    ],
+    actions:[
+      {lbl:'🃏 Flashcards S1',    fn:"wkPractice('w1','flash')"},
+      {lbl:'🔤 QCM Kana→Romaji', fn:"wkPractice('w1','qcm-kr')"},
+      {lbl:'🔊 Écouter',          fn:"wkPractice('w1','listen')"},
+      {lbl:'⚡ Speed Round',       fn:"wkSpeed('h-basic')"},
+    ],
+    tip:'Ne passe pas à la semaine 2 avant de scorer 90%+ sur K-row et S-row. La solidité > la vitesse.',
+  },
+  {
+    title:'Hiragana — N + H + M + Y/W/N + R',
+    sub:'Les 26 caractères restants — hiragana complet',
+    when:'🟢 Tu peux lancer les exercices dès le premier jour de la semaine.',
+    set:'h-basic',  // full 46 base hiragana
+    goals:[
+      {ico:'📖',txt:'Cours débutant : N-row, H-row, M-row, Y/W/N, R-row'},
+      {ico:'🃏',txt:'Flashcards sur tout l\'hiragana basique (46 chars cumulés)'},
+      {ico:'✍️',txt:'Exercice écriture — tape le romaji depuis le QCM'},
+      {ico:'🃏',txt:'Jeu de paires pour ancrer les associations visuelles'},
+    ],
+    actions:[
+      {lbl:'🃏 Flashcards S1+S2',  fn:"wkPractice('h-basic','flash')"},
+      {lbl:'🔤 QCM Kana→Romaji',   fn:"wkPractice('h-basic','qcm-kr')"},
+      {lbl:'📖 Lire des mots',      fn:"wkPractice('words-h','qcm-kr')"},
+      {lbl:'🃏 Jeu de paires',      fn:"wkMatch('h-basic')"},
+      {lbl:'⚡ Speed Round',        fn:"wkSpeed('h-basic')"},
+    ],
+    tip:'À la fin de cette semaine tu dois pouvoir lire すし, ねこ, さくら sans hésiter.',
+  },
+  {
+    title:'Hiragana Dakuten + Consolidation',
+    sub:'が ざ だ ば ぱ + révision totale hiragana',
+    when:'🟢 Lance les exercices dès le début — tu as déjà les bases.',
+    set:'h-all',
+    goals:[
+      {ico:'📖',txt:'Cours débutant : Dakuten G, Z/D, B/P'},
+      {ico:'🃏',txt:'Flashcards hiragana complet (66 chars cumulés avec dakuten)'},
+      {ico:'✍️',txt:'Exercice écriture — le plus efficace pour ancrer les dakuten'},
+      {ico:'📋',txt:'Imprime le tableau Hiragana (page 1) et affiche-le chez toi'},
+    ],
+    actions:[
+      {lbl:'🃏 Flashcards S1+S2+S3', fn:"wkPractice('h-all','flash')"},
+      {lbl:'✍️ Écriture romaji',       fn:"wkPractice('h-all','type')"},
+      {lbl:'🔁 Romaji→Kana',           fn:"wkPractice('h-all','qcm-rk')"},
+      {lbl:'📖 Lire des mots ひ',      fn:"wkPractice('words-h','qcm-kr')"},
+      {lbl:'⚡ Speed Round ひ complet', fn:"wkSpeed('h-all')"},
+    ],
+    tip:'Si tu mélanges ぬ/め/ね, c\'est normal — ce sont les 3 traîtres. Utilise les mnémoniques.',
+  },
+  {
+    title:'Katakana — Voyelles à M-row',
+    sub:'ア イ ウ → マ ミ ム (25 nouveaux chars)',
+    when:'🟡 Apprends d\'abord 2-3 rangées avant de lancer les exercices.',
+    set:'w4',
+    goals:[
+      {ico:'📖',txt:'Cours débutant Katakana : Voyelles K → M-row K'},
+      {ico:'🔍',txt:'Compare chaque katakana à son hiragana — même son, forme différente'},
+      {ico:'🃏',txt:'Flashcards katakana basique + révision hiragana en parallèle'},
+      {ico:'📱',txt:'Teste Google Translate mode caméra sur des textes japonais'},
+    ],
+    actions:[
+      {lbl:'🃏 Flashcards Kata début', fn:"wkPractice('w4','flash')"},
+      {lbl:'🔤 QCM Katakana',          fn:"wkPractice('w4','qcm-kr')"},
+      {lbl:'🔄 Révision ひ',            fn:"wkPractice('h-all','qcm-kr')"},
+      {lbl:'⚡ Speed ひ + début カ',    fn:"wkSpeed('w4')"},
+    ],
+    tip:'Le katakana est plus angulaire donc plus facile à distinguer une fois qu\'on a l\'oeil.',
+  },
+  {
+    title:'Katakana — Y/W/N + R + Consolidation',
+    sub:'Tout le katakana + révision des 4 semaines',
+    when:'🟢 Lance les exercices immédiatement — tu es dans la phase de consolidation.',
+    set:'k-basic',
+    goals:[
+      {ico:'📖',txt:'Cours débutant Katakana : Y/W/N K et R-row K'},
+      {ico:'📖',txt:'Exercice "Lire des mots (カ)" — コーヒー, テレビ, フランス'},
+      {ico:'🃏',txt:'Jeu de paires mixte hiragana + katakana'},
+      {ico:'✍️',txt:'Écris ton prénom en katakana !'},
+    ],
+    actions:[
+      {lbl:'🃏 Flashcards Kata complet', fn:"wkPractice('k-basic','flash')"},
+      {lbl:'✍️ Écriture romaji カ',       fn:"wkPractice('k-basic','type')"},
+      {lbl:'📖 Lire des mots カ',         fn:"wkPractice('words-k','qcm-kr')"},
+      {lbl:'🃏 Paires mixte ひ+カ',       fn:"wkMatch('mix')"},
+      {lbl:'⚡ Speed ひ + カ',            fn:"wkSpeed('hk')"},
+    ],
+    tip:'À ce stade tu peux lire phonétiquement 95% des menus et panneaux japonais. Énorme.',
+  },
+  {
+    title:'Vocabulaire + Phrases de survie',
+    sub:'Chiffres, couleurs, nourriture, verbes',
+    when:'🟢 Lance les exercices tout de suite — le vocabulaire se mémorise vite.',
+    set:'vocab',
+    goals:[
+      {ico:'📖',txt:'Leçons vocabulaire : chiffres, couleurs, jours, nourriture, verbes, adjectifs'},
+      {ico:'🃏',txt:'Flashcards vocabulaire + hiragana/katakana en révision croisée'},
+      {ico:'🗣️',txt:'Apprends les phrases de survie dans l\'onglet Plan Japon'},
+      {ico:'📝',txt:'Priorité absolue : すみません, ありがとう, いくらですか'},
+    ],
+    actions:[
+      {lbl:'🃏 Flashcards Vocab',       fn:"wkPractice('vocab','flash')"},
+      {lbl:'🔤 QCM Vocab',              fn:"wkPractice('vocab','qcm-kr')"},
+      {lbl:'⚡ Speed révision ひ+カ',   fn:"wkSpeed('hk')"},
+      {lbl:'⚡ Points faibles',          fn:"wkPractice('weak','qcm-kr')"},
+    ],
+    tip:'Tu n\'as pas besoin de grammaire pour survivre. "すし ください" fonctionne parfaitement.',
+  },
+  {
+    title:'Pratique intensive + Révision croisée',
+    sub:'Tout cumulé — hiragana + katakana + vocab',
+    when:'🟢 C\'est la semaine d\'intensité maximale — exercices matin et soir.',
+    set:'hk',
+    goals:[
+      {ico:'🎯',txt:'SRS quotidien — widget révision sur l\'accueil, tous les caractères dus'},
+      {ico:'✍️',txt:'Écriture romaji sur tout : hira + kata + vocab'},
+      {ico:'🔊',txt:'Écouter & identifier : le test ultime'},
+      {ico:'🎮',txt:'Speed Round hira+kata — vise 35+ points'},
+    ],
+    actions:[
+      {lbl:'✍️ Écriture tout cumulé',    fn:"wkPractice('h-all','type')"},
+      {lbl:'🔊 Écouter & identifier',     fn:"wkPractice('h-basic','listen')"},
+      {lbl:'📖 Lire mots ひ + カ',        fn:"wkPractice('words-h','qcm-kr')"},
+      {lbl:'⚡ Points faibles',           fn:"wkPractice('weak','qcm-kr')"},
+      {lbl:'⚡ Speed ひ+カ — record ?',   fn:"wkSpeed('hk')"},
+    ],
+    tip:'À ce stade tu peux lire, survivre, et faire bonne impression. Le reste s\'apprendra sur place.',
+  },
+  {
+    title:'Révision finale + Préparation terrain',
+    sub:'Dernière ligne droite avant Tokyo',
+    when:'🟢 Révision légère — 15 min/jour suffisent, ne surcharge pas.',
+    set:'weak',
+    goals:[
+      {ico:'📋',txt:'Imprime les 2 tableaux et glisse-les dans ton bagage à main'},
+      {ico:'📱',txt:'Télécharge : Google Translate offline JP, Safety Tips, Suica app'},
+      {ico:'🗣️',txt:'Révise les 50 phrases de survie une dernière fois'},
+      {ico:'🎌',txt:'Tu es prêt(e). いってらっしゃい！(bon voyage !)'},
+    ],
+    actions:[
+      {lbl:'⚡ Points faibles final',    fn:"wkPractice('weak','qcm-kr')"},
+      {lbl:'📖 Lire des mots ひ',        fn:"wkPractice('words-h','qcm-kr')"},
+      {lbl:'📖 Lire des mots カ',        fn:"wkPractice('words-k','qcm-kr')"},
+      {lbl:'⚡ Speed ひ+カ — dernier record', fn:"wkSpeed('hk')"},
+    ],
+    tip:'N\'aie pas peur de sortir ton téléphone pour traduire. Les Japonais adorent qu\'on essaie.',
+  },
+];
+
+const SURVIVAL = [
+  // Absolus indispensables
+  {cat:'🔴 Absolument indispensables',prio:'red',items:[
+    {jp:'すみません',rm:'sumimasen',fr:'Excusez-moi / S\'il vous plaît',note:'Pour tout : appeler un serveur, s\'excuser, demander de l\'aide'},
+    {jp:'ありがとうございます',rm:'arigatō gozaimasu',fr:'Merci beaucoup',note:'Version polie. "Arigatō" seul est trop informel avec des inconnus'},
+    {jp:'はい / いいえ',rm:'hai / iie',fr:'Oui / Non',note:'Hai peut aussi signifier "je vous écoute" — pas toujours "oui"'},
+    {jp:'わかりません',rm:'wakarimasen',fr:'Je ne comprends pas',note:'Indispensable. À utiliser sans honte — les Japonais adapteront'},
+    {jp:'えいごをはなせますか？',rm:'eigo wo hanasemasu ka?',fr:'Parlez-vous anglais ?',note:''},
+    {jp:'〜はどこですか？',rm:'〜 wa doko desu ka?',fr:'Où est 〜 ?',note:'Remplace 〜 par : トイレ (toilettes), えき (gare), ホテル (hôtel)'},
+    {jp:'いくらですか？',rm:'ikura desu ka?',fr:'C\'est combien ?',note:'Phrase la plus utile dans tous les commerces'},
+    {jp:'〜をください',rm:'〜 wo kudasai',fr:'Je voudrais 〜 / Donnez-moi 〜',note:'Ex : みず を ください = de l\'eau s\'il vous plaît'},
+  ]},
+  // Transports
+  {cat:'🚇 Transports',prio:'ylw',items:[
+    {jp:'〜にいきたいです',rm:'〜 ni ikitai desu',fr:'Je veux aller à 〜',note:'Montre la carte si tu peux pas prononcer'},
+    {jp:'〜いきのきっぷをください',rm:'〜 iki no kippu wo kudasai',fr:'Un ticket pour 〜, s\'il vous plaît',note:''},
+    {jp:'このでんしゃは〜にとまりますか？',rm:'kono densha wa 〜 ni tomarimasu ka?',fr:'Ce train s\'arrête à 〜 ?',note:''},
+    {jp:'つぎはなんですか？',rm:'tsugi wa nan desu ka?',fr:'C\'est quoi la prochaine station ?',note:''},
+    {jp:'まよってしまいました',rm:'mayotte shimaimashita',fr:'Je me suis perdu(e)',note:'Les Japonais feront tout pour t\'aider'},
+  ]},
+  // Restaurant / Konbini
+  {cat:'🍜 Restaurant & Konbini',prio:'ylw',items:[
+    {jp:'〜をひとつください',rm:'〜 wo hitotsu kudasai',fr:'Un 〜 s\'il vous plaît',note:'hitotsu = 1, futatsu = 2, mittsu = 3'},
+    {jp:'おすすめはなんですか？',rm:'osusume wa nan desu ka?',fr:'Qu\'est-ce que vous recommandez ?',note:''},
+    {jp:'おいしいです！',rm:'oishii desu!',fr:'C\'est délicieux !',note:'Fait toujours plaisir au chef'},
+    {jp:'アレルギーがあります',rm:'arerugī ga arimasu',fr:'J\'ai une allergie',note:'Suivi de : にく (viande), さかな (poisson), グルテン (gluten)'},
+    {jp:'べじたりあんです',rm:'bejitarian desu',fr:'Je suis végétarien(ne)',note:'Le Japon n\'est pas très végé-friendly, préviens à l\'avance'},
+    {jp:'おかんじょうおねがいします',rm:'okanjō onegai shimasu',fr:'L\'addition s\'il vous plaît',note:'Ou faire le geste de croiser les index en X'},
+    {jp:'カードでいいですか？',rm:'kādo de ii desu ka?',fr:'Je peux payer par carte ?',note:'Beaucoup d\'endroits acceptent uniquement le cash'},
+  ]},
+  // Shopping
+  {cat:'🛍️ Shopping',prio:'grn',items:[
+    {jp:'みせてください',rm:'misete kudasai',fr:'Montrez-moi s\'il vous plaît',note:'Pour demander à voir un article'},
+    {jp:'ちがうサイズはありますか？',rm:'chigau saizu wa arimasu ka?',fr:'Vous avez une autre taille ?',note:''},
+    {jp:'まけてもらえますか？',rm:'makete moraemasu ka?',fr:'Vous pouvez faire un geste sur le prix ?',note:'Surtout utile dans les marchés et vide-greniers'},
+    {jp:'ふくろはいりません',rm:'fukuro wa irimasen',fr:'Je n\'ai pas besoin de sac',note:'Geste écolo apprécié'},
+    {jp:'これをください',rm:'kore wo kudasai',fr:'Je prends ça',note:'Montre l\'article en même temps'},
+  ]},
+  // Urgences & Santé
+  {cat:'🚨 Urgences',prio:'red',items:[
+    {jp:'たすけてください！',rm:'tasukete kudasai!',fr:'Au secours / Aidez-moi !',note:''},
+    {jp:'きゅうきゅうしゃをよんでください',rm:'kyūkyūsha wo yonde kudasai',fr:'Appelez une ambulance',note:'Pompiers/SAMU : 119 · Police : 110'},
+    {jp:'びょういんにいきたいです',rm:'byōin ni ikitai desu',fr:'Je veux aller à l\'hôpital',note:''},
+    {jp:'ここがいたいです',rm:'koko ga itai desu',fr:'J\'ai mal ici',note:'Pointe l\'endroit douloureux'},
+    {jp:'くすりがひつようです',rm:'kusuri ga hitsuyō desu',fr:'J\'ai besoin de médicaments',note:''},
+  ]},
+  // Social
+  {cat:'😊 Contacts & Social',prio:'grn',items:[
+    {jp:'はじめまして',rm:'hajimemashite',fr:'Enchanté(e) — première rencontre',note:'Toujours suivi de よろしくおねがいします'},
+    {jp:'〜からきました',rm:'〜 kara kimashita',fr:'Je viens de 〜',note:'フランス から きました = Je viens de France'},
+    {jp:'にほんごがすこしわかります',rm:'nihongo ga sukoshi wakarimasu',fr:'Je comprends un peu le japonais',note:'Ouvre les portes — les Japonais seront ravis'},
+    {jp:'しゃしんをとってもいいですか？',rm:'shashin wo totte mo ii desu ka?',fr:'Je peux prendre une photo ?',note:'Toujours demander avant'},
+    {jp:'いっしょにしゃしんをとりませんか？',rm:'issho ni shashin wo torimasen ka?',fr:'On peut prendre une photo ensemble ?',note:''},
+  ]},
+];
+
+const PLAN_TIPS = [
+  {ico:'⏰',tag:'Timing',tagcls:'tt-red',title:'30 minutes par jour valent mieux qu\'une session de 3h le weekend',
+   body:'Le cerveau mémorise mieux avec de la répétition espacée. <b>20 min le matin + 10 min le soir</b> = résultats 2× meilleurs qu\'une longue session. Le widget SRS sur l\'accueil te dit exactement quoi réviser chaque jour.'},
+  {ico:'🎯',tag:'Priorités',tagcls:'tt-red',title:'Hiragana d\'abord, tout le reste ensuite',
+   body:'Tu as 8 semaines. L\'ordre optimal : <b>Hiragana complet (semaines 1-3) → Katakana (4-5) → Survie pratique (6-8)</b>. Ne commence pas à apprendre du vocabulaire avant d\'avoir les kana solides — tu en auras besoin pour tout le reste.'},
+  {ico:'👂',tag:'Audio',tagcls:'tt-blu',title:'Écoute du japonais tous les jours — même sans comprendre',
+   body:'Mets une playlist japonaise en fond, regarde un anime en VO avec sous-titres japonais. <b>L\'oreille s\'habitue aux sons</b> avant même que le cerveau comprenne. JapanesePod101 sur YouTube = 5 min par jour de japonais naturel.'},
+  {ico:'✍️',tag:'Écriture',tagcls:'tt-grn',title:'Écris les kana à la main — vraiment',
+   body:'La mémoire musculaire est différente de la mémoire visuelle. <b>Écrire un caractère 10 fois</b> vaut autant que le voir 50 fois à l\'écran. Prends un cahier quadrillé, trace les grilles, écris. Tu te souviendras mieux sous le stress du voyage.'},
+  {ico:'📱',tag:'Immersion',tagcls:'tt-blu',title:'Change la langue de ton téléphone en japonais 1 semaine',
+   body:'Radicale mais efficace. Tu connais déjà l\'interface — ton cerveau va automatiquement chercher à comprendre les mots autour des icônes familières. <b>Même 3-4 jours suffisent</b> pour énormément progresser en lecture de kana.'},
+  {ico:'🃏',tag:'Mémorisation',tagcls:'tt-grn',title:'Utilise les mnémoniques — elles semblent stupides, elles marchent',
+   body:'Le cours débutant a une astuce mémoire pour chaque caractère. <b>し ressemble à un hameçon</b> (shi = fish hook). め = œil (et "me" signifie œil en japonais !). Ces associations idiotes s\'ancrent profondément — c\'est prouvé par la recherche.'},
+  {ico:'🗣️',tag:'Prononciation',tagcls:'tt-grn',title:'Le japonais se prononce exactement comme il s\'écrit',
+   body:'Pas d\'exceptions, pas de lettres muettes, pas de schwa. <b>Chaque syllabe a le même poids.</b> "Arigatō" = a-ri-ga-to. Le plus dur pour les Francophones c\'est de ne pas mettre d\'accent tonique — toutes les syllabes sont égales.'},
+  {ico:'🎌',tag:'Motivation',tagcls:'tt-red',title:'Le niveau "survie" est atteignable en 8 semaines — vraiment',
+   body:'Lire hiragana + katakana + 50 phrases = tu peux commander à manger, prendre le métro, remercier, t\'excuser, demander de l\'aide. <b>Ce n\'est pas du japonais courant mais c\'est la différence</b> entre se sentir perdu et se sentir en contrôle. Ça vaut 2 mois d\'efforts.'},
+  {ico:'💡',tag:'Astuce terrain',tagcls:'tt-blu',title:'Apprends à reconnaître les kanji des panneaux importants',
+   body:'Même sans étudier les kanji, mémorise visuellement : <b>出口 (sortie), 入口 (entrée), 駅 (gare), 男 (hommes), 女 (femmes), 非常口 (sortie de secours), 禁煙 (non-fumeur).</b> Ces 7 kanji suffisent à survivre dans les transports et lieux publics.'},
+  {ico:'🚇',tag:'Sur place',tagcls:'tt-red',title:'Suica card + Google Maps offline = liberté totale',
+   body:'Avant de partir : <b>télécharge les cartes Tokyo/Osaka/Kyoto offline</b> dans Google Maps. Achète une Suica à l\'aéroport. Tu n\'as plus besoin d\'acheter de tickets un par un pour tout le séjour. Le reste c\'est de la débrouillardise.'},
+];
+
+let planTab = 'programme';
+let planRendered = false;
+
+function renderPlan(){
+  const root = document.getElementById('plan-root');
+
+  // Countdown
+  const now = new Date();
+  const diff = JAPAN_DATE - now;
+  const days  = Math.max(0, Math.floor(diff / 86400000));
+  const weeks = Math.floor(days/7);
+  const rem   = days % 7;
+
+  // Current week (1-indexed, based on distance from now to July 1)
+  const weeksTotal = 8;
+  const daysTotal = weeksTotal * 7;
+  const daysElapsed = Math.max(0, daysTotal - days);
+  const currentWeek = Math.min(weeksTotal, Math.floor(daysElapsed / 7) + 1);
+
+  // Progress stats
+  const p = getP();
+  const allH = HG.flatMap(g=>g.ch);
+  const allK = KG.flatMap(g=>g.ch);
+  const hDone = allH.filter(([c])=>mastery(c)>=2).length;
+  const kDone = allK.filter(([c])=>mastery(c)>=2).length;
+  const lessonsH = HG.filter(g=>p.lessons&&p.lessons[g.id]).length;
+  const lessonsK = KG.filter(g=>p.lessons&&p.lessons[g.id]).length;
+
+  let html = `<div class="plan-wrap">
+
+  <!-- COUNTDOWN -->
+  <div class="countdown-box">
+    <div class="cd-label">Départ pour le Japon</div>
+    <div class="cd-numbers">
+      ${days > 0 ? `
+      <div class="cd-unit"><div class="cd-val">${weeks}</div><div class="cd-sub">semaines</div></div>
+      <div style="font-size:40px;opacity:.5;align-self:center;">:</div>
+      <div class="cd-unit"><div class="cd-val">${rem}</div><div class="cd-sub">jours</div></div>` :
+      `<div class="cd-unit"><div class="cd-val">🎌</div><div class="cd-sub">C'est parti !</div></div>`}
+    </div>
+    <div class="cd-msg">${days > 60 ? `Encore ${days} jours — tu as largement le temps de maîtriser l'hiragana et le katakana.` :
+      days > 30 ? `${days} jours — focus sur les kana et les phrases de survie !` :
+      days > 7 ? `Plus que ${days} jours ! Révise les phrases essentielles chaque jour.` :
+      days > 0 ? `${days} jours ! Dernière révision des phrases de survie 🔥` :
+      'Bon voyage ! いってらっしゃい！'}</div>
+  </div>
+
+  <!-- STATS -->
+  <div class="plan-progress">
+    <div class="pp-card">
+      <div class="pp-val">${lessonsH}/9</div>
+      <div class="pp-lbl">Leçons ひ</div>
+      <div class="pp-bar"><div class="pp-fill" style="width:${Math.round(lessonsH/9*100)}%"></div></div>
+    </div>
+    <div class="pp-card">
+      <div class="pp-val">${lessonsK}/9</div>
+      <div class="pp-lbl">Leçons カ</div>
+      <div class="pp-bar"><div class="pp-fill" style="width:${Math.round(lessonsK/9*100)}%"></div></div>
+    </div>
+    <div class="pp-card">
+      <div class="pp-val">${hDone}/${allH.length}</div>
+      <div class="pp-lbl">ひ maîtrisés</div>
+      <div class="pp-bar"><div class="pp-fill" style="width:${Math.round(hDone/allH.length*100)}%"></div></div>
+    </div>
+    <div class="pp-card">
+      <div class="pp-val">${p.str}🔥</div>
+      <div class="pp-lbl">Streak actuel</div>
+      <div class="pp-bar"><div class="pp-fill" style="width:${Math.min(100,p.str/30*100)}%"></div></div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="plan-tabs">
+    <button class="ptb ${planTab==='programme'?'on':''}" onclick="switchPlanTab('programme')">📅 Programme 8 semaines</button>
+    <button class="ptb ${planTab==='survie'?'on':''}" onclick="switchPlanTab('survie')">🗣️ Kit de survie</button>
+    <button class="ptb ${planTab==='tips'?'on':''}" onclick="switchPlanTab('tips')">💡 Conseils d'apprentissage</button>
+  </div>
+
+  <!-- PROGRAMME -->
+  <div id="plan-programme" style="display:${planTab==='programme'?'block':'none'}">`;
+
+  WEEKS.forEach((w,i)=>{
+    const wn = i+1;
+    const isCurrent = wn===currentWeek;
+    const isDone = wn < currentWeek;
+    const isGo = w.when.startsWith('🟢');
+    html += `<div class="plan-week ${isCurrent?'current':isDone?'done':''}">
+      <div class="pw-head">
+        <div class="pw-num ${isCurrent?'current':isDone?'done':'future'}">${isDone?'✓':wn}</div>
+        <div>
+          <div class="pw-title">Semaine ${wn} — ${w.title}</div>
+          <div class="pw-subtitle">${w.sub}</div>
+        </div>
+        ${isCurrent?'<div class="pw-badge current">← Maintenant</div>':isDone?'<div class="pw-badge done">✓ Passé</div>':''}
+      </div>
+      <div class="pw-when ${isGo?'go':'wait'}">${w.when}</div>
+      <div class="pw-goals">
+        ${w.goals.map(g=>`<div class="pw-goal"><span class="pw-goal-ico">${g.ico}</span><span>${g.txt}</span></div>`).join('')}
+      </div>
+      <div class="pw-actions">
+        ${w.actions.map(a=>`<button class="pw-act" onclick="${a.fn}">${a.lbl}</button>`).join('')}
+      </div>
+      <div class="pw-tip">💬 ${w.tip}</div>
+    </div>`;
+  });
+
+  html += `</div>
+
+  <!-- SURVIE -->
+  <div id="plan-survie" style="display:${planTab==='survie'?'block':'none'}">
+    <p style="font-size:13px;color:var(--ink2);margin-bottom:1rem;line-height:1.6;">Clique sur chaque carte pour entendre la prononciation. <span style="display:inline-flex;align-items:center;gap:4px;"><span class="sv-prio red" style="width:8px;height:8px;border-radius:50%;display:inline-block;"></span> Critique</span> · <span style="display:inline-flex;align-items:center;gap:4px;"><span class="sv-prio ylw" style="width:8px;height:8px;border-radius:50%;display:inline-block;background:var(--yellow);"></span> Important</span> · <span style="display:inline-flex;align-items:center;gap:4px;"><span class="sv-prio grn" style="width:8px;height:8px;border-radius:50%;display:inline-block;background:var(--green);"></span> Utile</span></p>
+    <div class="survival-grid">`;
+
+  SURVIVAL.forEach(cat=>{
+    html += `<div class="sv-cat">${cat.cat}</div>`;
+    cat.items.forEach(item=>{
+      html += `<div class="sv-card" onclick="speak('${item.jp.replace(/'/g,"\\'")}')">
+        <div class="sv-prio ${cat.prio}"></div>
+        <div class="sv-jp">${item.jp}</div>
+        <div class="sv-right">
+          <div class="sv-rm">${item.rm}</div>
+          <div class="sv-fr">${item.fr}</div>
+          ${item.note?`<div class="sv-note">${item.note}</div>`:''}
+        </div>
+      </div>`;
+    });
+  });
+
+  html += `</div></div>
+
+  <!-- TIPS -->
+  <div id="plan-tips" style="display:${planTab==='tips'?'block':'none'}">
+    <div class="tips-list">`;
+
+  PLAN_TIPS.forEach(t=>{
+    html += `<div class="tip-item">
+      <div class="tip-ico">${t.ico}</div>
+      <div>
+        <div class="tip-tag ${t.tagcls}">${t.tag}</div>
+        <div class="tip-title">${t.title}</div>
+        <div class="tip-body">${t.body}</div>
+      </div>
+    </div>`;
+  });
+
+  html += `</div></div></div>`; // end tips, plan-wrap
+
+  root.innerHTML = html;
+}
+
+function switchPlanTab(tab){
+  planTab = tab;
+  ['programme','survie','tips'].forEach(t=>{
+    const el = document.getElementById('plan-'+t);
+    if(el) el.style.display = t===tab?'block':'none';
+  });
+  document.querySelectorAll('.ptb').forEach(b=>{
+    b.classList.toggle('on', b.textContent.includes(tab==='programme'?'Programme':tab==='survie'?'survie':'Conseils'));
+  });
+}
+
+// Week custom decks (cumulative)
+function getWkDeck(k){
+  if(k==='w1') return HG.slice(0,4).flatMap(g=>g.ch.map(([c,r])=>({ch:c,rm:r}))); // rows 0-3
+  if(k==='w4') return KG.slice(0,5).flatMap(g=>g.ch.map(([c,r])=>({ch:c,rm:r}))); // kata rows 0-4
+  return getDeck(k);
+}
+
+function wkPractice(set, mode){
+  goTab('practice');
+  // Set content button
+  document.querySelectorAll('#cfg-set .co').forEach(b=>b.classList.toggle('on',b.dataset.v===set));
+  pSet = set;
+  // Set mode button
+  updModes();
+  setTimeout(()=>{
+    document.querySelectorAll('#cfg-mode .co').forEach(b=>b.classList.toggle('on',b.dataset.v===mode));
+    pMode = mode;
+    // Build deck and start
+    const raw = getWkDeck(set);
+    if(!raw.length) return;
+    exDeck = shuffle(raw).slice(0,20);
+    exIdx=0; exOk=0; exRev=false;
+    renderEx();
+  }, 50);
+}
+
+function wkSpeed(set){
+  goTab('games');
+  showGameTab('speed');
+  ssSet = set;
+  document.querySelectorAll('#gt-speed .co').forEach(b=>b.classList.toggle('on',b.dataset.v===set));
+  launchSpeed();
+}
+
+function wkMatch(set){
+  goTab('games');
+  showGameTab('match');
+  mSet = set;
+  document.querySelectorAll('#gt-match .co').forEach(b=>b.classList.toggle('on',b.dataset.v===set));
+  startMatch(set);
+}
+
+// ═══════════════════════════════════════════════════════
+// DARK MODE
+// ═══════════════════════════════════════════════════════
+function toggleDark(){
+  document.body.classList.toggle('dark');
+  const on = document.body.classList.contains('dark');
+  document.getElementById('dark-btn').textContent = on ? '☀️' : '🌙';
+  try{ localStorage.setItem('ngl-dark', on?'1':'0'); }catch{}
+}
+function initDark(){
+  try{
+    const on = localStorage.getItem('ngl-dark')==='1';
+    if(on){ document.body.classList.add('dark'); document.getElementById('dark-btn').textContent='☀️'; }
+  }catch{}
+}
+
+// ═══════════════════════════════════════════════════════
+// SRS — RÉVISION QUOTIDIENNE
+// ═══════════════════════════════════════════════════════
+function getSRSDue(){
+  const p = getP();
+  const now = Date.now();
+  const intervals = [0, 86400000, 259200000, 604800000]; // 0, 1j, 3j, 7j
+  const all = HG.flatMap(g=>g.ch).concat(KG.flatMap(g=>g.ch));
+  return all.filter(([c])=>{
+    const s = p.chars[c];
+    if(!s || !s.seen) return false; // pas encore vu
+    const m = mastery(c);
+    const lastSeen = s.last || 0;
+    return (now - lastSeen) >= intervals[m];
+  }).map(([c,r])=>({ch:c,rm:r}));
+}
+
+function renderSRSWidget(){
+  const due = getSRSDue();
+  const el = document.getElementById('d-srs');
+  if(!el) return;
+  if(due.length === 0){
+    el.innerHTML=`<div class="srs-box">
+      <div class="srs-head">
+        <span class="srs-title">🔄 Révision du jour</span>
+        <span class="srs-count ok">✓ Tout à jour</span>
+      </div>
+      <div style="font-size:12px;color:var(--ink3);">Aucun caractère à revoir pour l'instant. Reviens demain !</div>
+    </div>`;
+    return;
+  }
+  const preview = due.slice(0,12);
+  el.innerHTML=`<div class="srs-box">
+    <div class="srs-head">
+      <span class="srs-title">🔄 Révision du jour</span>
+      <span class="srs-count hot">${due.length} à revoir</span>
+    </div>
+    <div class="srs-chars">${preview.map(c=>`<span class="srs-char" onclick="speak('${c.ch}')" title="${c.rm}">${c.ch}</span>`).join('')}${due.length>12?`<span style="font-size:12px;color:var(--ink3);align-self:center;">+${due.length-12}</span>`:''}</div>
+    <button class="srs-btn" onclick="startSRSSession()">▶ Commencer la révision</button>
+  </div>`;
+}
+
+function startSRSSession(){
+  const due = getSRSDue();
+  if(!due.length) return;
+  goTab('practice');
+  exDeck = shuffle(due).slice(0,20);
+  exIdx=0; exOk=0; exRev=false;
+  pMode = 'qcm-kr';
+  document.querySelectorAll('#cfg-mode .co').forEach(b=>b.classList.toggle('on',b.dataset.v==='qcm-kr'));
+  renderEx();
+}
+
+// ═══════════════════════════════════════════════════════
+// DÉFI DU JOUR
+// ═══════════════════════════════════════════════════════
+const DAILY_SK = 'ngl-daily';
+function getTodayKey(){ return new Date().toISOString().slice(0,10); }
+function isDailyDone(){ try{ const d=JSON.parse(localStorage.getItem(DAILY_SK)||'{}'); return d.date===getTodayKey()&&d.done; }catch{ return false; } }
+function markDailyDone(score){ try{ localStorage.setItem(DAILY_SK,JSON.stringify({date:getTodayKey(),done:true,score})); }catch{} }
+
+function renderDailyWidget(){
+  const el = document.getElementById('d-daily');
+  if(!el) return;
+  const done = isDailyDone();
+  const today = new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'});
+  if(done){
+    const score = JSON.parse(localStorage.getItem(DAILY_SK)||'{}').score||'?';
+    el.innerHTML=`<div class="daily-box">
+      <div class="daily-head">⚡ Défi du jour — ${today}</div>
+      <div class="daily-title">Déjà complété aujourd'hui !</div>
+      <div class="daily-done">🏆 Score : ${score}/5 · Reviens demain pour un nouveau défi</div>
+    </div>`;
+  } else {
+    el.innerHTML=`<div class="daily-box">
+      <div class="daily-head">⚡ Défi du jour — ${today}</div>
+      <div class="daily-title">5 questions · Maintiens ton streak 🔥</div>
+      <button class="daily-btn" onclick="startDailyChallenge()">▶ Relever le défi</button>
+    </div>`;
+  }
+}
+
+let dailyQ=[], dailyIdx=0, dailyOk=0;
+function startDailyChallenge(){
+  const p = getP();
+  // Seed: combine today's date into a deterministic shuffle
+  const todayKey = getTodayKey();
+  const seed = todayKey.split('-').reduce((a,b)=>a+parseInt(b),0);
+  const seededShuffle = arr => {
+    const a=[...arr]; let s=seed;
+    for(let i=a.length-1;i>0;i--){s=(s*1664525+1013904223)&0xFFFFFFFF;const j=Math.abs(s)%(i+1);[a[i],a[j]]=[a[j],a[i]];}
+    return a;
+  };
+  const pool = HG.slice(0,5).flatMap(g=>g.ch.map(([c,r])=>({ch:c,rm:r}))); // use first 5 groups learned
+  dailyQ = seededShuffle(pool).slice(0,5);
+  dailyIdx=0; dailyOk=0;
+  renderDailyQ();
+}
+
+function renderDailyQ(){
+  if(dailyIdx>=dailyQ.length){ endDailyChallenge(); return; }
+  const card = dailyQ[dailyIdx];
+  const pool = HG.slice(0,5).flatMap(g=>g.ch).map(([,r])=>r).filter(r=>r!==card.rm);
+  const opts = shuffle([card.rm,...shuffle(pool).slice(0,3)]);
+  speak(card.ch);
+  document.getElementById('d-daily').innerHTML=`<div class="daily-box" style="background:var(--card);color:var(--ink);border:1px solid var(--border);">
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink3);margin-bottom:.8rem;">
+      <span>⚡ Défi du jour</span><span>${dailyIdx+1}/5 · ✓${dailyOk}</span>
+    </div>
+    <div class="q-big" onclick="speak('${card.ch}')" style="margin:.8rem 0;">${card.ch}</div>
+    <div class="q-opts">${opts.map(o=>`<button class="qo" onclick="ansDaily(this,'${o}','${card.rm}')">${o}</button>`).join('')}</div>
+  </div>`;
+}
+function ansDaily(btn,chosen,correct){
+  document.querySelectorAll('#d-daily .qo').forEach(b=>{b.disabled=true;if(b.textContent===correct)b.classList.add('ok');});
+  const ok=chosen===correct;if(!ok)btn.classList.add('ko');else dailyOk++;
+  recChar(dailyQ[dailyIdx].ch,ok);speak(dailyQ[dailyIdx].ch);
+  setTimeout(()=>{dailyIdx++;renderDailyQ();},800);
+}
+function endDailyChallenge(){
+  markDailyDone(dailyOk);
+  addXP(dailyOk*5+5); updStreak();
+  const el=document.getElementById('d-daily');
+  const pct=Math.round(dailyOk/5*100);
+  el.innerHTML=`<div class="daily-box">
+    <div class="daily-head">⚡ Défi complété !</div>
+    <div class="daily-title">${dailyOk}/5 — ${pct}% · +${dailyOk*5+5} XP</div>
+    <div class="daily-done">${dailyOk===5?'🏆 Parfait !':dailyOk>=3?'👍 Bien joué !':'💪 Continue !'} Reviens demain !</div>
+  </div>`;
+  updDash();
+}
+
+// ═══════════════════════════════════════════════════════
+// WORD READING
+// ═══════════════════════════════════════════════════════
+const WORDS_H = [
+  {jp:'すし',rm:'sushi',fr:'Sushi 🍣'},{jp:'ねこ',rm:'neko',fr:'Chat 🐱'},{jp:'いぬ',rm:'inu',fr:'Chien 🐶'},
+  {jp:'さかな',rm:'sakana',fr:'Poisson 🐟'},{jp:'みず',rm:'mizu',fr:'Eau 💧'},{jp:'ひと',rm:'hito',fr:'Personne'},
+  {jp:'そら',rm:'sora',fr:'Ciel ☁️'},{jp:'やま',rm:'yama',fr:'Montagne ⛰️'},{jp:'はな',rm:'hana',fr:'Fleur 🌸'},
+  {jp:'かわ',rm:'kawa',fr:'Rivière'},{jp:'うみ',rm:'umi',fr:'Mer 🌊'},{jp:'あめ',rm:'ame',fr:'Pluie / Bonbon'},
+  {jp:'かぜ',rm:'kaze',fr:'Vent'},{jp:'もり',rm:'mori',fr:'Forêt 🌲'},{jp:'つき',rm:'tsuki',fr:'Lune 🌙'},
+  {jp:'ほし',rm:'hoshi',fr:'Étoile ⭐'},{jp:'にほん',rm:'nihon',fr:'Japon 🗾'},{jp:'とうきょう',rm:'tōkyō',fr:'Tokyo'},
+  {jp:'おおさか',rm:'ōsaka',fr:'Osaka'},{jp:'さくら',rm:'sakura',fr:'Cerisier 🌸'},{jp:'たべる',rm:'taberu',fr:'Manger'},
+  {jp:'のむ',rm:'nomu',fr:'Boire'},{jp:'みる',rm:'miru',fr:'Voir'},{jp:'いく',rm:'iku',fr:'Aller'},
+  {jp:'くる',rm:'kuru',fr:'Venir'},{jp:'すきです',rm:'suki desu',fr:'J\'aime ❤️'},{jp:'おいしい',rm:'oishii',fr:'Délicieux 😋'},
+];
+const WORDS_K = [
+  {jp:'コーヒー',rm:'kōhī',fr:'Café ☕'},{jp:'テレビ',rm:'terebi',fr:'Télévision 📺'},{jp:'アイス',rm:'aisu',fr:'Glace 🍦'},
+  {jp:'フランス',rm:'furansu',fr:'France 🇫🇷'},{jp:'パリ',rm:'pari',fr:'Paris 🗼'},{jp:'ピザ',rm:'piza',fr:'Pizza 🍕'},
+  {jp:'バナナ',rm:'banana',fr:'Banane 🍌'},{jp:'スポーツ',rm:'supōtsu',fr:'Sport ⚽'},{jp:'コンビニ',rm:'konbini',fr:'Konbini 🏪'},
+  {jp:'カメラ',rm:'kamera',fr:'Appareil photo 📷'},{jp:'ホテル',rm:'hoteru',fr:'Hôtel 🏨'},{jp:'レストラン',rm:'resutoran',fr:'Restaurant 🍽️'},
+  {jp:'スーパー',rm:'sūpā',fr:'Supermarché'},{jp:'タクシー',rm:'takushī',fr:'Taxi 🚕'},{jp:'バス',rm:'basu',fr:'Bus 🚌'},
+  {jp:'メニュー',rm:'menyū',fr:'Menu'},{jp:'アイスクリーム',rm:'aisukurīmu',fr:'Crème glacée 🍨'},
+  {jp:'マクドナルド',rm:'makudonarudo',fr:'McDonald\'s 🍔'},{jp:'チョコレート',rm:'chokorēto',fr:'Chocolat 🍫'},
+  {jp:'スマホ',rm:'sumaho',fr:'Smartphone 📱'},{jp:'インターネット',rm:'intānetto',fr:'Internet'},
+];
+
+function getDeck(k){
+  const p=getP();
+  if(k==='h-basic')return HG.slice(0,9).flatMap(g=>g.ch.map(([c,r])=>({ch:c,rm:r})));
+  if(k==='h-daku') return HG.slice(9).flatMap(g=>g.ch.map(([c,r])=>({ch:c,rm:r})));
+  if(k==='h-all')  return HG.flatMap(g=>g.ch.map(([c,r])=>({ch:c,rm:r})));
+  if(k==='k-basic')return KG.slice(0,9).flatMap(g=>g.ch.map(([c,r])=>({ch:c,rm:r})));
+  if(k==='k-all')  return KG.flatMap(g=>g.ch.map(([c,r])=>({ch:c,rm:r})));
+  if(k==='hk')     return [...getDeck('h-all'),...getDeck('k-all')];
+  if(k==='vocab')  return VG.flatMap(g=>g.ch.map(([c,r])=>({ch:c,rm:r})));
+  if(k==='mix')    return [...getDeck('h-basic').slice(0,10),...getDeck('k-basic').slice(0,10)];
+  if(k==='words-h')return shuffle(WORDS_H).map(w=>({ch:w.jp,rm:w.fr,reading:w.rm,isWord:true}));
+  if(k==='words-k')return shuffle(WORDS_K).map(w=>({ch:w.jp,rm:w.fr,reading:w.rm,isWord:true}));
+  if(k==='weak'){
+    const all=getDeck('h-all');
+    return all.map(it=>{const s=p.chars[it.ch]||{ok:0,seen:0};return{...it,rate:s.seen?s.ok/s.seen:0};})
+              .sort((a,b)=>a.rate-b.rate).slice(0,30);
+  }
+  return getDeck('h-basic');
+}
+
+function renderEx(){
+  if(exIdx>=exDeck.length){renderExEnd();return;}
+  const card=exDeck[exIdx];
+  if(card.isWord)        renderWordReading(card);
+  else if(pMode==='flash')    renderFlash(card);
+  else if(pMode==='qcm-kr')   renderQCM(card,'kr');
+  else if(pMode==='qcm-rk')   renderQCM(card,'rk');
+  else if(pMode==='type')     renderTyping(card);
+  else if(pMode==='listen')   renderListen(card);
+}
+
+function renderWordReading(card){
+  speak(card.ch);
+  const allFr = (pSet==='words-k'?WORDS_K:WORDS_H).map(w=>w.fr);
+  const pool = allFr.filter(f=>f!==card.rm);
+  const opts = shuffle([card.rm,...shuffle(pool).slice(0,3)]);
+  document.getElementById('ex-area').innerHTML=`${exBar()}
+    <div class="wr-wrap">
+      <div style="font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;margin-bottom:.5rem;">Quel est ce mot ?</div>
+      <div class="wr-word" onclick="speak('${card.ch}')">${card.ch}</div>
+      <div class="wr-reading">🔊 ${card.reading}</div>
+      <div class="wr-opts">${opts.map(o=>`<button class="wro" onclick="doWordReading(this,'${o.replace(/'/g,"\\'")}','${card.rm.replace(/'/g,"\\'")}')">${o}</button>`).join('')}</div>
+    </div>`;
+}
+function doWordReading(btn,chosen,correct){
+  document.querySelectorAll('.wro').forEach(b=>{b.disabled=true;if(b.textContent===correct)b.classList.add('ok');});
+  const ok=chosen===correct;if(!ok)btn.classList.add('ko');else exOk++;
+  speak(exDeck[exIdx].ch);
+  setTimeout(()=>{exIdx++;renderEx();},900);
+}
+
+// ═══════════════════════════════════════════════════════
+// KATAKANA DÉBUTANT
+// ═══════════════════════════════════════════════════════
+const MNEMO_K = {
+  'ア':'🅰️|<b>ア (a)</b> — Un <b>A</b> latin cassé en deux. Le trait diagonal et la barre. Tu vois le A ?',
+  'イ':'👣|<b>イ (i)</b> — Deux jambes qui marchent vers la droite. Un personnage de profil qui dit <em>"Ii !"</em>',
+  'ウ':'👄|<b>ウ (u)</b> — Une bouche qui dit <b>Ou</b>. Le tiret du haut = la lèvre supérieure.',
+  'エ':'🔧|<b>エ (e)</b> — Un <b>I-beam</b> de chantier vu de face. Deux horizontaux + un vertical. Simple.',
+  'オ':"🏑|<b>オ (o)</b> — Un <b>O</b>rient express sur des rails. La croix + le trait courbe.",
+  'カ':'⚔️|<b>カ (ka)</b> — Un <b>Ka</b>taná. Le trait diagonal = la lame, le trait court = la garde.',
+  'キ':'✝️|<b>キ (ki)</b> — Une croix + un trait supplémentaire. Comme une <b>Ki</b>tte (croix) compliquée.',
+  'ク':'7️⃣|<b>ク (ku)</b> — Un <b>7</b> qui a trop bu et qui penche. Simple crochet en haut à droite.',
+  'ケ':'🏗️|<b>ケ (ke)</b> — Une structure de chantier vue de face. Trois traits comme un K stylisé.',
+  'コ':'🔲|<b>コ (ko)</b> — Un <b>Co</b>in. Exactement l\'équerre d\'un menuisier. Deux traits en équerre.',
+  'サ':'☂️|<b>サ (sa)</b> — Un parapluie <b>Sa</b>ns la poignée. Deux traits croisés et un vertical.',
+  'シ':'😊|<b>シ (shi)</b> — Un visage souriant vu de côté. Les trois traits = deux yeux + le sourire.',
+  'ス':'♟️|<b>ス (su)</b> — Un <b>Su</b>mo qui lève le bras. Le trait courbe + le petit bras levé.',
+  'セ':'🌿|<b>セ (se)</b> — Une <b>Se</b>rpe pour faucher. Le trait horizontal et la lame courbe en bas.',
+  'ソ':'✔️|<b>ソ (so)</b> — Un check-mark <b>So</b>lide. Deux traits — le petit en haut, la courbe en bas.',
+  'タ':'🎭|<b>タ (ta)</b> — Un <b>Ta</b>bleau de théâtre. Le trait horizontal + la courbe + le petit trait.',
+  'チ':'🔱|<b>チ (chi)</b> — Un trident de <b>Chi</b>nois. Deux horizontaux et la courbe finale.',
+  'ツ':'💧|<b>ツ (tsu)</b> — Trois gouttes d\'eau + un arc. Comme シ mais avec les gouttes en haut.',
+  'テ':'🌡️|<b>テ (te)</b> — Un <b>Té</b> de menuiserie. Le T avec un trait supplémentaire.',
+  'ト':'🗡️|<b>ト (to)</b> — Un <b>To</b>tem. Un trait vertical + un petit trait horizontal = une lance.',
+  'ナ':'➕|<b>ナ (na)</b> — Un plus (+) avec une extension. <b>Na</b>ïvement simple.',
+  'ニ':'🟰|<b>ニ (ni)</b> — Le symbole égal. Deux lignes parallèles = <b>Ni</b>veau.',
+  'ヌ':'🌀|<b>ヌ (nu)</b> — Des <b>Nu</b>ages entrelacés. La croix + la boucle finale.',
+  'ネ':'🌐|<b>ネ (ne)</b> — Un <b>Ne</b>t (filet). La croix centrale et les traits qui rayonnent.',
+  'ノ':'↗️|<b>ノ (no)</b> — Une flèche <b>No</b>rd-est. Un seul trait diagonal. Le plus simple de tous !',
+  'ハ':'🎉|<b>ハ (ha)</b> — Deux personnes qui rient : <b>Ha ha</b> ! Deux traits qui s\'écartent joyeusement.',
+  'ヒ':'🪞|<b>ヒ (hi)</b> — Un <b>Hi</b>éroglyphe miroir. Le trait horizontal + le vertical + la petite barre.',
+  'フ':'🪝|<b>フ (fu)</b> — Un <b>Fu</b>sil à crochet. Un simple crochet en haut = futur chasseur de kana.',
+  'ヘ':'⛰️|<b>ヘ (he)</b> — Une <b>He</b>rnie de montagne. Identique à へ en hiragana ! Un seul trait en pointe.',
+  'ホ':'✝️|<b>ホ (ho)</b> — Une croix chrétienne + deux bras. <b>Ho</b>ly cross avec deux barres latérales.',
+  'マ':'✔️|<b>マ (ma)</b> — Un <b>Ma</b>rquage de chantier. Un crochet en haut à gauche.',
+  'ミ':'〰️|<b>ミ (mi)</b> — Trois vagues courtes. <b>Mi mi mi</b> — comme une chanteuse qui fait des vocalises.',
+  'ム':'🐄|<b>ム (mu)</b> — Une vache qui dit <b>Mu</b>u. Le tiret du haut = les cornes, la courbe = la tête.',
+  'メ':'❌|<b>メ (me)</b> — Un X avec style. <b>Me</b> = œil en japonais, et ça fait un œil barré.',
+  'モ':'Ξ|<b>モ (mo)</b> — Trois lignes horizontales + un crochet. Comme un symbole de <b>Mo</b>teur.',
+  'ヤ':'🌿|<b>ヤ (ya)</b> — Un <b>Ya</b>k avec les cornes. Le trait courbe = le corps, les petits traits = les cornes.',
+  'ユ':'🧲|<b>ユ (yu)</b> — Un <b>U</b> avec un chapeau. Comme un aimant en U. Simple et mémorable.',
+  'ヨ':'🚪|<b>ヨ (yo)</b> — Un E à l\'envers. <b>Yo</b>! C\'est juste un E retourné avec trois barres.',
+  'ラ':'2️⃣|<b>ラ (ra)</b> — Un <b>2</b> avec une barre. Le 2 penché + un trait horizontal.',
+  'リ':'🌧️|<b>リ (ri)</b> — La pluie qui tombe. Deux traits verticaux comme deux fils de pluie.',
+  'ル':'↙️|<b>ル (ru)</b> — Un <b>Ru</b>isseau qui bifurque. Le trait qui descend puis part sur la droite.',
+  'レ':'↙️|<b>レ (re)</b> — Un <b>Re</b>tour en arrière. Un simple trait en L inversé. Le plus simple !',
+  'ロ':'⬜|<b>ロ (ro)</b> — Un <b>Ro</b>bot carré. Un rectangle parfait. <em>Ro-bo-t.</em> Facile.',
+  'ワ':'🌀|<b>ワ (wa)</b> — Un <b>Wa</b>gon qui tourne. La courbe + le trait vertical.',
+  'ン':'🙂|<b>ン (n)</b> — Un sourire léger. Deux traits — comme ソ mais à l\'envers.',
+};
+
+// Katakana chapters for beginner module - added to DB_CHAPTERS dynamically
+const DB_CHAPTERS_K = [
+  {id:'dbk1',name:'Voyelles K',sub:'ア イ ウ エ オ',chars:KG[0].ch,color:'#1464C0',type:'k'},
+  {id:'dbk2',name:'K-row K',   sub:'カ キ ク ケ コ',chars:KG[1].ch,color:'#1A88C9',type:'k'},
+  {id:'dbk3',name:'S-row K',   sub:'サ シ ス セ ソ',chars:KG[2].ch,color:'#1464C0',type:'k'},
+  {id:'dbk4',name:'T-row K',   sub:'タ チ ツ テ ト',chars:KG[3].ch,color:'#1A88C9',type:'k'},
+  {id:'dbk5',name:'N-row K',   sub:'ナ ニ ヌ ネ ノ',chars:KG[4].ch,color:'#1464C0',type:'k'},
+  {id:'dbk6',name:'H-row K',   sub:'ハ ヒ フ ヘ ホ',chars:KG[5].ch,color:'#1A88C9',type:'k'},
+  {id:'dbk7',name:'M-row K',   sub:'マ ミ ム メ モ',chars:KG[6].ch,color:'#1464C0',type:'k'},
+  {id:'dbk8',name:'Y/W/N K',   sub:'ヤ ユ ヨ ワ ン',chars:KG[7].ch,color:'#1A88C9',type:'k'},
+  {id:'dbk9',name:'R-row K',   sub:'ラ リ ル レ ロ',chars:KG[8].ch,color:'#1464C0',type:'k'},
+];
+// Merge into full chapters list
+const DB_ALL_CHAPTERS = [
+  ...DB_CHAPTERS,
+  {id:'dbk0',name:'Katakana',sub:'Introduction',chars:null,type:'k-intro',color:'#1464C0'},
+  ...DB_CHAPTERS_K,
+];
+
+// ═══════════════════════════════════════════════════════
+// UTILS
+// ═══════════════════════════════════════════════════════
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+
+// ═══════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded',()=>{
+  initAudio();
+  initDark();
+  updDash();
+  renderSRSWidget();
+  renderDailyWidget();
+  renderLessons('lt-h', HG);
+  renderLessons('lt-k', KG);
+  renderVocab();
+  updModes();
+  startMatch('h-basic');
+  renderSpeedIntro();
+});
+</script>
+</body>
+</html>
